@@ -1,7 +1,6 @@
 # Welcome {-}
 
-Due to the multivariate character of many econometric topics, matrix algebra is a commonly used tool in modern econometrics.
-It provides a powerful and efficient framework for representing and manipulating systems of linear equations.
-This short lecture note series provides a brief introduction to the most relevant matrix algebra concepts for econometricians and their implementation in R.
+This tutorial gives a short introduction of the most important basic concepts from probability theory and statistics for econometricians.
+The sections are complemented with short R sessions.
 
 To learn R or refresh your skills, please check out my tutorial [**Getting Started With R**](https://rintro.svenotto.com).
