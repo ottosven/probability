@@ -1,4 +1,4 @@
-# Probability theory
+# Probability
 
 ## Random experiment
 
