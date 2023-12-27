@@ -8,3 +8,25 @@ $link-color: $primary;
 img {
   max-width: 100%;
 }
+
+div {
+    overflow: hidden;
+    max-width: 100%;
+}
+
+
+.myborder {
+  border-style: solid;
+  background-color:#f2f2f2;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-width: 1px;
+}
+
+
+.shiny {
+  overflow: hidden;
+  border-style: solid;
+  border-width: 1px;
+}
+

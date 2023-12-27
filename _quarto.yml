@@ -3,16 +3,14 @@ project:
   output-dir: docs
   
 book:
-  title: Probability theory and statistics for econometricians
-  # repo-url: https://github.com/ottosven/rintro
-  # repo-actions: [edit, issue]
-  # downloads: [pdf]
+  title: Probability Theory for Econometricians
+  downloads: [pdf]
   author: Sven Otto
   sidebar: false
   navbar: false
   date: today
   date-format: "MMMM D, YYYY"
-  # description: "with applications in R"
+  # description: "A toolbox for asymptotic theory"
   search: true
   page-navigation: true
   open-graph: true
@@ -25,7 +23,10 @@ format:
     theme:
       light: [default, theme.scss]
       dark: [default, darkly, theme.scss]
+    html-math-method: katex
     monofont: Fira Mono
+    mathfont: Leto
+    linkcolor: green
     number-sections: true
     code-link: true
     reference-links: true
@@ -34,6 +35,11 @@ format:
       opts_chunk:
         fig.align: center
     fig-align: center
+  pdf:
+    include-in-header: preamble-latex.tex
+    documentclass: scrreprt
+    fig-align: center
+    pdf-engine: pdflatex
   
 resources:
   - CNAME
