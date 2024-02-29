@@ -10,16 +10,15 @@ book:
   navbar: false
   date: today
   date-format: "MMMM D, YYYY"
-  description: "Random variables, limit theorems, and the asymptotic theory toolbox"
+  # description: "Random variables, limit theorems, and the asymptotic theory toolbox"
   search: true
   page-navigation: true
   open-graph: true
   chapters:
     - index.qmd
-    - 01_randomvariables.qmd
-    - 02_probability.qmd
-    - 03_expectations.qmd
-    - 04_conditioning.qmd
+    - sec02_probability.qmd
+    - sec03_dependence.qmd
+    # - 02_probability.qmd
 
 format:
   html:
