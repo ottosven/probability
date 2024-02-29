@@ -4,3 +4,6 @@ This tutorial gives a short introduction of the most important basic concepts fr
 <!-- The sections are complemented with short R sessions. -->
 
 <!-- To learn R or refresh your skills, please check out my tutorial [**Getting Started With R**](https://rintro.svenotto.com). -->
+
+This tutorial is still under construction.
+The two sections presented here are the first two sections of my course Statistics for Data Analytics from the winter term 2023.
