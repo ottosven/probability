@@ -1,0 +1,196 @@
+# Distribution
+
+
+## Random Experiment
+From an empirical perspective, a dataset is just a fixed array of numbers. Any summary statistic we compute -- like a sample mean, sample correlation, or OLS coefficient -- is simply a function of these numbers.
+
+These statistics provide a snapshot of the data at hand but do not automatically reveal broader insights about the world. To add deeper meaning to these numbers, identify dependencies, and understand causalities, we must consider how the data were obtained.
+
+A **random experiment** is an experiment whose outcome cannot be predicted with certainty. In statistical theory, any dataset is viewed as the result of such a random experiment. While individual outcomes are unpredictable, patterns emerge when experiments are repeated.
+
+The gender of the next person you meet, daily fluctuations in stock prices, monthly music streams of your favorite artist, or the annual number of pizzas consumed -- all involve a certain amount of randomness and emerge from random experiments. Probability theory gives us the tools to analyze this randomness systematically.
+
+
+
+## Random Variables
+
+A **random variable** is a numerical summary of a random experiment. An **outcome** is a specific result of a random experiment.
+The **sample space** $S$ is the set/collection of all potential outcomes.
+
+Let's consider some examples:
+
+* *Coin toss:* The outcome of a coin toss can be "heads" or "tails". This random experiment has a two-element sample space: $S = \{heads, tails\}$. We can express the experiment as a binary random variable:
+$$
+  Y = \begin{cases}
+  1   & \text{if outcome is heads,} \\
+  0   & \text{if outcome is tails.}
+  \end{cases}
+$$
+
+* *Gender:* If you conduct a survey and interview a random person to ask them about their gender, the answer may be "female", "male", or "diverse". It is a random experiment since the person to be interviewed is selected randomly. The sample space has three elements: $S = \{female, male, diverse\}$. To focus on female vs. non-female, we can define the female dummy variable:
+$$
+  Y = \begin{cases}
+  1   & \text{if the person is female,} \\
+  0   & \text{if the person is not female.}
+  \end{cases}
+$$
+Similarly, dummy variables for *male* and *diverse* can be defined.
+
+* *Education level:* If you ask a random person about their education level according to the [ISCED-2011 framework](https://en.wikipedia.org/wiki/International_Standard_Classification_of_Education), the outcome may be one of the eight ISCED-2011 levels. We have an eight-element sample space:
+$$S = \{Level \ 1, Level \ 2, Level \ 3, Level \ 4, Level \ 5, Level \ 6, Level \ 7, Level \ 8\}.$$ 
+
+The eight-element sample space of the education-level random experiment provides a natural ordering. We define the random variable *education* as the number of years of schooling of the interviewed person, with values corresponding to typical completion times in the German education system:
+$$
+  Y = \text{years of schooling} \in \{4, 10, 12, 13, 14, 16, 18, 21\}.
+$$
+
+
+```{r, echo=FALSE}
+#| tbl-cap: "ISCED 2011 levels"
+#| label: tbl-ISCED
+library(knitr)
+isced_levels = 1:8
+levelnames = c("Primary", "Lower Secondary", "Upper secondary", "Post-Secondary", "Short-Cycle Tertiary", "Bachelor's", "Master's","Doctoral")
+yearsofschooling = c(4, 10, 12, 13, 14, 16, 18, 21)
+tab = data.frame("ISCED level" = isced_levels, "Education level" = levelnames, "Years of schooling" = yearsofschooling)
+kable(tab, align = 'c')
+```
+
+
+* *Wage*: If you ask a random person about their income per working hour in EUR, there are infinitely many potential answers. Any (non-negative) real number may be an outcome. The sample space is a continuum of different wage levels. The wage level of the interviewed person is already numerical. The random variable is
+$$
+  Y = \text{income per working hour in EUR}.
+$$
+
+Random variables share the characteristic that their value is uncertain before conducting a random experiment (e.g., flipping a coin or selecting a random person for an interview). Their value is always a real number and is determined only once the experiment's outcome is known.
+
+## Events and Probabilities
+
+To quantify the uncertainty in random variables, we need to assign probabilities to different possible outcomes or sets of outcomes. This is where events and probability functions come into play.
+
+An **event** of a random variable $Y$ is a specific subset of the real line. Any real number defines an event (elementary event), and any open, half-open, or closed interval represents an event as well.
+
+Let's define some specific events:
+
+* Elementary events:
+$$
+    A_1 = \{Y=0\}, \quad A_2 = \{Y=1\}, \quad A_3 = \{Y=2.5\}
+$$
+
+* Half-open events:
+\begin{align*}
+A_4 &= \{Y \geq 0\} = \{ Y \in [0,\infty) \} \\
+A_5 &= \{ -1 \leq Y < 1 \} = \{ Y \in [-1,1) \}
+\end{align*}
+
+The **probability function** $P$ assigns values between 0 and 1 to events. For a fair coin toss (where $Y=1$ represents heads and $Y=0$ represents tails), it is natural to assign the following probabilities:
+$$
+  P(A_1) = P(Y=0) = 0.5, \quad P(A_2) = P(Y=1) = 0.5
+$$
+
+By definition, the coin variable will never take the value 2.5, so we assign
+$$
+  P(A_3) = P(Y=2.5) = 0
+$$
+
+To assign probabilities to interval events, we check whether the elementary events $\{Y=0\}$ and/or $\{Y=1\}$ are subsets of the event of interest:
+
+- If both $\{Y=0\}$ and $\{Y=1\}$ are contained in the event of interest, the probability is 1
+- If only one of them is contained, the probability is 0.5
+- If neither is contained, the probability is 0
+
+For our examples:
+$$
+  P(A_4) = P(Y \geq 0) = 1, \quad P(A_5) = P(-1 \leq Y < 1) = 0.5
+$$
+
+Every event has a **complementary event** (denoted with superscript $c$), which consists of all outcomes not in the original event. For any pair of events, we can also take the **union** (denoted by $\cup$) and **intersection** (denoted by $\cap$). Let's define further events:
+
+* Complement (all outcomes not in the original event):
+$$
+  A_6 = A_4^c = \{Y \geq 0\}^c = \{Y < 0\} = \{Y \in (-\infty, 0)\}
+$$
+
+* Union (outcomes in either event):
+$$
+  A_7 = A_1 \cup A_6 = \{Y=0\} \cup \{Y< 0\} = \{Y \leq 0\}
+$$
+
+* Intersection (outcomes in both events):
+$$
+  A_8 = A_4 \cap A_5 = \{Y \geq 0\} \cap \{-1 \leq Y < 1\} = \{0 \leq Y < 1\}
+$$
+
+* Combinations of multiple events:
+$$
+    A_9 = A_1 \cup A_2 \cup A_3 \cup A_5 \cup A_6 \cup A_7 \cup A_8 = \{Y \in (-\infty, 1] \cup \{2.5\}\}
+$$
+
+* **Certain event** (contains all possible outcomes):
+$$
+  A_{10} = A_9 \cup A_9^c = \{Y \in (-\infty, \infty)\} = \{Y \in \mathbb{R}\}
+$$
+
+* **Empty event** (contains no outcomes):
+$$
+  A_{11} = A_{10}^c = \{Y \notin \mathbb{R}\} = \{\}
+$$
+
+For the coin toss experiment, we can verify the probabilities of all these events:
+
+- $P(A_1) = 0.5$ (probability of tails)
+- $P(A_2) = 0.5$ (probability of heads)
+- $P(A_3) = 0$ (coin never shows 2.5)
+- $P(A_4) = 1$ (coin always shows a non-negative value)
+- $P(A_5) = 0.5$ (only tails falls in this interval)
+- $P(A_6) = 0$ (coin never shows a negative value)
+- $P(A_7) = 0.5$ (same as probability of tails)
+- $P(A_8) = 0.5$ (contains only tails)
+- $P(A_9) = 1$ (contains all possible coin outcomes)
+- $P(A_{10}) = 1$ (the certain event always occurs)
+- $P(A_{11}) = 0$ (the empty event never occurs)
+
+To illustrate how events and probabilities apply in other contexts, consider our education level example. If $Y$ represents years of schooling with possible values $\{4, 10, 12, 13, 14, 16, 18, 21\}$, we might define the event $B = \{Y \geq 16\}$ representing "has at least a Bachelor's degree." The probability $P(B)$ would then represent the proportion of the population with at least a Bachelor's degree.
+
+## Probability Function
+
+Now that we hve defined events, we need a formal way to assign probabilities to them consistently. The probability function $P$ assigns probabilities to events within the Borel sigma-algebra (denoted as $\mathcal B$), which contains all events we would ever need to compute probabilities for in practice. This includes our previously mentioned events $A_1, \ldots, A_{11}$, any interval of the form $\{ Y \in (a,b) \}$ with $a, b \in \mathbb{R}$, and all possible unions, intersections, and complements of these events.
+
+Two events $A$ and $B$ are **disjoint** if $A \cap B = \{\}$, meaning they have no common outcomes. For example, $A_1 = \{Y=0\}$ and $A_2 = \{Y=1\}$ are disjoint (a coin cannot show both heads and tails simultaneously), while $A_1$ and $A_4 = \{Y \geq 0\}$ are not disjoint since $A_1 \cap A_4 = \{Y=0\}$.
+
+A probability function $P$ must satisfy certain fundamental rules (axioms) to ensure a well-defined probability framework:
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Basic Rules of Probability**
+
+**Fundamental Axioms:**
+
+-   $P(A) \geq 0$ for any event $A$ (non-negativity)
+-   $P(Y \in \mathbb R) = 1$ for the certain event (normalization)
+-   $P(A \cup B) = P(A) + P(B)$ if $A$ and $B$ are disjoint (additivity)
+
+**Implied Properties:**
+
+-   $P(Y \notin \mathbb R) = P(\{\}) = 0$ for the empty event
+-   $0 \leq P(A) \leq 1$ for any event $A$
+-   $P(A) \leq P(B)$ if $A$ is a subset of $B$ (monotonicity)
+-   $P(A^c) = 1 - P(A)$ for the complement event of $A$
+-   $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ for any events $A, B$
+::: 
+\
+
+The first three properties listed above are known as the axioms of probability, first formalized by Andrey Kolmogorov in 1933. The remaining properties follow as logical consequences of these axioms.
+
+Let's consider a practical example: In our education survey, suppose we know the following probabilities:
+
+- $P(\text{Primary education}) = 0.1$
+- $P(\text{Secondary education}) = 0.6$
+- $P(\text{Tertiary education}) = 0.3$
+
+These events are disjoint (a person cannot simultaneously have exactly primary and exactly secondary education as their highest level), and they cover all possibilities (everyone has some highest level of education). Using the axioms:
+
+1. Each probability is non-negative (satisfying axiom 1)
+2. The sum $0.1 + 0.6 + 0.3 = 1$ (satisfying axiom 2)
+3. The probability of having either primary or secondary education is $P(\text{Primary or Secondary}) = P(\text{Primary}) + P(\text{Secondary}) = 0.1 + 0.6 = 0.7$ (using axiom 3 for disjoint events)
+
+From the derived properties, we can also calculate that the probability of not having tertiary education is $P(\text{No tertiary}) = 1 - P(\text{Tertiary}) = 1 - 0.3 = 0.7$.

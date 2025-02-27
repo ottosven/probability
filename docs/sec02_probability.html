@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.371">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Probability Theory for Econometricians - 1&nbsp; Probability</title>
+<title>2&nbsp; Probability – Probability Theory for Econometricians</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -61,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./sec03_dependence.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./part1_distribution.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
@@ -93,12 +93,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script><script src="site_libs/kePrint-0.0.1/kePrint.js"></script><link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+<script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
  for (var i = 0; i < mathElements.length; i++) {
@@ -111,8 +112,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     fleqn: false
    });
 }}});
-  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
-<meta property="og:title" content="Probability Theory for Econometricians - 1&nbsp; Probability">
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+<meta property="og:title" content="2&nbsp; Probability – Probability Theory for Econometricians">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Probability Theory for Econometricians">
 </head>
@@ -120,19 +147,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sec02_probability.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sec02_probability.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Probability Theory for Econometricians</a> 
         <div class="sidebar-tools-main">
@@ -156,54 +183,84 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./part1_distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distribution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./sec02_probability.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec03_dependence.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dependence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dependence</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stat1_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stat3_probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stat4_expectation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Expectated value</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stat5_conditional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditional expectation</span></span></a>
   </div>
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#random-experiments" id="toc-random-experiments" class="nav-link active" data-scroll-target="#random-experiments"><span class="header-section-number">1.1</span> Random experiments</a></li>
-  <li><a href="#random-variables" id="toc-random-variables" class="nav-link" data-scroll-target="#random-variables"><span class="header-section-number">1.2</span> Random variables</a></li>
-  <li><a href="#probability-function" id="toc-probability-function" class="nav-link" data-scroll-target="#probability-function"><span class="header-section-number">1.3</span> Probability function</a></li>
-  <li><a href="#distribution" id="toc-distribution" class="nav-link" data-scroll-target="#distribution"><span class="header-section-number">1.4</span> Distribution</a></li>
-  <li><a href="#cumulative-distribution-function" id="toc-cumulative-distribution-function" class="nav-link" data-scroll-target="#cumulative-distribution-function"><span class="header-section-number">1.5</span> Cumulative distribution function</a></li>
-  <li><a href="#probability-density-function" id="toc-probability-density-function" class="nav-link" data-scroll-target="#probability-density-function"><span class="header-section-number">1.6</span> Probability density function</a></li>
+<li><a href="#random-experiments" id="toc-random-experiments" class="nav-link active" data-scroll-target="#random-experiments"><span class="header-section-number">2.1</span> Random experiments</a></li>
+  <li><a href="#random-variables" id="toc-random-variables" class="nav-link" data-scroll-target="#random-variables"><span class="header-section-number">2.2</span> Random variables</a></li>
+  <li><a href="#probability-function" id="toc-probability-function" class="nav-link" data-scroll-target="#probability-function"><span class="header-section-number">2.3</span> Probability function</a></li>
+  <li><a href="#distribution" id="toc-distribution" class="nav-link" data-scroll-target="#distribution"><span class="header-section-number">2.4</span> Distribution</a></li>
+  <li><a href="#cumulative-distribution-function" id="toc-cumulative-distribution-function" class="nav-link" data-scroll-target="#cumulative-distribution-function"><span class="header-section-number">2.5</span> Cumulative distribution function</a></li>
+  <li><a href="#probability-density-function" id="toc-probability-density-function" class="nav-link" data-scroll-target="#probability-density-function"><span class="header-section-number">2.6</span> Probability density function</a></li>
   <li>
-<a href="#expected-value" id="toc-expected-value" class="nav-link" data-scroll-target="#expected-value"><span class="header-section-number">1.7</span> Expected value</a>
+<a href="#expected-value" id="toc-expected-value" class="nav-link" data-scroll-target="#expected-value"><span class="header-section-number">2.7</span> Expected value</a>
   <ul class="collapse">
-<li><a href="#expectation-of-a-discrete-random-variable" id="toc-expectation-of-a-discrete-random-variable" class="nav-link" data-scroll-target="#expectation-of-a-discrete-random-variable"><span class="header-section-number">1.7.1</span> Expectation of a discrete random variable</a></li>
-  <li><a href="#expectation-of-a-continuous-random-variable" id="toc-expectation-of-a-continuous-random-variable" class="nav-link" data-scroll-target="#expectation-of-a-continuous-random-variable"><span class="header-section-number">1.7.2</span> Expectation of a continuous random variable</a></li>
-  <li><a href="#sec-unifiedexpectation" id="toc-sec-unifiedexpectation" class="nav-link" data-scroll-target="#sec-unifiedexpectation"><span class="header-section-number">1.7.3</span> Expectation for general random variables</a></li>
-  <li><a href="#properties-of-the-expected-value" id="toc-properties-of-the-expected-value" class="nav-link" data-scroll-target="#properties-of-the-expected-value"><span class="header-section-number">1.7.4</span> Properties of the expected value</a></li>
+<li><a href="#expectation-of-a-discrete-random-variable" id="toc-expectation-of-a-discrete-random-variable" class="nav-link" data-scroll-target="#expectation-of-a-discrete-random-variable"><span class="header-section-number">2.7.1</span> Expectation of a discrete random variable</a></li>
+  <li><a href="#expectation-of-a-continuous-random-variable" id="toc-expectation-of-a-continuous-random-variable" class="nav-link" data-scroll-target="#expectation-of-a-continuous-random-variable"><span class="header-section-number">2.7.2</span> Expectation of a continuous random variable</a></li>
+  <li><a href="#sec-unifiedexpectation" id="toc-sec-unifiedexpectation" class="nav-link" data-scroll-target="#sec-unifiedexpectation"><span class="header-section-number">2.7.3</span> Expectation for general random variables</a></li>
+  <li><a href="#properties-of-the-expected-value" id="toc-properties-of-the-expected-value" class="nav-link" data-scroll-target="#properties-of-the-expected-value"><span class="header-section-number">2.7.4</span> Properties of the expected value</a></li>
   </ul>
 </li>
   <li>
-<a href="#descriptive-features-of-a-distribution" id="toc-descriptive-features-of-a-distribution" class="nav-link" data-scroll-target="#descriptive-features-of-a-distribution"><span class="header-section-number">1.8</span> Descriptive features of a distribution</a>
+<a href="#descriptive-features-of-a-distribution" id="toc-descriptive-features-of-a-distribution" class="nav-link" data-scroll-target="#descriptive-features-of-a-distribution"><span class="header-section-number">2.8</span> Descriptive features of a distribution</a>
   <ul class="collapse">
-<li><a href="#heavy-tailed-distributions" id="toc-heavy-tailed-distributions" class="nav-link" data-scroll-target="#heavy-tailed-distributions"><span class="header-section-number">1.8.1</span> Heavy-tailed distributions</a></li>
+<li><a href="#heavy-tailed-distributions" id="toc-heavy-tailed-distributions" class="nav-link" data-scroll-target="#heavy-tailed-distributions"><span class="header-section-number">2.8.1</span> Heavy-tailed distributions</a></li>
   </ul>
 </li>
-  <li><a href="#the-normal-distribution" id="toc-the-normal-distribution" class="nav-link" data-scroll-target="#the-normal-distribution"><span class="header-section-number">1.9</span> The normal distribution</a></li>
-  <li><a href="#additional-reading" id="toc-additional-reading" class="nav-link" data-scroll-target="#additional-reading"><span class="header-section-number">1.10</span> Additional reading</a></li>
-  <li><a href="#r-codes" id="toc-r-codes" class="nav-link" data-scroll-target="#r-codes"><span class="header-section-number">1.11</span> R-codes</a></li>
+  <li><a href="#the-normal-distribution" id="toc-the-normal-distribution" class="nav-link" data-scroll-target="#the-normal-distribution"><span class="header-section-number">2.9</span> The normal distribution</a></li>
+  <li><a href="#additional-reading" id="toc-additional-reading" class="nav-link" data-scroll-target="#additional-reading"><span class="header-section-number">2.10</span> Additional reading</a></li>
+  <li><a href="#r-codes" id="toc-r-codes" class="nav-link" data-scroll-target="#r-codes"><span class="header-section-number">2.11</span> R-codes</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability</span>
+<span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span>
 </h1>
 </div>
 
@@ -219,8 +276,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><p><a href="https://statistics.svenotto.com/section2_probability.pdf">PDF version</a></p>
-<section id="random-experiments" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="random-experiments">
-<span class="header-section-number">1.1</span> Random experiments</h2>
+<section id="random-experiments" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="random-experiments">
+<span class="header-section-number">2.1</span> Random experiments</h2>
 <p>A random experiment is a procedure or situation where the result is uncertain and determined by a probabilistic mechanism. An <strong>outcome</strong> is a specific result of a random experiment. The <strong>sample space</strong> <span class="math inline">S</span> is the set/collection of all potential outcomes.</p>
 <p>Let’s consider some examples:</p>
 <ul>
@@ -228,8 +285,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><em>Gender</em>: If you conduct a survey and interview a random person to ask them about their gender, the answer may be ‘female’, ‘male’, or ‘diverse’. It is a random experiment since the person to be interviewed is selected randomly. The sample space has three elements: <span class="math inline">S = \{female, male, diverse\}</span>.</p></li>
 <li><p><em>Education level</em>: If you ask a random person about their education level according to the <a href="https://en.wikipedia.org/wiki/International_Standard_Classification_of_Education">ISCED-2011 framework</a>, the outcome may be one of the eight ISCED-2011 levels. We have an eight-element sample space: <span class="math display">S = \{Level \ 1, Level \ 2, Level \ 3, Level \ 4, Level \ 5, Level \ 6, Level \ 7, Level \ 8\}.</span></p></li>
 <li><p><em>Wage</em>: If you ask a random person about their income per working hour in EUR, there are infinitely many potential answers. Any (non-negative) real number may be an outcome. The sample space is a continuum of different wage levels.</p></li>
-</ul></section><section id="random-variables" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="random-variables">
-<span class="header-section-number">1.2</span> Random variables</h2>
+</ul></section><section id="random-variables" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="random-variables">
+<span class="header-section-number">2.2</span> Random variables</h2>
 <p>A <strong>random variable</strong> is a numerical summary of a random experiment. In econometrics and applied statistics, we always express random experiments in terms of random variables. Let’s define some random variables based on the random experiments above:</p>
 <ul>
 <li>
@@ -240,12 +297,12 @@ Y = \begin{cases}
 \end{cases}
 </span> A binary random variable is also called <strong>Bernoulli random variable</strong>.</li>
 </ul>
-<div id="fig-educationprobabilities" class="quarto-figure quarto-figure-center anchored" width="70%">
+<div id="fig-educationprobabilities" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-educationprobabilities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec02-ex1transf.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-educationprobabilities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.1: Bernoulli random variable
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-educationprobabilities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Bernoulli random variable
 </figcaption></figure>
 </div>
 <ul>
@@ -259,12 +316,13 @@ Y = \begin{cases}
 Y = \text{number of years of schooling} \in \{4, 10, 12, 13, 14, 16, 18, 21\}.
 </span></p></li>
 </ul>
-<div id="tbl-ISCED" class="cell anchored" data-layout-align="center">
-<figure class="quarto-float quarto-float-tbl figure"><figcaption class="table quarto-float-caption quarto-float-tbl" id="tbl-ISCED-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.1: ISCED 2011 levels
+<div class="cell" data-layout-align="center">
+<div id="tbl-ISCED" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ISCED-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: ISCED 2011 levels
 </figcaption><div aria-describedby="tbl-ISCED-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead><tr class="header">
 <th style="text-align: center;" data-quarto-table-cell-role="th">ISCED level</th>
 <th style="text-align: center;" data-quarto-table-cell-role="th">Education level</th>
@@ -317,14 +375,15 @@ Table&nbsp;1.1: ISCED 2011 levels
 </div>
 </figure>
 </div>
+</div>
 <ul>
 <li>
 <em>Wage</em>: The wage level of the interviewed is already numerical. The random variable is <span class="math display">
 Y = \text{income per working hour in EUR}.
 </span>
 </li>
-</ul></section><section id="probability-function" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="probability-function">
-<span class="header-section-number">1.3</span> Probability function</h2>
+</ul></section><section id="probability-function" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="probability-function">
+<span class="header-section-number">2.3</span> Probability function</h2>
 <p>In the case of a fair coin, it is natural to assign the following probabilities to the coin variable: <span class="math inline">P(Y = 0) = 0.5</span> and <span class="math inline">P(Y = 1) = 0.5</span>. By definition, the coin variable will never take the value 2.5, so the corresponding probability is <span class="math inline">P(Y=2.5) = 0</span>. We may also consider intervals, e.g., <span class="math inline">P(Y \geq 0) = 1</span> and <span class="math inline">P(-1 \leq Y &lt; 1) = 0.5</span></p>
 <p>The <strong>probability function</strong> <span class="math inline">P</span> assigns values between 0 and 1 to <strong>events</strong>. Specific subsets of the real line define events. Any real number defines an event, and any open, half-open, or closed interval represents an event as well, e.g., <span class="math display">
   A_1 = \{Y=0\}, \quad A_2 = \{Y=1\}, \quad A_3 = \{Y=2.5\}
@@ -386,8 +445,8 @@ A_{11} &amp;:= A_{10}^c = \{\}.
 </ul>
 </div>
 <p><br></p>
-</section><section id="distribution" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="distribution">
-<span class="header-section-number">1.4</span> Distribution</h2>
+</section><section id="distribution" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="distribution">
+<span class="header-section-number">2.4</span> Distribution</h2>
 <p>The <strong>distribution</strong> of a random variable <span class="math inline">Y</span> is characterized by the probabilities of all events of <span class="math inline">Y</span> in the Borel sigma algebra. The distribution of the <em>coin</em> variable is fully characterized by the probabilities <span class="math inline">P(Y=1) = 0.5</span> and <span class="math inline">P(Y=0) = 0.5</span>. We can compute the probabilities of all other events using the basic rules of probability. The probability mass function summarizes these probabilities:</p>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Probability mass function (PMF)</strong></p>
@@ -418,8 +477,8 @@ A_{11} &amp;:= A_{10}^c = \{\}.
   0 &amp; \text{otherwise.} \end{cases}
 </span> It has a countably infinite number of domain points with nonzero PMF values, and its probabilities sum to 1, i.e., <span class="math inline">\sum_{a=0}^\infty \pi(a) = e^{-\lambda} \sum_{a=0}^\infty \frac{\lambda^a}{a!} = 1</span> since the exponential function has the power series representation <span class="math inline">e^\lambda = \sum_{a=0}^\infty \frac{\lambda^a}{a!}</span>.</p>
 <p>Not all random variables are discrete, e.g., the <em>wage</em> variable takes values on a continuum. The cumulative distribution function is a unifying concept summarizing the distribution of any random variable.</p>
-</section><section id="cumulative-distribution-function" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="cumulative-distribution-function">
-<span class="header-section-number">1.5</span> Cumulative distribution function</h2>
+</section><section id="cumulative-distribution-function" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="cumulative-distribution-function">
+<span class="header-section-number">2.5</span> Cumulative distribution function</h2>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Cumulative distribution function (CDF)</strong></p>
 <p>The cumulative distribution function (CDF) of a random variable <span class="math inline">Y</span> is <span class="math display">
@@ -432,30 +491,30 @@ A_{11} &amp;:= A_{10}^c = \{\}.
         0.5 &amp; 0 \leq a &lt; 1, \\
         1 &amp; a \geq 1, \end{cases}
     </span> with the following CDF plot:</p>
-<div id="fig-CDFcoin" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-CDFcoin" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CDFcoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec02-ex1CDF.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-CDFcoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.2: CDF of coin
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CDFcoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: CDF of coin
 </figcaption></figure>
 </div>
 <p>The CDF of the variables <em>education</em> is</p>
-<div id="fig-CDFedu" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-CDFedu" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CDFedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec02-ex3CDF.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-CDFedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.3: CDF of education
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CDFedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: CDF of education
 </figcaption></figure>
 </div>
 <p>and the CDF of the variable <em>wage</em> may have the following form:</p>
-<div id="fig-CDFwage" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-CDFwage" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec02-ex4CDF.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.4: CDF of wage
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: CDF of wage
 </figcaption></figure>
 </div>
 <p>By the basic rules of probability, we can compute the probability of any event if we know the probabilities of all events of the form <span class="math inline">\{Y \leq a\}</span>.</p>
@@ -475,8 +534,8 @@ Figure&nbsp;1.4: CDF of wage
 <p><br></p>
 <p>Some CDFs have jumps/steps, and some CDFs are smooth/continuous. If <span class="math inline">F</span> has a jump at domain point <span class="math inline">a</span>, then the PMF at <span class="math inline">a</span> is <span id="eq-PMFjumps"><span class="math display">
   \pi(a) = P(Y=a) = F(a) - \lim_{\epsilon \to 0} F(a-\epsilon) = \text{``jump height at} \ a\text{''.}
-\tag{1.1}</span></span> If <span class="math inline">F</span> is continuous at domain point <span class="math inline">a</span>, we have <span class="math inline">\lim_{\epsilon \to 0} F(a-\epsilon) = F(a)</span>, which implies that <span class="math inline">\pi(a) = P(Y=a) = 0</span>.</p>
-<p>We call the random variable a <strong>discrete random variable</strong> if the CDF contains jumps and is flat between the jumps. A discrete random variable has only a finite (or countably infinite) number of potential outcomes. The values of the PMF correspond to the jump heights in the CDF as defined in <a href="#eq-PMFjumps" class="quarto-xref">Equation&nbsp;<span>1.1</span></a>. The <strong>support</strong> <span class="math inline">\mathcal Y</span> of a discrete random variable <span class="math inline">Y</span> is the set of all points <span class="math inline">a \in \mathbb R</span> with nonzero probability mass, i.e.&nbsp;<span class="math inline">\mathcal{Y} = \{ a \in \mathbb{R} : \pi(a) &gt; 0 \}</span>. The probabilities of a discrete random variable sum to 1, i.e., <span class="math inline">\sum_{a \in \mathcal Y} \pi(a)= 1</span>.</p>
+\tag{2.1}</span></span> If <span class="math inline">F</span> is continuous at domain point <span class="math inline">a</span>, we have <span class="math inline">\lim_{\epsilon \to 0} F(a-\epsilon) = F(a)</span>, which implies that <span class="math inline">\pi(a) = P(Y=a) = 0</span>.</p>
+<p>We call the random variable a <strong>discrete random variable</strong> if the CDF contains jumps and is flat between the jumps. A discrete random variable has only a finite (or countably infinite) number of potential outcomes. The values of the PMF correspond to the jump heights in the CDF as defined in <a href="#eq-PMFjumps" class="quarto-xref">Equation&nbsp;<span>2.1</span></a>. The <strong>support</strong> <span class="math inline">\mathcal Y</span> of a discrete random variable <span class="math inline">Y</span> is the set of all points <span class="math inline">a \in \mathbb R</span> with nonzero probability mass, i.e.&nbsp;<span class="math inline">\mathcal{Y} = \{ a \in \mathbb{R} : \pi(a) &gt; 0 \}</span>. The probabilities of a discrete random variable sum to 1, i.e., <span class="math inline">\sum_{a \in \mathcal Y} \pi(a)= 1</span>.</p>
 <p>The Bernoulli variables <em>coin</em> and <em>female</em> are discrete random variables with support <span class="math inline">\mathcal Y = \{0,1\}</span>. The variable <em>eduaction</em> has support <span class="math inline">\mathcal Y = \{4, 10, 12, 13, 14, 16, 18, 21\}</span>. A Poisson random variable has thr support <span class="math inline">\mathcal Y = \mathbb N \cup \{0\}</span>.</p>
 <p>We call a random variable a <strong>continuous random variable</strong> if the CDF is continuous at every point <span class="math inline">a \in \mathbb R</span>. A continuous random variable has <span class="math inline">\pi(a) = P(Y=a) = 0</span> for all <span class="math inline">a \in \mathbb R</span>. The basic rules for the CDF become simpler in the case of a continuous random variable:</p>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
@@ -490,12 +549,12 @@ Figure&nbsp;1.4: CDF of wage
 </div>
 <p><br></p>
 <p>Single-outcome events are null sets and occur with probability zero. Therefore, the PMF is not suitable to describe the distribution of a continuous random variable. We use the CDF to compute probabilities of interval events as well as their unions, intersections, and complements.</p>
-<div id="fig-CDFwage" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-CDFwage" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec02-ex4CDF2.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.5: CDF of wage evaluated at some points
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5: CDF of wage evaluated at some points
 </figcaption></figure>
 </div>
 <p>For instance, <span class="math inline">P(Y \leq 30) = 0.942</span>, <span class="math inline">P(Y \leq 20) = 0.779</span>, <span class="math inline">P(Y \leq 10) = 0.217</span>, and <span class="math inline">P(10 \leq Y \leq 20) = 0.779 - 0.217 = 0.562</span>.</p>
@@ -517,21 +576,21 @@ Figure&nbsp;1.5: CDF of wage evaluated at some points
 </ul>
 </li>
 </ul>
-<div id="fig-CDFwage" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-CDFwage" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec02-ex4CDF3.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.6: Quantiles of variable wage
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.6: Quantiles of variable wage
 </figcaption></figure>
 </div>
 <p>From the quantile plot, we find that <span class="math inline">q(0.1) = 7.73</span>, <span class="math inline">q(0.5) = 13.90</span>, <span class="math inline">q(0.9) = 26.18</span>. Under this wage distribution, the median wage is 13.90 EUR, the poorest 10% have a wage of less than 7.33 EUR, and the richest 10% have a wage of more than 26.18 EUR.</p>
-<div id="fig-CDFwage" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-CDFwage" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec02-ex3Q.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.7: Quantiles of variable education
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.7: Quantiles of variable education
 </figcaption></figure>
 </div>
 <p>The median of <em>education</em> is 13, the 0.1-quantile is 12, and the 0.9-quantile is 18.</p>
@@ -544,8 +603,8 @@ Figure&nbsp;1.7: Quantiles of variable education
 <li>the right limit is one: <span class="math inline">\lim_{a \to \infty} F(a) = 1</span>.</li>
 </ol>
 <p>Any function <span class="math inline">F</span> that satisfies these four properties defines a probability distribution. Typically, distributions are divided into discrete and continuous distributions. Still, it may be the case that a distribution does not fall into either of these categories (for instance, if a CDF has jumps on some domain points and is continuously increasing on other domain intervals). In any case, the CDF characterizes the entire distribution of any random variable.</p>
-</section><section id="probability-density-function" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="probability-density-function">
-<span class="header-section-number">1.6</span> Probability density function</h2>
+</section><section id="probability-density-function" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="probability-density-function">
+<span class="header-section-number">2.6</span> Probability density function</h2>
 <p>For discrete random variables, both the PMF and the CDF characterize the distribution. In the case of a continuous random variable, the PMF does not yield any information about the distribution since it is zero. The continuous counterpart of the PMF is the density function:</p>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Probability density function</strong></p>
@@ -561,12 +620,12 @@ Figure&nbsp;1.7: Quantiles of variable education
 <li><p><span class="math inline">f(a) \geq 0</span> for all <span class="math inline">a \in \mathbb R</span></p></li>
 <li><p><span class="math inline">\int_{-\infty}^\infty f(u) \ \text{d}u = 1</span></p></li>
 </ol>
-<div id="fig-PDFwage" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-PDFwage" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-PDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec02-ex4PDF.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-PDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.8: PDF of the variable wage
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-PDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.8: PDF of the variable wage
 </figcaption></figure>
 </div>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
@@ -575,11 +634,11 @@ Figure&nbsp;1.8: PDF of the variable wage
 </span></p>
 </div>
 <p><br></p>
-</section><section id="expected-value" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="expected-value">
-<span class="header-section-number">1.7</span> Expected value</h2>
+</section><section id="expected-value" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="expected-value">
+<span class="header-section-number">2.7</span> Expected value</h2>
 <p>The <strong>expectation</strong> or <strong>expected value</strong> is the most important measure of the central tendency of a distribution. It gives you the average value you can expect to get if you repeat the random experiment multiple times. We define the expectation first for discrete random variables, then continuous random variables, and finally give a unified definition for all random variables.</p>
-<section id="expectation-of-a-discrete-random-variable" class="level3" data-number="1.7.1"><h3 data-number="1.7.1" class="anchored" data-anchor-id="expectation-of-a-discrete-random-variable">
-<span class="header-section-number">1.7.1</span> Expectation of a discrete random variable</h3>
+<section id="expectation-of-a-discrete-random-variable" class="level3" data-number="2.7.1"><h3 data-number="2.7.1" class="anchored" data-anchor-id="expectation-of-a-discrete-random-variable">
+<span class="header-section-number">2.7.1</span> Expectation of a discrete random variable</h3>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p>The <strong>expectation</strong> or <strong>expected value</strong> of a discrete random variable <span class="math inline">Y</span> with PMF <span class="math inline">\pi(\cdot)</span> and support <span class="math inline">\mathcal Y</span> is defined as <span class="math display">
     E[Y] =
@@ -597,22 +656,22 @@ Figure&nbsp;1.8: PDF of the variable wage
   E[Y] = 0+ \sum_{a=1}^\infty a \cdot e^{-\lambda}\frac{\lambda^a}{a!} =
 e^{-\lambda} \sum_{a=1}^\infty \frac{\lambda^a}{(a-1)!} = e^{-\lambda} \sum_{a=0}^\infty \frac{\lambda^{a+1}}{a!} = \lambda e^{-\lambda} e^{\lambda} = \lambda.
 </span></p>
-</section><section id="expectation-of-a-continuous-random-variable" class="level3" data-number="1.7.2"><h3 data-number="1.7.2" class="anchored" data-anchor-id="expectation-of-a-continuous-random-variable">
-<span class="header-section-number">1.7.2</span> Expectation of a continuous random variable</h3>
+</section><section id="expectation-of-a-continuous-random-variable" class="level3" data-number="2.7.2"><h3 data-number="2.7.2" class="anchored" data-anchor-id="expectation-of-a-continuous-random-variable">
+<span class="header-section-number">2.7.2</span> Expectation of a continuous random variable</h3>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p>The <strong>expectation</strong> or <strong>expected value</strong> of a of a continuous random variable <span class="math inline">Y</span> with PDF <span class="math inline">f(\cdot)</span> is <span class="math display">
     E[Y] =
     \int_{-\infty}^\infty u f(u) \ \text{d}u.
 </span></p>
 </div>
-<p>Using numerical integration for the density of <a href="#fig-PDFwage" class="quarto-xref">Figure&nbsp;<span>1.8</span></a> yields the expected value of 16.45 EUR for the wage variable, which is larger than the median value of 13.90 EUR. If the mean is larger than the median, we have a positively skewed distribution, meaning that a few people have high salaries, and many people have medium and low wages.</p>
+<p>Using numerical integration for the density of <a href="stat4_expectation.html#fig-PDFwage" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> yields the expected value of 16.45 EUR for the wage variable, which is larger than the median value of 13.90 EUR. If the mean is larger than the median, we have a positively skewed distribution, meaning that a few people have high salaries, and many people have medium and low wages.</p>
 <p>The uniform distribution on the unit interval <span class="math inline">[0,1]</span> has the PDF <span class="math display">
   f(u) = \begin{cases} 1 &amp; \text{if} \ u \in[0,1], \\ 0 &amp; \text{otherwise,} \end{cases}
 </span> and the expected value of a uniformly distributed random variable <span class="math inline">Y</span> is <span class="math display">
   E[Y] = \int_{-\infty}^\infty u f(u) \ \text{d} u = \int_{0}^1 u \ \text{d} u = \frac{1}{2}.
 </span></p>
-</section><section id="sec-unifiedexpectation" class="level3" data-number="1.7.3"><h3 data-number="1.7.3" class="anchored" data-anchor-id="sec-unifiedexpectation">
-<span class="header-section-number">1.7.3</span> Expectation for general random variables</h3>
+</section><section id="sec-unifiedexpectation" class="level3" data-number="2.7.3"><h3 data-number="2.7.3" class="anchored" data-anchor-id="sec-unifiedexpectation">
+<span class="header-section-number">2.7.3</span> Expectation for general random variables</h3>
 <p>We can also define the expected value in a unified way for any random variable so we do not have to distinguish between discrete and continuous random variables. Let <span class="math inline">F(\cdot)</span> be the CDF of the random variable of interest and consider the differential <span class="math inline">\text{d} F(u)</span>, which corresponds to an infinitesimal change in <span class="math inline">F(\cdot)</span> at <span class="math inline">u</span>. For a discrete random variable, <span class="math inline">F(u)</span> changes only if there is a step/jump at <span class="math inline">u</span> and zero otherwise because it is flat. Thus, for a discrete distribution, <span class="math display">
   \text{d} F(u) = \begin{cases} \pi(u) &amp; \text{if} \ u \in \mathcal Y \\
   0 &amp; \text{if} \ u \notin \mathcal Y. \end{cases}
@@ -623,17 +682,17 @@ e^{-\lambda} \sum_{a=1}^\infty \frac{\lambda^a}{(a-1)!} = e^{-\lambda} \sum_{a=0
 <p>The <strong>expectation</strong> or <strong>expected value</strong> of any random variable with CDF <span class="math inline">F(\cdot)</span> is defined as <span id="eq-Exp-Stieltjes"><span class="math display">
   E[Y] =
     \int_{-\infty}^\infty u \ \text{d}F(u).
-\tag{1.2}</span></span></p>
+\tag{2.2}</span></span></p>
 </div>
 <p><br></p>
-<p>Note that <a href="#eq-Exp-Stieltjes" class="quarto-xref">Equation&nbsp;<span>1.2</span></a> is the Riemann-Stieltjes integral of <span class="math inline">a</span> with respect to the function <span class="math inline">F(\cdot)</span>. Recall that the Riemann integral of <span class="math inline">u</span> with respect to <span class="math inline">u</span> over the interval <span class="math inline">[-1,1]</span> is <span class="math display">\int_{-1}^1 u \ \text{d} u := \lim_{N\to \infty} \sum_{j=1}^{2N} \Big(\frac{j}{N} - 1\Big) \Big(\big(\tfrac{j}{N} - 1\big) - \big(\tfrac{j-1}{N} - 1 \big)\Big) = \lim_{N\to \infty} \sum_{j=1}^{2N} \Big(\frac{j}{N} - 1\Big) \frac{1}{N},</span> for the interval <span class="math inline">[-z,z]</span> we have <span class="math display">\int_{-z}^z u \ \text{d} u := \lim_{N\to \infty} \sum_{j=1}^{2N} z\Big(\frac{j}{N} - 1\Big) \frac{z}{N},</span> and we obtain <span class="math inline">\int_{-\infty}^\infty u \ \text{d} u := \lim_{z \to \infty} \int_{-z}^z u \ \text{d} u</span> for the integral over the entire real line. Note that <span class="math inline">z/N = z(\frac{j}{N}-1) - z(\frac{j-1}{N}-1)</span> corresponds to a change in <span class="math inline">u</span> on <span class="math inline">[-z,z]</span> so we approximate <span class="math display">
+<p>Note that <a href="#eq-Exp-Stieltjes" class="quarto-xref">Equation&nbsp;<span>2.2</span></a> is the Riemann-Stieltjes integral of <span class="math inline">a</span> with respect to the function <span class="math inline">F(\cdot)</span>. Recall that the Riemann integral of <span class="math inline">u</span> with respect to <span class="math inline">u</span> over the interval <span class="math inline">[-1,1]</span> is <span class="math display">\int_{-1}^1 u \ \text{d} u := \lim_{N\to \infty} \sum_{j=1}^{2N} \Big(\frac{j}{N} - 1\Big) \Big(\big(\tfrac{j}{N} - 1\big) - \big(\tfrac{j-1}{N} - 1 \big)\Big) = \lim_{N\to \infty} \sum_{j=1}^{2N} \Big(\frac{j}{N} - 1\Big) \frac{1}{N},</span> for the interval <span class="math inline">[-z,z]</span> we have <span class="math display">\int_{-z}^z u \ \text{d} u := \lim_{N\to \infty} \sum_{j=1}^{2N} z\Big(\frac{j}{N} - 1\Big) \frac{z}{N},</span> and we obtain <span class="math inline">\int_{-\infty}^\infty u \ \text{d} u := \lim_{z \to \infty} \int_{-z}^z u \ \text{d} u</span> for the integral over the entire real line. Note that <span class="math inline">z/N = z(\frac{j}{N}-1) - z(\frac{j-1}{N}-1)</span> corresponds to a change in <span class="math inline">u</span> on <span class="math inline">[-z,z]</span> so we approximate <span class="math display">
 \text{d} u \approx z\big(\tfrac{j}{N}-1\big) - z\big(\tfrac{j-1}{N}-1\big) = \tfrac{z}{N}
 </span> and let <span class="math inline">N</span> tend to infinity. In the case of the Riemann-Stieltjes integral, where we integrate with respect to changes in a function <span class="math inline">F(\cdot)</span>, i.e., <span class="math inline">\text{d} F(u)</span>. In an interval <span class="math inline">[-z,z]</span>, we have <span class="math display">\text{d} F(u) \approx F\Big(z\big(\tfrac{j}{N}-1\big)\Big) - F\Big(z\big(\tfrac{j-1}{N}-1\big)\Big),</span> and we define <span class="math display">\begin{align*}
   \int_{-z}^z u \ \text{d}F(u) &amp;:= \lim_{N \to \infty} \sum_{j=1}^{2N} z\Big(\tfrac{j}{N} - 1\Big) F\Big(z\big(\tfrac{j}{N}-1\big)\Big) - F\Big(z\big(\tfrac{j-1}{N}-1\big)\Big) \\
   \int_{-\infty}^\infty u \ \text{d}F(u) &amp;:= \lim_{z\to \infty} \int_{-z}^z u \ \text{d}F(u)
 \end{align*}</span></p>
-</section><section id="properties-of-the-expected-value" class="level3" data-number="1.7.4"><h3 data-number="1.7.4" class="anchored" data-anchor-id="properties-of-the-expected-value">
-<span class="header-section-number">1.7.4</span> Properties of the expected value</h3>
+</section><section id="properties-of-the-expected-value" class="level3" data-number="2.7.4"><h3 data-number="2.7.4" class="anchored" data-anchor-id="properties-of-the-expected-value">
+<span class="header-section-number">2.7.4</span> Properties of the expected value</h3>
 <p>The expected value is a measure of central tendency. It is a <strong>linear</strong> function. For any two random variables <span class="math inline">Y</span> and <span class="math inline">Z</span> and any <span class="math inline">a,b \in \mathbb R</span>, we have <span class="math display">
   E[aY + bZ] = a E[Y] + b E[Z].
 </span></p>
@@ -644,7 +703,7 @@ e^{-\lambda} \sum_{a=1}^\infty \frac{\lambda^a}{(a-1)!} = e^{-\lambda} \sum_{a=0
 </span> which is zero if <span class="math inline">g=E[Y]</span>. The second derivative is positive. Therefore, the expected value is the <strong>best predictor</strong> for a random variable if you do not have any further information available.</p>
 <p>We often transform random variables by taking, for instance, squares <span class="math inline">Y^2</span> or logs <span class="math inline">\log(Y)</span>. For any transformation function <span class="math inline">g(\cdot)</span>, the expectation of the transformed random variable <span class="math inline">g(Y)</span> is <span class="math display">
   E[g(Y)] = \int_{-\infty}^\infty g(u) \ \text{d}F(u),
-</span> where <span class="math inline">\text{d}F(u)</span> can be replaced by the PMF or the PDF as discussed in <a href="#sec-unifiedexpectation" class="quarto-xref"><span>Section&nbsp;1.7.3</span></a> for the different cases. For instance, if we take the <em>coin</em> variable <span class="math inline">Y</span> and consider the transformed random variable <span class="math inline">\log(Y+1)</span>, the expected value is <span class="math display">
+</span> where <span class="math inline">\text{d}F(u)</span> can be replaced by the PMF or the PDF as discussed in <a href="#sec-unifiedexpectation" class="quarto-xref"><span>Section 2.7.3</span></a> for the different cases. For instance, if we take the <em>coin</em> variable <span class="math inline">Y</span> and consider the transformed random variable <span class="math inline">\log(Y+1)</span>, the expected value is <span class="math display">
   E[\log(Y+1)] = \log(1) \cdot \frac{1}{2} + \log(2) \cdot \frac{1}{2} = \frac{\log(2)}{2}
 </span></p>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
@@ -655,9 +714,9 @@ e^{-\lambda} \sum_{a=1}^\infty \frac{\lambda^a}{(a-1)!} = e^{-\lambda} \sum_{a=0
       \int_{-\infty}^\infty u^r f(u)\text{d}u &amp; \text{if} \ Y \ \text{is continuous.} \end{cases}
   </span></p>
 </div>
-</section></section><section id="descriptive-features-of-a-distribution" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="descriptive-features-of-a-distribution">
-<span class="header-section-number">1.8</span> Descriptive features of a distribution</h2>
-<table class="table">
+</section></section><section id="descriptive-features-of-a-distribution" class="level2" data-number="2.8"><h2 data-number="2.8" class="anchored" data-anchor-id="descriptive-features-of-a-distribution">
+<span class="header-section-number">2.8</span> Descriptive features of a distribution</h2>
+<table class="caption-top table">
 <caption>Some important features of the distribution of <span class="math inline">Y</span>
 </caption>
 <colgroup>
@@ -721,24 +780,24 @@ e^{-\lambda} \sum_{a=1}^\infty \frac{\lambda^a}{(a-1)!} = e^{-\lambda} \sum_{a=0
 </span> for any <span class="math inline">a,b \in \mathbb R</span>. The skewness <span class="math display">
   skew = \frac{E[(Y - E[Y])^3]}{sd(Y)^3} =\frac{E[Y^3] - 3 E[Y^2] E[Y] + 2 E[Y]^3}{(E[Y^2] - E[Y]^2)^{3/2}}
 </span> is a measure of asymmetry</p>
-<div id="fig-skewness" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-skewness" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-skewness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img_zusatz/skewness.svg" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-skewness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.9: Positive and negative skewness
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-skewness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.9: Positive and negative skewness
 </figcaption></figure>
 </div>
-<p>A random variable <span class="math inline">Y</span> has a <strong>symmetric distribution</strong> about 0 if <span class="math inline">F(u) = 1 - F(-u)</span>. If <span class="math inline">Y</span> has a density, it is symmetric if <span class="math inline">f(x) = f(-x)</span>. If <span class="math inline">Y</span> is symmetric about 0, then the skewness is 0. The skewness of the variable <em>wage</em> (see <a href="#fig-PDFwage" class="quarto-xref">Figure&nbsp;<span>1.8</span></a>) is positive, i.e., the distribution is positively skewed. The <strong>standard normal distribution</strong> <span class="math inline">\mathcal N(0,1)</span> , which has the density <span class="math display">
+<p>A random variable <span class="math inline">Y</span> has a <strong>symmetric distribution</strong> about 0 if <span class="math inline">F(u) = 1 - F(-u)</span>. If <span class="math inline">Y</span> has a density, it is symmetric if <span class="math inline">f(x) = f(-x)</span>. If <span class="math inline">Y</span> is symmetric about 0, then the skewness is 0. The skewness of the variable <em>wage</em> (see <a href="stat4_expectation.html#fig-PDFwage" class="quarto-xref">Figure&nbsp;<span>6.2</span></a>) is positive, i.e., the distribution is positively skewed. The <strong>standard normal distribution</strong> <span class="math inline">\mathcal N(0,1)</span> , which has the density <span class="math display">
   f(u) = \phi(u) = \frac{1}{\sqrt{2\pi}} e^{-u^2/2}.
 </span></p>
 <p>Below you find a plot of the PDFs of <span class="math inline">N(0,1)</span> together with the <span class="math inline">t_5</span>-distribution, which is the <span class="math inline">t</span>-distribution with 5 degrees of freedom:</p>
-<div id="fig-N01" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-N01" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-N01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec02-N(0,1).png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-N01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.10: PDFs of the standard normal distribution (solid) and the <span class="math inline">t_5</span>-distribution (dashed)
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-N01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.10: PDFs of the standard normal distribution (solid) and the <span class="math inline">t_5</span>-distribution (dashed)
 </figcaption></figure>
 </div>
 <p>The standard normal distribution and the t(5) distribution have skewness 0. The kurtosis <span class="math display">
@@ -749,18 +808,16 @@ Figure&nbsp;1.10: PDFs of the standard normal distribution (solid) and the <span
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"1000 simulated values of N(0,1)"</span>, ylab <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">rt</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">5</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"1000 simulated values of t(5)"</span>, ylab <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="672">
-<figure class="quarto-float quarto-float-fig figure"><div>
-<img src="sec02_probability_files/figure-html/unnamed-chunk-3-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="img-fluid quarto-figure-center figure-img" width="672">
-</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="sec02_probability_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The kurtosis of the variable <em>wage</em> is also larger than 3, meaning outliers are much more likely than in the standard normal distribution. In this case, the positive skewness means that more people have a wage less than the average, and the large kurtosis means that there are very few people with exceptionally high salaries (outliers).</p>
 <p>All features discussed above are functions of the first four moments <span class="math inline">E[Y]</span>, <span class="math inline">E[Y^2]</span>, <span class="math inline">E[Y^3]</span> and <span class="math inline">E[Y^4]</span>.</p>
-<section id="heavy-tailed-distributions" class="level3" data-number="1.8.1"><h3 data-number="1.8.1" class="anchored" data-anchor-id="heavy-tailed-distributions">
-<span class="header-section-number">1.8.1</span> Heavy-tailed distributions</h3>
+<section id="heavy-tailed-distributions" class="level3" data-number="2.8.1"><h3 data-number="2.8.1" class="anchored" data-anchor-id="heavy-tailed-distributions">
+<span class="header-section-number">2.8.1</span> Heavy-tailed distributions</h3>
 <p>Expectations might be infinity. For instance, the simple Pareto distribution has the PDF <span class="math display">
   f(a) = \begin{cases} \frac{1}{a^2} &amp; \text{if} \ a &gt; 1, \\
   0 &amp; \text{if} \ a \leq 1, \end{cases}
@@ -769,8 +826,8 @@ Figure&nbsp;1.10: PDFs of the standard normal distribution (solid) and the <span
   = \int_{1}^\infty  \frac{1}{a} \ \text{d}a = \log(a)|_1^\infty = \infty.
 </span> The game of chance from the St.&nbsp;Petersburg paradox (see <a href="https://en.wikipedia.org/wiki/St._Petersburg_paradox">https://en.wikipedia.org/wiki/St._Petersburg_paradox</a>) is an example of a discrete random variable with infinite expectation.</p>
 <p>There are distributions with finite mean with some higher moments that are infinite. For instance, the first <span class="math inline">m-1</span> moments of the <span class="math inline">t_m</span> distribution (Student’s-<span class="math inline">t</span> distribution with <span class="math inline">m</span> degrees of freedom) are finite, but the <span class="math inline">m</span>-th moment and all higher order moments are infinite. Random variables with infinite first four moments have a so-called <strong>heavy-tailed distribution</strong> and may produce huge outliers. Many statistical procedures are only valid if the underlying distribution is not heavy-tailed.</p>
-</section></section><section id="the-normal-distribution" class="level2" data-number="1.9"><h2 data-number="1.9" class="anchored" data-anchor-id="the-normal-distribution">
-<span class="header-section-number">1.9</span> The normal distribution</h2>
+</section></section><section id="the-normal-distribution" class="level2" data-number="2.9"><h2 data-number="2.9" class="anchored" data-anchor-id="the-normal-distribution">
+<span class="header-section-number">2.9</span> The normal distribution</h2>
 <p>A random variable <span class="math inline">X</span> is <span style="color:orange">normally distributed</span> with parameters <span class="math inline">(\mu, \sigma^2)</span> if it has the density <span class="math display">
     f(a \mid \mu, \sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\Big( - \frac{(a- \mu)^2}{2 \sigma^2} \Big).
   </span> We write <span class="math inline">Y \sim \mathcal N(\mu, \sigma^2)</span>. Mean and variance are <span class="math display">
@@ -788,23 +845,21 @@ Figure&nbsp;1.10: PDFs of the standard normal distribution (solid) and the <span
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">x</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>,ylab<span class="op">=</span><span class="st">""</span>,xlab<span class="op">=</span><span class="st">""</span>, type<span class="op">=</span><span class="st">"l"</span>, main<span class="op">=</span> <span class="st">"PDF of N(2,2)"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="va">x</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>,ylab<span class="op">=</span><span class="st">""</span>,xlab<span class="op">=</span><span class="st">""</span>, type<span class="op">=</span><span class="st">"l"</span>, main <span class="op">=</span> <span class="st">"CDF of N(2,2)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="672">
-<figure class="quarto-float quarto-float-fig figure"><div>
-<img src="sec02_probability_files/figure-html/unnamed-chunk-4-1.png" id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="img-fluid quarto-figure-center figure-img" width="672">
-</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="sec02_probability_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>If <span class="math inline">Y_1, \ldots, Y_n</span> are normally distributed and <span class="math inline">c_1, \ldots, c_n \in \mathbb R</span>, then <span class="math inline">\sum_{j=1}^n c_j Y_j</span> is normally distributed.</p>
-</section><section id="additional-reading" class="level2" data-number="1.10"><h2 data-number="1.10" class="anchored" data-anchor-id="additional-reading">
-<span class="header-section-number">1.10</span> Additional reading</h2>
+</section><section id="additional-reading" class="level2" data-number="2.10"><h2 data-number="2.10" class="anchored" data-anchor-id="additional-reading">
+<span class="header-section-number">2.10</span> Additional reading</h2>
 <ul>
 <li>Stock and Watson (2019), Section 2</li>
 <li>Hansen (2022a), Section 1-2</li>
 <li>Davidson and MacKinnon (2004), Section 1</li>
-</ul></section><section id="r-codes" class="level2" data-number="1.11"><h2 data-number="1.11" class="anchored" data-anchor-id="r-codes">
-<span class="header-section-number">1.11</span> R-codes</h2>
+</ul></section><section id="r-codes" class="level2" data-number="2.11"><h2 data-number="2.11" class="anchored" data-anchor-id="r-codes">
+<span class="header-section-number">2.11</span> R-codes</h2>
 <p><a href="https://statistics.svenotto.com/statistics-sec2.R">statistics-sec2.R</a></p>
 
 
@@ -987,18 +1042,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1030,7 +1074,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1065,7 +1149,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1080,15 +1168,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1097,7 +1198,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1139,6 +1248,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -1214,7 +1346,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
@@ -1296,13 +1427,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Welcome</span>
+      <a href="./part1_distribution.html" class="pagination-link" aria-label="Distribution">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distribution</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./sec03_dependence.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dependence</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./sec03_dependence.html" class="pagination-link" aria-label="Dependence">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dependence</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

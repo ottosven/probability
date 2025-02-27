@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.371">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Probability Theory for Econometricians - 2&nbsp; Dependence</title>
+<title>3&nbsp; Dependence – Probability Theory for Econometricians</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,6 +26,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./stat1_data.html" rel="next">
 <link href="./sec02_probability.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -43,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
@@ -58,11 +59,12 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+}</script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
  for (var i = 0; i < mathElements.length; i++) {
@@ -75,8 +77,34 @@ ul.task-list li input[type="checkbox"] {
     fleqn: false
    });
 }}});
-  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
-<meta property="og:title" content="Probability Theory for Econometricians - 2&nbsp; Dependence">
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+<meta property="og:title" content="3&nbsp; Dependence – Probability Theory for Econometricians">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Probability Theory for Econometricians">
 </head>
@@ -84,19 +112,19 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sec03_dependence.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dependence</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sec03_dependence.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dependence</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Probability Theory for Econometricians</a> 
         <div class="sidebar-tools-main">
@@ -120,52 +148,82 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./part1_distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distribution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./sec02_probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec03_dependence.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dependence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dependence</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stat1_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stat3_probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stat4_expectation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Expectated value</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stat5_conditional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditional expectation</span></span></a>
   </div>
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#multivariate-random-variables" id="toc-multivariate-random-variables" class="nav-link active" data-scroll-target="#multivariate-random-variables"><span class="header-section-number">2.1</span> Multivariate random variables</a></li>
-  <li><a href="#bivariate-random-variables" id="toc-bivariate-random-variables" class="nav-link" data-scroll-target="#bivariate-random-variables"><span class="header-section-number">2.2</span> Bivariate random variables</a></li>
-  <li><a href="#bivariate-distributions" id="toc-bivariate-distributions" class="nav-link" data-scroll-target="#bivariate-distributions"><span class="header-section-number">2.3</span> Bivariate distributions</a></li>
-  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">2.4</span> Correlation</a></li>
-  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence"><span class="header-section-number">2.5</span> Independence</a></li>
-  <li><a href="#random-vectors" id="toc-random-vectors" class="nav-link" data-scroll-target="#random-vectors"><span class="header-section-number">2.6</span> Random vectors</a></li>
-  <li><a href="#conditional-distributions" id="toc-conditional-distributions" class="nav-link" data-scroll-target="#conditional-distributions"><span class="header-section-number">2.7</span> Conditional distributions</a></li>
-  <li><a href="#conditional-expectation" id="toc-conditional-expectation" class="nav-link" data-scroll-target="#conditional-expectation"><span class="header-section-number">2.8</span> Conditional expectation</a></li>
-  <li><a href="#law-of-iterated-expectations" id="toc-law-of-iterated-expectations" class="nav-link" data-scroll-target="#law-of-iterated-expectations"><span class="header-section-number">2.9</span> Law of iterated expectations</a></li>
-  <li><a href="#conditional-variance" id="toc-conditional-variance" class="nav-link" data-scroll-target="#conditional-variance"><span class="header-section-number">2.10</span> Conditional variance</a></li>
-  <li><a href="#best-predictor" id="toc-best-predictor" class="nav-link" data-scroll-target="#best-predictor"><span class="header-section-number">2.11</span> Best predictor</a></li>
+<li><a href="#multivariate-random-variables" id="toc-multivariate-random-variables" class="nav-link active" data-scroll-target="#multivariate-random-variables"><span class="header-section-number">3.1</span> Multivariate random variables</a></li>
+  <li><a href="#bivariate-random-variables" id="toc-bivariate-random-variables" class="nav-link" data-scroll-target="#bivariate-random-variables"><span class="header-section-number">3.2</span> Bivariate random variables</a></li>
+  <li><a href="#bivariate-distributions" id="toc-bivariate-distributions" class="nav-link" data-scroll-target="#bivariate-distributions"><span class="header-section-number">3.3</span> Bivariate distributions</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">3.4</span> Correlation</a></li>
+  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence"><span class="header-section-number">3.5</span> Independence</a></li>
+  <li><a href="#random-vectors" id="toc-random-vectors" class="nav-link" data-scroll-target="#random-vectors"><span class="header-section-number">3.6</span> Random vectors</a></li>
+  <li><a href="#conditional-distributions" id="toc-conditional-distributions" class="nav-link" data-scroll-target="#conditional-distributions"><span class="header-section-number">3.7</span> Conditional distributions</a></li>
+  <li><a href="#conditional-expectation" id="toc-conditional-expectation" class="nav-link" data-scroll-target="#conditional-expectation"><span class="header-section-number">3.8</span> Conditional expectation</a></li>
+  <li><a href="#law-of-iterated-expectations" id="toc-law-of-iterated-expectations" class="nav-link" data-scroll-target="#law-of-iterated-expectations"><span class="header-section-number">3.9</span> Law of iterated expectations</a></li>
+  <li><a href="#conditional-variance" id="toc-conditional-variance" class="nav-link" data-scroll-target="#conditional-variance"><span class="header-section-number">3.10</span> Conditional variance</a></li>
+  <li><a href="#best-predictor" id="toc-best-predictor" class="nav-link" data-scroll-target="#best-predictor"><span class="header-section-number">3.11</span> Best predictor</a></li>
   <li>
-<a href="#combining-normal-variables" id="toc-combining-normal-variables" class="nav-link" data-scroll-target="#combining-normal-variables"><span class="header-section-number">2.12</span> Combining normal variables</a>
+<a href="#combining-normal-variables" id="toc-combining-normal-variables" class="nav-link" data-scroll-target="#combining-normal-variables"><span class="header-section-number">3.12</span> Combining normal variables</a>
   <ul class="collapse">
-<li><a href="#chi2-distribution" id="toc-chi2-distribution" class="nav-link" data-scroll-target="#chi2-distribution"><span class="header-section-number">2.12.1</span> <span class="math inline">\chi^2</span>-distribution</a></li>
-  <li><a href="#f-distribution" id="toc-f-distribution" class="nav-link" data-scroll-target="#f-distribution"><span class="header-section-number">2.12.2</span> <span class="math inline">F</span>-distribution</a></li>
-  <li><a href="#student-t-distribution" id="toc-student-t-distribution" class="nav-link" data-scroll-target="#student-t-distribution"><span class="header-section-number">2.12.3</span> Student <span class="math inline">t</span>-distribution</a></li>
-  <li><a href="#multivariate-normal-distribution" id="toc-multivariate-normal-distribution" class="nav-link" data-scroll-target="#multivariate-normal-distribution"><span class="header-section-number">2.12.4</span> Multivariate normal distribution</a></li>
-  <li><a href="#r-commands-for-parametric-distributions" id="toc-r-commands-for-parametric-distributions" class="nav-link" data-scroll-target="#r-commands-for-parametric-distributions"><span class="header-section-number">2.12.5</span> R-commands for parametric distributions</a></li>
+<li><a href="#chi2-distribution" id="toc-chi2-distribution" class="nav-link" data-scroll-target="#chi2-distribution"><span class="header-section-number">3.12.1</span> <span class="math inline">\chi^2</span>-distribution</a></li>
+  <li><a href="#f-distribution" id="toc-f-distribution" class="nav-link" data-scroll-target="#f-distribution"><span class="header-section-number">3.12.2</span> <span class="math inline">F</span>-distribution</a></li>
+  <li><a href="#student-t-distribution" id="toc-student-t-distribution" class="nav-link" data-scroll-target="#student-t-distribution"><span class="header-section-number">3.12.3</span> Student <span class="math inline">t</span>-distribution</a></li>
+  <li><a href="#multivariate-normal-distribution" id="toc-multivariate-normal-distribution" class="nav-link" data-scroll-target="#multivariate-normal-distribution"><span class="header-section-number">3.12.4</span> Multivariate normal distribution</a></li>
+  <li><a href="#r-commands-for-parametric-distributions" id="toc-r-commands-for-parametric-distributions" class="nav-link" data-scroll-target="#r-commands-for-parametric-distributions"><span class="header-section-number">3.12.5</span> R-commands for parametric distributions</a></li>
   </ul>
 </li>
-  <li><a href="#additional-reading" id="toc-additional-reading" class="nav-link" data-scroll-target="#additional-reading"><span class="header-section-number">2.13</span> Additional reading</a></li>
+  <li><a href="#additional-reading" id="toc-additional-reading" class="nav-link" data-scroll-target="#additional-reading"><span class="header-section-number">3.13</span> Additional reading</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Dependence</span>
+<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dependence</span>
 </h1>
 </div>
 
@@ -181,8 +239,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 </header><p><a href="https://statistics.svenotto.com/section3_dependence.pdf">PDF version</a></p>
-<section id="multivariate-random-variables" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="multivariate-random-variables">
-<span class="header-section-number">2.1</span> Multivariate random variables</h2>
+<section id="multivariate-random-variables" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="multivariate-random-variables">
+<span class="header-section-number">3.1</span> Multivariate random variables</h2>
 <p>In statistics, we typically study multiple random variables simultaneously. We can collect <span class="math inline">k</span> random variable <span class="math inline">X_1, \ldots, X_k</span> in a <strong>random vector</strong> <span class="math display">
       X = \begin{pmatrix}
       X_1 \\ \vdots \\ X_k
@@ -191,14 +249,14 @@ ul.task-list li input[type="checkbox"] {
 <p>Since <span class="math inline">X</span> is a random vector, its outcome is also vector-valued, e.g.&nbsp;<span class="math inline">X = x \in \mathbb R^k</span> with <span class="math inline">x=(x_1, \ldots, x_k)'</span>. Events of the form <span class="math inline">\{X \leq x\}</span> mean that each component of the random vector <span class="math inline">X</span> is smaller than the corresponding values of the vector <span class="math inline">x</span>, i.e. <span class="math display">
 \{X \leq x\} = \{X_1 \leq x_1, \ldots, X_k \leq x_k\}.
 </span></p>
-</section><section id="bivariate-random-variables" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="bivariate-random-variables">
-<span class="header-section-number">2.2</span> Bivariate random variables</h2>
+</section><section id="bivariate-random-variables" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="bivariate-random-variables">
+<span class="header-section-number">3.2</span> Bivariate random variables</h2>
 <p>If <span class="math inline">k = 2</span>, we call <span class="math inline">X</span> a <strong>bivariate random variable</strong>. Consider, for instance, the coin toss Bernoulli variable <span class="math inline">Y</span> with <span class="math inline">P(Y=1) = 0.5</span> and <span class="math inline">P(Y=0) = 0.5</span>, and let <span class="math inline">Z</span> be a second coin toss with the same probabilities. <span class="math inline">X = (Y,Z)</span> is a bivariate random variable where both entries are discrete random variables. Since the two coin tosses are performed separately from each other, it is reasonable to assume that the probability that the first and second coin tosses show ‘heads’ is 0.25, i.e., <span class="math inline">P(\{Y=1\} \cap \{Z=1\}) = 0.25</span>. We would expect the following joint probabilities:</p>
-<div id="tbl-twocoin" class="anchored">
-<figure class="quarto-float quarto-float-tbl figure"><figcaption class="table quarto-float-caption quarto-float-tbl" id="tbl-twocoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2.1: Joint probabilities of coin tosses
+<div id="tbl-twocoin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-twocoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: Joint probabilities of coin tosses
 </figcaption><div aria-describedby="tbl-twocoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 15%">
 <col style="width: 12%">
@@ -239,11 +297,11 @@ Table&nbsp;2.1: Joint probabilities of coin tosses
   \pi_{YZ}(a,b) = \begin{cases} 0.25 &amp; \text{if} \ a \in \{0,1\} \ \text{and} \ b \in \{0,1\} \\
   0 &amp; \text{otherwise} \end{cases}
 </span> Another example are the random variables <span class="math inline">Y</span>, a dummy variable for the event that the person has a high wage (more than 25 USD/hour), and <span class="math inline">Z</span>, a dummy variable for the event that the same person has a university degree. Similarly, <span class="math inline">X = (Y,Z)</span> is a bivariate random variable consisting of two univariate Bernoulli variables. The joint probabilities might be as follows:</p>
-<div id="tbl-wageedu" class="anchored">
-<figure class="quarto-float quarto-float-tbl figure"><figcaption class="table quarto-float-caption quarto-float-tbl" id="tbl-wageedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2.2: Joint probabilities of wage and education dummies
+<div id="tbl-wageedu" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-wageedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.2: Joint probabilities of wage and education dummies
 </figcaption><div aria-describedby="tbl-wageedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 12%">
 <col style="width: 12%">
@@ -304,39 +362,39 @@ Table&nbsp;2.2: Joint probabilities of wage and education dummies
   \end{cases}
 \end{align*}</span></p>
 <p>An example of a continuous bivariate random variable is <span class="math inline">X = (Y,Z)</span>, where <span class="math inline">Y</span> is the wage level in EUR/hour and <span class="math inline">Z</span> is the labor market experience of the same person measured in years.</p>
-</section><section id="bivariate-distributions" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="bivariate-distributions">
-<span class="header-section-number">2.3</span> Bivariate distributions</h2>
+</section><section id="bivariate-distributions" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="bivariate-distributions">
+<span class="header-section-number">3.3</span> Bivariate distributions</h2>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Bivariate distribution</strong></p>
 <p>The <span style="color:orange">joint distribution function</span> of a bivariate random variable <span class="math inline">(Y,Z)</span> is</p>
 <p><span class="math inline">F_{YZ}(a, b) = P(Y \leq a, Z \leq b) = P(\{Y \leq a\} \cap \{ Z \leq b\})</span>.</p>
 </div>
-<div id="fig-jointCDFWageEx" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-jointCDFWageEx" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-jointCDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec03-WageExCDF.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-jointCDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1: Joint CDF of wage and experience
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jointCDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Joint CDF of wage and experience
 </figcaption></figure>
 </div>
 <p>Calculation of probabilities using a bivariate distribution function: <span class="math display">\begin{align*}
         P(Y \leq a, Z \leq b) &amp;= F_{YZ}(a,b) \\
         P(a &lt; Y \leq b, c &lt; Z \leq d) &amp;= F_{YZ}(b,d) - F_{YZ}(b,c) - F_{YZ}(a,d) + F_{YZ}(a,c)
 \end{align*}</span></p>
-<div id="fig-jointCDF1" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-jointCDF1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-jointCDF1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec03-jointCDF1.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-jointCDF1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: Calculate probabilities using the joint CDF
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jointCDF1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Calculate probabilities using the joint CDF
 </figcaption></figure>
 </div>
-<div id="fig-jointCDF2" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-jointCDF2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-jointCDF2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec03-jointCDF2.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-jointCDF2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.3: Calculate probabilities using the joint CDF
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jointCDF2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: Calculate probabilities using the joint CDF
 </figcaption></figure>
 </div>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
@@ -347,20 +405,20 @@ Figure&nbsp;2.3: Calculate probabilities using the joint CDF
 \end{align*}</span></p>
 </div>
 <p><br></p>
-<div id="fig-jointCDFWageEx" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-jointCDFWageEx" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-jointCDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec03-ExCDF.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-jointCDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.4: Marginal CDF of experience
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jointCDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: Marginal CDF of experience
 </figcaption></figure>
 </div>
-<div id="fig-jointCDFWageEx" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-jointCDFWageEx" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-jointCDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec02-ex4CDF.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-jointCDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.5: Marginal CDF of wage
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jointCDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.5: Marginal CDF of wage
 </figcaption></figure>
 </div>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
@@ -374,24 +432,24 @@ Figure&nbsp;2.5: Marginal CDF of wage
 f_Y(a) &amp;= \frac{d}{d a} F_Y(a) = \int_{-\infty}^\infty f_{YZ}(a,b)\text{d}b, \\
 f_Z(b) &amp;= \frac{d}{d b} F_Z(b) =        \int_{-\infty}^\infty f_{YZ}(a,b)\text{d}a.
 \end{align*}</span></p>
-<div id="fig-jointCDFWageEx" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-jointCDFWageEx" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-jointCDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec03-WageExCDF.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-jointCDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.6: Joint CDF of wage and experience
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jointCDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.6: Joint CDF of wage and experience
 </figcaption></figure>
 </div>
-<div id="fig-jointPDFWageEx" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-jointPDFWageEx" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-jointPDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec03-WageExPDF.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-jointPDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.7: Joint PDF of wage and experience
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jointPDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.7: Joint PDF of wage and experience
 </figcaption></figure>
 </div>
-</section><section id="correlation" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="correlation">
-<span class="header-section-number">2.4</span> Correlation</h2>
+</section><section id="correlation" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="correlation">
+<span class="header-section-number">3.4</span> Correlation</h2>
 <p>Consider the bivariate continuous random variable <span class="math inline">(Y,Z)</span> with joint density <span class="math inline">f_{YZ}(a,b)</span>. The expected value of <span class="math inline">g(Y,Z)</span>, where <span class="math inline">g(\cdot, \cdot)</span> is any real-valued function, is given by <span class="math display">
   E[g(X,Y)] = \int_{-\infty}^\infty \int_{-\infty}^\infty g(a,b) f_{YZ}(a,b) \ \text{d}a \ \text{d}b.
 </span></p>
@@ -415,11 +473,11 @@ Figure&nbsp;2.7: Joint PDF of wage and experience
         E[YZ] &amp;= E[Y] E[Z] \\
         var[Y+Z] &amp;= var[Y] + var[Z]
 \end{align*}</span></p>
-</section><section id="independence" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="independence">
-<span class="header-section-number">2.5</span> Independence</h2>
+</section><section id="independence" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="independence">
+<span class="header-section-number">3.5</span> Independence</h2>
 <p>Two events <span class="math inline">A</span> and <span class="math inline">B</span> are independent if <span class="math display">
         P[A \cap B] = P[A] P[B].
-</span> For instance, in the bivariate random variable of <a href="#tbl-twocoin" class="quarto-xref">Table&nbsp;<span>2.1</span></a> (two coin tosses), we have <span class="math display">P(Y=1, Z=1) = 0.25 = 0.5 \cdot 0.5 = P(Y=1)P(Z=1).</span> Hence, <span class="math inline">\{Y=1\}</span> and <span class="math inline">\{Z=1\}</span> are independent events. In the bivariate random variable of <a href="#tbl-wageedu" class="quarto-xref">Table&nbsp;<span>2.2</span></a> (wage/education), we find <span class="math display">P(Y=1, Z=1) = 0.19 \neq P(Y=1)P(Z=1) = 0.31 \cdot 0.36 = 0.1116.</span> Therefore, the two events are not independent. In this case, the two random variables are dependent.</p>
+</span> For instance, in the bivariate random variable of <a href="#tbl-twocoin" class="quarto-xref">Table&nbsp;<span>3.1</span></a> (two coin tosses), we have <span class="math display">P(Y=1, Z=1) = 0.25 = 0.5 \cdot 0.5 = P(Y=1)P(Z=1).</span> Hence, <span class="math inline">\{Y=1\}</span> and <span class="math inline">\{Z=1\}</span> are independent events. In the bivariate random variable of <a href="#tbl-wageedu" class="quarto-xref">Table&nbsp;<span>3.2</span></a> (wage/education), we find <span class="math display">P(Y=1, Z=1) = 0.19 \neq P(Y=1)P(Z=1) = 0.31 \cdot 0.36 = 0.1116.</span> Therefore, the two events are not independent. In this case, the two random variables are dependent.</p>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Independence</strong></p>
 <p><span class="math inline">Y</span> and <span class="math inline">Z</span> are <strong>independent</strong> random variables if, for all <span class="math inline">a</span> and <span class="math inline">b</span>, the bivariate distribution function is the product of the marginal distribution functions: <span class="math display">
@@ -427,10 +485,10 @@ Figure&nbsp;2.7: Joint PDF of wage and experience
     </span> If this property is not satisfied, we say that <span class="math inline">X</span> and <span class="math inline">Y</span> are <strong>dependent</strong>.</p>
 </div>
 <p><br></p>
-<p>The random variables <span class="math inline">Y</span> and <span class="math inline">Z</span> of <a href="#tbl-twocoin" class="quarto-xref">Table&nbsp;<span>2.1</span></a> are independent, and those of <a href="#tbl-wageedu" class="quarto-xref">Table&nbsp;<span>2.2</span></a> are dependent.</p>
+<p>The random variables <span class="math inline">Y</span> and <span class="math inline">Z</span> of <a href="#tbl-twocoin" class="quarto-xref">Table&nbsp;<span>3.1</span></a> are independent, and those of <a href="#tbl-wageedu" class="quarto-xref">Table&nbsp;<span>3.2</span></a> are dependent.</p>
 <p>If <span class="math inline">Y</span> and <span class="math inline">Z</span> are independent and have finite second moments, then <span class="math inline">Y</span> and <span class="math inline">Z</span> are uncorrelated. The reverse is not true!</p>
-</section><section id="random-vectors" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="random-vectors">
-<span class="header-section-number">2.6</span> Random vectors</h2>
+</section><section id="random-vectors" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="random-vectors">
+<span class="header-section-number">3.6</span> Random vectors</h2>
 <p>The above concepts can be generalized to any <span class="math inline">k</span>-variate random vector <span class="math inline">X = (X_1, \ldots, X_k)</span>. The joint CDF of <span class="math inline">X</span> is <span class="math display">
     F_X(x) = P(X_1 \leq x_1, \ldots, X_k \leq x_k).
 </span> <span class="math inline">X</span> has independent entries if <span class="math display">
@@ -450,8 +508,8 @@ Var[X] &amp;= E[(X-E[X])(X-E[X])'] \\
         \end{pmatrix}
 \end{align*}</span></p>
 <p>For any random vector <span class="math inline">X</span>, the covariance matrix <span class="math inline">Var[X]</span> is symmetric and positive semi-definite.</p>
-</section><section id="conditional-distributions" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="conditional-distributions">
-<span class="header-section-number">2.7</span> Conditional distributions</h2>
+</section><section id="conditional-distributions" class="level2" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="conditional-distributions">
+<span class="header-section-number">3.7</span> Conditional distributions</h2>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Conditional probability</strong></p>
 <p>The conditional probability of an event <span class="math inline">A</span> given an event <span class="math inline">B</span> with <span class="math inline">P(B) &gt; 0</span> is <span class="math display">
@@ -459,7 +517,7 @@ Var[X] &amp;= E[(X-E[X])(X-E[X])'] \\
 </span></p>
 </div>
 <p><br></p>
-<p>Let’s revisit the wage and schooling example from <a href="#tbl-wageedu" class="quarto-xref">Table&nbsp;<span>2.2</span></a>: <span class="math display">
+<p>Let’s revisit the wage and schooling example from <a href="#tbl-wageedu" class="quarto-xref">Table&nbsp;<span>3.2</span></a>: <span class="math display">
      P(Y=1 \mid Z=1) = \frac{P(\{Y=1\}\cap \{Z=1\})}{P(Z=1)} = \frac{0.19}{0.36} = 0.53
     </span> <span class="math display">
      P(Y=1 \mid Z=0) = \frac{P(\{Y=1\}\cap \{Z=0\})}{P(Z=0)} = \frac{0.12}{0.64} = 0.19
@@ -478,28 +536,28 @@ P(\{Y=1\}\cap \{Z=1\}) &gt; P(Y=1) \cdot P(Z=1).
 </span></p>
 </div>
 <p><br></p>
-<div id="fig-jointPDFWageEx" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-jointPDFWageEx" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-jointPDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec03-WageExPDF.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-jointPDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.8: Joint PDF of wage and experience
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jointPDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.8: Joint PDF of wage and experience
 </figcaption></figure>
 </div>
-<div id="fig-condPDFWageEx" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-condPDFWageEx" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-condPDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec03-WageExCondPDF.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-condPDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.9: Conditional PDFs of wage given experience
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-condPDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.9: Conditional PDFs of wage given experience
 </figcaption></figure>
 </div>
-<div id="fig-condPDFWageEx" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-condPDFWageEx" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-condPDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec03-ExPDF.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-condPDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.10: PDF of variable experience
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-condPDFWageEx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.10: PDF of variable experience
 </figcaption></figure>
 </div>
 <p>If <span class="math inline">Y</span> is continuous and <span class="math inline">Z</span> is discrete, the <strong>conditional distribution function</strong> of <span class="math inline">Y</span> given <span class="math inline">\{Z=b\}</span> with <span class="math inline">P(Z=b) &gt; 0</span> is <span class="math display">
@@ -508,20 +566,20 @@ Figure&nbsp;2.10: PDF of variable experience
 <p>If <span class="math inline">F_{Y|Z}(a \mid b)</span> is differentiable with respect to <span class="math inline">b</span>, the <strong>conditional density</strong> of <span class="math inline">Y</span> given <span class="math inline">Z=b</span> is <span class="math display">
         f_{Y|Z}(a \mid b) = \frac{\partial}{\partial a} F_{Y|Z}(a \mid b).
     </span></p>
-<div id="fig-condCDFWageEdu" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-condCDFWageEdu" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-condCDFWageEdu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec03-CondCFDWageEdu.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-condCDFWageEdu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.11: Conditional CDFs of wage given education
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-condCDFWageEdu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.11: Conditional CDFs of wage given education
 </figcaption></figure>
 </div>
-<div id="fig-condCDFWageEdu" class="quarto-figure quarto-figure-center anchored" width="50%">
+<div id="fig-condCDFWageEdu" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-condCDFWageEdu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img/sec03-CondPDFWageEdu.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-condCDFWageEdu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.12: Conditional PDFs of wage given education
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-condCDFWageEdu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.12: Conditional PDFs of wage given education
 </figcaption></figure>
 </div>
 <p>We often are interested in conditioning on multiple variables, such as the wage given a particular education and experience level. Let <span class="math inline">f(y,x) = f(y,x_1, \ldots, x_k)</span> be the joint density of the composite random vector <span class="math inline">(Y, X_1, \ldots, X_k)</span> with <span class="math inline">X = (X_1, \ldots, X_k)</span>. The conditional density of a random variable <span class="math inline">Y</span> given <span class="math inline">X = x = (x_1, \ldots, x_k)'</span> is <span class="math display">
@@ -529,8 +587,8 @@ Figure&nbsp;2.12: Conditional PDFs of wage given education
     </span> The conditional distribution of <span class="math inline">Y</span> given <span class="math inline">X=x</span> is <span class="math display">
         F_{Y|X}(y\mid x) = \int_0^y f(u \mid x)\ \text{d}u.
     </span></p>
-</section><section id="conditional-expectation" class="level2" data-number="2.8"><h2 data-number="2.8" class="anchored" data-anchor-id="conditional-expectation">
-<span class="header-section-number">2.8</span> Conditional expectation</h2>
+</section><section id="conditional-expectation" class="level2" data-number="3.8"><h2 data-number="3.8" class="anchored" data-anchor-id="conditional-expectation">
+<span class="header-section-number">3.8</span> Conditional expectation</h2>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Conditional expectation function</strong></p>
 <p>The <strong>conditional expectation</strong> of <span class="math inline">Y</span> given <span class="math inline">X=x</span> is the expected value of the distribution <span class="math inline">F_{Y|X}(y \mid x)</span>. For continuous <span class="math inline">Y</span> with conditional density <span class="math inline">f_{Y|X}(y \mid x)</span>, the conditional expectation is</p>
@@ -541,31 +599,31 @@ Figure&nbsp;2.12: Conditional PDFs of wage given education
 <p><br></p>
 <div id="fig-cef" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-cef" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-CEF1" class="quarto-figure quarto-figure-center anchored">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-cef" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-CEF1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-CEF1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img_zusatz/fig-Conditionalexpectation-1.png" class="img-fluid figure-img" data-ref-parent="fig-cef">
 </div>
-<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-CEF1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-CEF1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) CEF wage given experience
 </figcaption></figure>
 </div>
 </div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-cef" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-CEF2" class="quarto-figure quarto-figure-center anchored">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-cef" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-CEF2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-CEF2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./img_zusatz/fig-Conditionalexpectation-2.png" class="img-fluid figure-img" data-ref-parent="fig-cef">
 </div>
-<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-CEF2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-CEF2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) CEF wage given education
 </figcaption></figure>
 </div>
 </div>
 </div>
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-cef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.13: Conditional expectation functions
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cef-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.13: Conditional expectation functions
 </figcaption></figure>
 </div>
 <p>Consider again the wage and experience example. Suppose that the conditional expectation has the functional form <span class="math display">
@@ -584,8 +642,8 @@ Figure&nbsp;2.13: Conditional expectation functions
 <p>The <span style="color:blue">conditional expectation function (CEF) of <span class="math inline">Y</span> given the random vector <span class="math inline">X</span></span> is <span class="math display">
       m(X) = E[Y \mid X].
   </span> <span class="math inline">m(X)</span> is a function of the random vector <span class="math inline">X</span> and therefore itself a random variable.</p>
-</section><section id="law-of-iterated-expectations" class="level2" data-number="2.9"><h2 data-number="2.9" class="anchored" data-anchor-id="law-of-iterated-expectations">
-<span class="header-section-number">2.9</span> Law of iterated expectations</h2>
+</section><section id="law-of-iterated-expectations" class="level2" data-number="3.9"><h2 data-number="3.9" class="anchored" data-anchor-id="law-of-iterated-expectations">
+<span class="header-section-number">3.9</span> Law of iterated expectations</h2>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Rules of calculation for the conditional expectation </strong></p>
 <p>Let <span class="math inline">Y</span> be a random variable and <span class="math inline">X</span> a random vector.</p>
@@ -601,8 +659,8 @@ E[g(X) Y \mid X] = g(X) E[Y \mid X].
 <li><p>If <span class="math inline">Y</span> and <span class="math inline">X</span> are independent then <span class="math inline">E[Y \mid X] = E[Y]</span>.</p></li>
 </ol>
 </div>
-</section><section id="conditional-variance" class="level2" data-number="2.10"><h2 data-number="2.10" class="anchored" data-anchor-id="conditional-variance">
-<span class="header-section-number">2.10</span> Conditional variance</h2>
+</section><section id="conditional-variance" class="level2" data-number="3.10"><h2 data-number="3.10" class="anchored" data-anchor-id="conditional-variance">
+<span class="header-section-number">3.10</span> Conditional variance</h2>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Conditional variance</strong></p>
 <p>If <span class="math inline">E[Y^2] &lt; \infty</span>, the <strong>conditional variance</strong> of <span class="math inline">Y</span> given the event <span class="math inline">\{X=x\}</span> is <span class="math display">
@@ -612,8 +670,8 @@ E[g(X) Y \mid X] = g(X) E[Y \mid X].
     Var[Y \mid X] = E[(Y-E[Y \mid X])^2 \mid X].
 </span></p>
 </div>
-</section><section id="best-predictor" class="level2" data-number="2.11"><h2 data-number="2.11" class="anchored" data-anchor-id="best-predictor">
-<span class="header-section-number">2.11</span> Best predictor</h2>
+</section><section id="best-predictor" class="level2" data-number="3.11"><h2 data-number="3.11" class="anchored" data-anchor-id="best-predictor">
+<span class="header-section-number">3.11</span> Best predictor</h2>
 <p>A typical application is to find a good prediction for the outcome of a random variable <span class="math inline">Y</span>. Recall that the expected value <span class="math inline">E[Y]</span> is the best predictor for <span class="math inline">Y</span> in the sense that <span class="math inline">g^* = E[Y]</span> minimizes <span class="math inline">E[(Y-g)^2]</span>.</p>
 <p>With the knowledge of an additional random vector <span class="math inline">X</span>, we can use the joint distribution of <span class="math inline">Y</span> and <span class="math inline">X</span> to improve the prediction of <span class="math inline">Y</span>.</p>
 <p>It turns out that the CEF <span class="math inline">m(X) = E[Y \mid X]</span> is the best predictor for <span class="math inline">Y</span> given the information contained in the random vector <span class="math inline">X</span>:</p>
@@ -648,16 +706,16 @@ E[g(X) Y \mid X] = g(X) E[Y \mid X].
 <p>Since the CEF is the best predictor of Y, it is of great interest to study the CEF in practice. Much of the statistical and econometric research deals with methods to approximate and estimate the CEF. This field of statistics is called <strong>regression analysis</strong>.</p>
 <p>Consider the following model for <span class="math inline">Y</span> and <span class="math inline">X</span>: <span id="eq-cef"><span class="math display">
     Y = m(X) + e, \quad E[e \mid X] = 0.
-   \tag{2.1}</span></span> We call <span class="math inline">m(\cdot)</span> <strong>regression function</strong> and <span class="math inline">e</span> <strong>error term</strong>.</p>
-<p>From equation <a href="#eq-cef" class="quarto-xref">Equation&nbsp;<span>2.1</span></a> it follows that <span class="math display">
+   \tag{3.1}</span></span> We call <span class="math inline">m(\cdot)</span> <strong>regression function</strong> and <span class="math inline">e</span> <strong>error term</strong>.</p>
+<p>From equation <a href="#eq-cef" class="quarto-xref">Equation&nbsp;<span>3.1</span></a> it follows that <span class="math display">
     E[Y \mid X] = E[m(X) + e \mid X] = E[m(X) \mid X] + E[e \mid X] = m(X).
     </span> I.e., the nonparametric regression model is a model for the CEF.</p>
-<p>If <span class="math inline">m(\cdot)</span> is a linear function, then <a href="#eq-cef" class="quarto-xref">Equation&nbsp;<span>2.1</span></a> is a <strong>linear regression model</strong>. We will study this model in detail in the next sections.</p>
-</section><section id="combining-normal-variables" class="level2" data-number="2.12"><h2 data-number="2.12" class="anchored" data-anchor-id="combining-normal-variables">
-<span class="header-section-number">2.12</span> Combining normal variables</h2>
+<p>If <span class="math inline">m(\cdot)</span> is a linear function, then <a href="#eq-cef" class="quarto-xref">Equation&nbsp;<span>3.1</span></a> is a <strong>linear regression model</strong>. We will study this model in detail in the next sections.</p>
+</section><section id="combining-normal-variables" class="level2" data-number="3.12"><h2 data-number="3.12" class="anchored" data-anchor-id="combining-normal-variables">
+<span class="header-section-number">3.12</span> Combining normal variables</h2>
 <p>Some of the distributions commonly encountered in econometrics are combinations of univariate normal distributions, such as the multivariate normal, chi-squared, Student t, and F distributions.</p>
-<section id="chi2-distribution" class="level3" data-number="2.12.1"><h3 data-number="2.12.1" class="anchored" data-anchor-id="chi2-distribution">
-<span class="header-section-number">2.12.1</span> <span class="math inline">\chi^2</span>-distribution</h3>
+<section id="chi2-distribution" class="level3" data-number="3.12.1"><h3 data-number="3.12.1" class="anchored" data-anchor-id="chi2-distribution">
+<span class="header-section-number">3.12.1</span> <span class="math inline">\chi^2</span>-distribution</h3>
 <p>Let <span class="math inline">Z_1, \ldots, Z_m</span> be independent <span class="math inline">\mathcal N(0,1)</span> random variables. Then, the random variable <span class="math display">
         Y = \sum_{i=1}^m Z_i^2
   </span> is <strong>chi-square distributed</strong> with parameter <span class="math inline">m</span>, written <span class="math inline">Y \sim \chi^2_m</span>.</p>
@@ -667,18 +725,18 @@ E[g(X) Y \mid X] = g(X) E[Y \mid X].
     </span></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-chisquare" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="384">
+<div id="fig-chisquare" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-chisquare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="sec03_dependence_files/figure-html/fig-chisquare-1.png" class="img-fluid quarto-figure-center figure-img" width="384">
+<img src="sec03_dependence_files/figure-html/fig-chisquare-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-chisquare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.14: <span class="math inline">\chi^2</span> -distribution
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chisquare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.14: <span class="math inline">\chi^2</span> -distribution
 </figcaption></figure>
 </div>
 </div>
 </div>
-</section><section id="f-distribution" class="level3" data-number="2.12.2"><h3 data-number="2.12.2" class="anchored" data-anchor-id="f-distribution">
-<span class="header-section-number">2.12.2</span> <span class="math inline">F</span>-distribution</h3>
+</section><section id="f-distribution" class="level3" data-number="3.12.2"><h3 data-number="3.12.2" class="anchored" data-anchor-id="f-distribution">
+<span class="header-section-number">3.12.2</span> <span class="math inline">F</span>-distribution</h3>
 <p>If <span class="math inline">Q_1 \sim \chi^2_m</span> and <span class="math inline">Q_2 \sim \chi^2_r</span>, and if <span class="math inline">Q_1</span> and <span class="math inline">Q_2</span> are independent, then <span class="math display">
         Y = \frac{Q_1/m}{Q_2/r}
     </span> is <strong><span class="math inline">F</span>-distributed</strong> with parameters <span class="math inline">m</span> and <span class="math inline">r</span>, written <span class="math inline">Y \sim F_{m,r}</span>.</p>
@@ -686,18 +744,18 @@ Figure&nbsp;2.14: <span class="math inline">\chi^2</span> -distribution
 <p>If <span class="math inline">r \to \infty</span> then the distribution of <span class="math inline">mY</span> approaches <span class="math inline">\chi^2_m</span></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-fdistribution" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="384">
+<div id="fig-fdistribution" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-fdistribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="sec03_dependence_files/figure-html/fig-fdistribution-1.png" class="img-fluid quarto-figure-center figure-img" width="384">
+<img src="sec03_dependence_files/figure-html/fig-fdistribution-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-fdistribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.15: <span class="math inline">F</span>-distribution
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fdistribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.15: <span class="math inline">F</span>-distribution
 </figcaption></figure>
 </div>
 </div>
 </div>
-</section><section id="student-t-distribution" class="level3" data-number="2.12.3"><h3 data-number="2.12.3" class="anchored" data-anchor-id="student-t-distribution">
-<span class="header-section-number">2.12.3</span> Student <span class="math inline">t</span>-distribution</h3>
+</section><section id="student-t-distribution" class="level3" data-number="3.12.3"><h3 data-number="3.12.3" class="anchored" data-anchor-id="student-t-distribution">
+<span class="header-section-number">3.12.3</span> Student <span class="math inline">t</span>-distribution</h3>
 <p>If <span class="math inline">Z \sim \mathcal N(0,1)</span> and <span class="math inline">Q \sim \chi^2_m</span>, and <span class="math inline">Z</span> and <span class="math inline">Q</span> are independent, then <span class="math display">
         Y = \frac{Z}{\sqrt{Q/m}}
     </span> is <strong><span class="math inline">t</span>-distributed</strong> with parameter <span class="math inline">m</span> degrees of freedom, written <span class="math inline">Y \sim t_m</span>.</p>
@@ -709,18 +767,18 @@ Figure&nbsp;2.15: <span class="math inline">F</span>-distribution
 <p>The <span class="math inline">t</span>-distribution with <span class="math inline">m=1</span> is also called <strong>Cauchy distribution</strong>. The <span class="math inline">t</span>-distributions with 1, 2, 3, and 4 degrees of freedom are heavy-tailed distributions. If <span class="math inline">m \to \infty</span> then <span class="math inline">t_m \to \mathcal N(0,1)</span></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-studentt" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="384">
+<div id="fig-studentt" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-studentt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="sec03_dependence_files/figure-html/fig-studentt-1.png" class="img-fluid quarto-figure-center figure-img" width="384">
+<img src="sec03_dependence_files/figure-html/fig-studentt-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384">
 </div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-studentt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.16: Student <span class="math inline">t</span>-distribution
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-studentt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.16: Student <span class="math inline">t</span>-distribution
 </figcaption></figure>
 </div>
 </div>
 </div>
-</section><section id="multivariate-normal-distribution" class="level3" data-number="2.12.4"><h3 data-number="2.12.4" class="anchored" data-anchor-id="multivariate-normal-distribution">
-<span class="header-section-number">2.12.4</span> Multivariate normal distribution</h3>
+</section><section id="multivariate-normal-distribution" class="level3" data-number="3.12.4"><h3 data-number="3.12.4" class="anchored" data-anchor-id="multivariate-normal-distribution">
+<span class="header-section-number">3.12.4</span> Multivariate normal distribution</h3>
 <p>Let <span class="math inline">X_1, \ldots, X_k</span> be independent <span class="math inline">\mathcal N(0,1)</span> random variables. Then, the <span class="math inline">k</span>-vector <span class="math inline">X = (X_1, \ldots, X_k)'</span> has the <strong>multivariate standard normal distribution</strong>, written <span class="math inline">X \sim \mathcal N(\boldsymbol 0, \boldsymbol I_k)</span>. Its joint density is <span class="math display">
         f(x) = \frac{1}{(2 \pi)^{k/2}} \exp\left( - \frac{x'x}{2} \right).
     </span></p>
@@ -730,9 +788,9 @@ Figure&nbsp;2.16: Student <span class="math inline">t</span>-distribution
 <p>The expectation vector and covariance matrix are <span class="math display">
         E[\widetilde X] = \mu, \quad var[\widetilde X] = \Sigma.
     </span></p>
-</section><section id="r-commands-for-parametric-distributions" class="level3" data-number="2.12.5"><h3 data-number="2.12.5" class="anchored" data-anchor-id="r-commands-for-parametric-distributions">
-<span class="header-section-number">2.12.5</span> R-commands for parametric distributions</h3>
-<table class="table">
+</section><section id="r-commands-for-parametric-distributions" class="level3" data-number="3.12.5"><h3 data-number="3.12.5" class="anchored" data-anchor-id="r-commands-for-parametric-distributions">
+<span class="header-section-number">3.12.5</span> R-commands for parametric distributions</h3>
+<table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 22%">
@@ -774,8 +832,8 @@ random numbers</th>
 <td><code>rf(n,r,k)</code></td>
 </tr>
 </tbody>
-</table></section></section><section id="additional-reading" class="level2" data-number="2.13"><h2 data-number="2.13" class="anchored" data-anchor-id="additional-reading">
-<span class="header-section-number">2.13</span> Additional reading</h2>
+</table></section></section><section id="additional-reading" class="level2" data-number="3.13"><h2 data-number="3.13" class="anchored" data-anchor-id="additional-reading">
+<span class="header-section-number">3.13</span> Additional reading</h2>
 <ul>
 <li>Stock and Watson (2019), Section 2</li>
 <li>Hansen (2022a), Section 4</li>
@@ -963,18 +1021,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1006,7 +1053,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1041,7 +1128,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1056,15 +1147,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
         }
         return container.innerHTML
       } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1073,7 +1177,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1115,6 +1227,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -1190,7 +1325,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
@@ -1272,11 +1406,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./sec02_probability.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability</span></span>
+      <a href="./sec02_probability.html" class="pagination-link" aria-label="Probability">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./stat1_data.html" class="pagination-link" aria-label="Data">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

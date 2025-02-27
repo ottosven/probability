@@ -16,10 +16,13 @@ book:
   open-graph: true
   chapters:
     - index.qmd
+    - part1_distribution.qmd
     - sec02_probability.qmd
     - sec03_dependence.qmd
-    # - 02_probability.qmd
-
+    - stat1_data.qmd
+    - stat3_probability.qmd
+    - stat4_expectation.qmd
+    - stat5_conditional.qmd
 format:
   html:
     theme:
