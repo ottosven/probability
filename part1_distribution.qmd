@@ -603,7 +603,7 @@ $$
 $$
 
 
-## I.I.D. Sample
+## Independent and Identically Distributed
 
 An important concept in statistics is that of an independent and identically distributed (i.i.d.) sample. This arises naturally when we consider multiple random variables that share the same distribution and do not influence each other.
 
