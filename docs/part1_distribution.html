@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>1&nbsp; Distribution – Probability Theory for Econometricians</title>
+<title>1&nbsp; Probability Distribution – Probability Theory for Econometricians</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,7 +26,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./sec02_probability.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -104,7 +103,7 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<meta property="og:title" content="1&nbsp; Distribution – Probability Theory for Econometricians">
+<meta property="og:title" content="1&nbsp; Probability Distribution – Probability Theory for Econometricians">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Probability Theory for Econometricians">
 </head>
@@ -115,7 +114,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part1_distribution.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distribution</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part1_distribution.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability Distribution</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -149,43 +148,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./part1_distribution.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distribution</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./sec02_probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./sec03_dependence.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dependence</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./stat1_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./stat3_probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./stat4_expectation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Expectated value</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./stat5_conditional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditional expectation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability Distribution</span></span></a>
   </div>
 </li>
     </ul>
@@ -200,12 +163,19 @@ window.Quarto = {
   <li><a href="#random-variables" id="toc-random-variables" class="nav-link" data-scroll-target="#random-variables"><span class="header-section-number">1.2</span> Random Variables</a></li>
   <li><a href="#events-and-probabilities" id="toc-events-and-probabilities" class="nav-link" data-scroll-target="#events-and-probabilities"><span class="header-section-number">1.3</span> Events and Probabilities</a></li>
   <li><a href="#probability-function" id="toc-probability-function" class="nav-link" data-scroll-target="#probability-function"><span class="header-section-number">1.4</span> Probability Function</a></li>
+  <li><a href="#distribution-function" id="toc-distribution-function" class="nav-link" data-scroll-target="#distribution-function"><span class="header-section-number">1.5</span> Distribution Function</a></li>
+  <li><a href="#probability-mass-function" id="toc-probability-mass-function" class="nav-link" data-scroll-target="#probability-mass-function"><span class="header-section-number">1.6</span> Probability Mass Function</a></li>
+  <li><a href="#probability-density-function" id="toc-probability-density-function" class="nav-link" data-scroll-target="#probability-density-function"><span class="header-section-number">1.7</span> Probability Density Function</a></li>
+  <li><a href="#conditional-distribution" id="toc-conditional-distribution" class="nav-link" data-scroll-target="#conditional-distribution"><span class="header-section-number">1.8</span> Conditional Distribution</a></li>
+  <li><a href="#independence-of-random-variables" id="toc-independence-of-random-variables" class="nav-link" data-scroll-target="#independence-of-random-variables"><span class="header-section-number">1.9</span> Independence of Random Variables</a></li>
+  <li><a href="#i.i.d.-sample" id="toc-i.i.d.-sample" class="nav-link" data-scroll-target="#i.i.d.-sample"><span class="header-section-number">1.10</span> I.I.D. Sample</a></li>
+  <li><a href="#independence-of-random-vectors" id="toc-independence-of-random-vectors" class="nav-link" data-scroll-target="#independence-of-random-vectors"><span class="header-section-number">1.11</span> Independence of Random Vectors</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distribution</span>
+<span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability Distribution</span>
 </h1>
 </div>
 
@@ -256,9 +226,9 @@ Table&nbsp;1.1: ISCED 2011 levels
 <div class="cell-output-display">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: center;">ISCED.level</th>
-<th style="text-align: center;">Education.level</th>
-<th style="text-align: center;">Years.of.schooling</th>
+<th style="text-align: center;">ISCED level</th>
+<th style="text-align: center;">Education level</th>
+<th style="text-align: center;">Years of schooling</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -356,9 +326,10 @@ A_7 = A_1 \cup A_6 = \{Y=0\} \cup \{Y&lt; 0\} = \{Y \leq 0\}
 <li><p>Intersection (outcomes in both events): <span class="math display">
 A_8 = A_4 \cap A_5 = \{Y \geq 0\} \cap \{-1 \leq Y &lt; 1\} = \{0 \leq Y &lt; 1\}
 </span></p></li>
-<li><p>Combinations of multiple events: <span class="math display">
-  A_9 = A_1 \cup A_2 \cup A_3 \cup A_5 \cup A_6 \cup A_7 \cup A_8 = \{Y \in (-\infty, 1] \cup \{2.5\}\}
-</span></p></li>
+<li><p>Combinations of multiple events: <span class="math display">\begin{align*}
+A_9 &amp;= A_1 \cup A_2 \cup A_3 \cup A_5 \cup A_6 \cup A_7 \cup A_8 \\
+&amp;= \{Y \in (-\infty, 1] \cup \{2.5\}\}
+\end{align*}</span></p></li>
 <li><p><strong>Certain event</strong> (contains all possible outcomes): <span class="math display">
 A_{10} = A_9 \cup A_9^c = \{Y \in (-\infty, \infty)\} = \{Y \in \mathbb{R}\}
 </span></p></li>
@@ -394,7 +365,7 @@ A_{11} = A_{10}^c = \{Y \notin \mathbb{R}\} = \{\}
 <p>To illustrate how events and probabilities apply in other contexts, consider our education level example. If <span class="math inline">Y</span> represents years of schooling with possible values <span class="math inline">\{4, 10, 12, 13, 14, 16, 18, 21\}</span>, we might define the event <span class="math inline">B = \{Y \geq 16\}</span> representing “has at least a Bachelor’s degree.” The probability <span class="math inline">P(B)</span> would then represent the proportion of the population with at least a Bachelor’s degree.</p>
 </section><section id="probability-function" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="probability-function">
 <span class="header-section-number">1.4</span> Probability Function</h2>
-<p>Now that we hve defined events, we need a formal way to assign probabilities to them consistently. The probability function <span class="math inline">P</span> assigns probabilities to events within the Borel sigma-algebra (denoted as <span class="math inline">\mathcal B</span>), which contains all events we would ever need to compute probabilities for in practice. This includes our previously mentioned events <span class="math inline">A_1, \ldots, A_{11}</span>, any interval of the form <span class="math inline">\{ Y \in (a,b) \}</span> with <span class="math inline">a, b \in \mathbb{R}</span>, and all possible unions, intersections, and complements of these events.</p>
+<p>Now that we have defined events, we need a formal way to assign probabilities to them consistently. The probability function <span class="math inline">P</span> assigns probabilities to events within the Borel sigma-algebra (denoted as <span class="math inline">\mathcal B</span>), which contains all events we would ever need to compute probabilities for in practice. This includes our previously mentioned events <span class="math inline">A_1, \ldots, A_{11}</span>, any interval of the form <span class="math inline">\{ Y \in (a,b) \}</span> with <span class="math inline">a, b \in \mathbb{R}</span>, and all possible unions, intersections, and complements of these events.</p>
 <p>Two events <span class="math inline">A</span> and <span class="math inline">B</span> are <strong>disjoint</strong> if <span class="math inline">A \cap B = \{\}</span>, meaning they have no common outcomes. For example, <span class="math inline">A_1 = \{Y=0\}</span> and <span class="math inline">A_2 = \{Y=1\}</span> are disjoint (a coin cannot show both heads and tails simultaneously), while <span class="math inline">A_1</span> and <span class="math inline">A_4 = \{Y \geq 0\}</span> are not disjoint since <span class="math inline">A_1 \cap A_4 = \{Y=0\}</span>.</p>
 <p>A probability function <span class="math inline">P</span> must satisfy certain fundamental rules (axioms) to ensure a well-defined probability framework:</p>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
@@ -439,7 +410,523 @@ A_{11} = A_{10}^c = \{Y \notin \mathbb{R}\} = \{\}
 <li>The sum <span class="math inline">0.1 + 0.6 + 0.3 = 1</span> (satisfying axiom 2)</li>
 <li>The probability of having either primary or secondary education is <span class="math inline">P(\text{Primary or Secondary}) = P(\text{Primary}) + P(\text{Secondary}) = 0.1 + 0.6 = 0.7</span> (using axiom 3 for disjoint events)</li>
 </ol>
-<p>From the derived properties, we can also calculate that the probability of not having tertiary education is <span class="math inline">P(\text{No tertiary}) = 1 - P(\text{Tertiary}) = 1 - 0.3 = 0.7</span>.</p>
+<p>From the implied properties, we can also calculate that the probability of not having tertiary education is <span class="math inline">P(\text{No tertiary}) = 1 - P(\text{Tertiary}) = 1 - 0.3 = 0.7</span>.</p>
+</section><section id="distribution-function" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="distribution-function">
+<span class="header-section-number">1.5</span> Distribution Function</h2>
+<p>Assigning probabilities to events is straightforward for binary variables, like coin tosses. For instance, knowing that <span class="math inline">P(Y = 1) = 0.5</span> allows us to derive the probabilities for all events in <span class="math inline">\mathcal B</span>.</p>
+<p>However, for more complex variables, such as <em>education</em> or <em>wage</em>, defining probabilities for all possible events becomes more challenging due to the vast number of potential set operations involved.</p>
+<p>Fortunately, it turns out that knowing the probabilities of events of the form <span class="math inline">\{Y \leq a\}</span> is enough to determine the probabilities of all other events. These probabilities are summarized in the cumulative distribution function.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Cumulative Distribution Function (CDF)</strong></p>
+<p>The cumulative distribution function (CDF) of a random variable <span class="math inline">Y</span> is <span class="math display">
+  F(a) := P(Y \leq a), \quad a \in \mathbb R.
+</span></p>
+</div>
+<p><br></p>
+<p>The CDF is sometimes simply referred to as the <strong>distribution function</strong>, or the <strong>distribution</strong>.</p>
+<p>The cumulative distribution function (CDF) of the variable <em>coin</em> is <span id="eq-cdfCoin"><span class="math display">
+  F(a) = \begin{cases}
+    0 &amp; a &lt; 0, \\
+    0.5 &amp; 0 \leq a &lt; 1, \\
+    1 &amp; a \geq 1,
+  \end{cases}
+\tag{1.1}</span></span></p>
+<p>with the following CDF plot:</p>
+<div id="fig-CDFcoin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CDFcoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CDF_coin.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CDFcoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: CDF of coin (discrete random variable)
+</figcaption></figure>
+</div>
+<p>The CDF of the variable <em>education</em> could be:</p>
+<div id="fig-CDFedu" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CDFedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CDF_edu.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CDFedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: CDF of education (discrete random variable)
+</figcaption></figure>
+</div>
+<p>and the CDF of the variable <em>wage</em> may have the following form:</p>
+<div id="fig-CDFwage" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CDF_wage.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: CDF of wage (continuous random variable)
+</figcaption></figure>
+</div>
+<p>Notice the key difference: the CDF of a <strong>continuous random variable</strong> (like wage) is smooth, while the CDF of a <strong>discrete random variable</strong> (like coin and education) contains jumps and is flat between these jumps. The height of each jump corresponds to the probability of that specific value occurring.</p>
+<p>Any function <span class="math inline">F(a)</span> with the following properties defines a valid probability distribution:</p>
+<ul>
+<li><p><strong>Non-decreasing</strong>: <span class="math inline">F(a) \leq F(b)</span> for <span class="math inline">a \leq b</span>.<br>
+Reflects the monotonicity of probability when the event <span class="math inline">\{Y \leq a\}</span> is contained in <span class="math inline">\{Y \leq b\}</span> for <span class="math inline">a &lt; b</span>.</p></li>
+<li><p><strong>Limits at 0 and 1</strong>: <span class="math inline">\displaystyle \lim_{a \to -\infty} F(a) = 0</span> and <span class="math inline">\displaystyle \lim_{a \to \infty} F(a) = 1</span>.<br>
+Ensures the total probability equals 1 and impossible events have zero probability.</p></li>
+<li><p><strong>Right-continuity</strong>: <span class="math inline">\displaystyle \lim_{\varepsilon \to 0, \varepsilon &gt; 0} F(a + \varepsilon) = F(a)</span>.<br>
+Ensures <span class="math inline">P(Y \leq a)</span> includes <span class="math inline">P(Y = a)</span>, which matters especially for discrete variables with jumps in the CDF.</p></li>
+</ul>
+<p>By the basic rules of probability, we can compute the probability of any event of interest if we know the CDF <span class="math inline">F(a)</span>. Here are the most common calculations:</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Probability Calculations Using the CDF</strong> (for <span class="math inline">a &lt; b</span>):</p>
+<ul>
+<li><span class="math inline">P(Y \leq a) = F(a)</span></li>
+<li><span class="math inline">P(Y &gt; a) = 1 - F(a)</span></li>
+<li><span class="math inline">P(Y &lt; a) = F(a) - P(Y=a)</span></li>
+<li><span class="math inline">P(Y \geq a) = 1 - P(Y &lt; a)</span></li>
+<li><span class="math inline">P(a &lt; Y \leq b) = F(b) - F(a)</span></li>
+<li><span class="math inline">P(a &lt; Y &lt; b) = F(b) - F(a) - P(Y=b)</span></li>
+<li><span class="math inline">P(a \leq Y \leq b) = F(b) - F(a) + P(Y=a)</span></li>
+<li><span class="math inline">P(a \leq Y &lt; b) = F(b) - F(a)</span></li>
+</ul>
+</div>
+<p><br></p>
+<p>The <strong>point probability</strong> <span class="math inline">P(Y = a)</span> represents the size of the jump at <span class="math inline">a</span> in the CDF <span class="math inline">F(a)</span>: <span class="math display">
+P(Y=a) = F(a) - \lim_{\varepsilon \to 0, \varepsilon &gt; 0} F(a-\varepsilon),
+</span> which is the jump height at <span class="math inline">a</span>. For continuous random variables, point probabilities are always zero, while for discrete random variables, they can be positive.</p>
+<p><span class="math inline">\lim_{\varepsilon \to 0, \varepsilon &gt; 0} F(a - \varepsilon)</span> denotes the left limit at <span class="math inline">a</span> while <span class="math inline">\lim_{\varepsilon \to 0, \varepsilon &gt; 0} F(a+\varepsilon)</span> denotes the right limit at <span class="math inline">a</span>. When approaching from the left, the CDF can have a jump, while when approaching from the right, the CDF cannot jump (due to right-continuity).</p>
+<p>Let’s use our coin toss example to illustrate how to calculate different probabilities using the CDF in <a href="#eq-cdfCoin" class="quarto-xref">Equation&nbsp;<span>1.1</span></a>:</p>
+<ol type="1">
+<li><span class="math inline">P(Y \leq 0.5) = F(0.5) = 0.5</span></li>
+<li><span class="math inline">P(Y &gt; 0.5) = 1 - F(0.5) = 1 - 0.5 = 0.5</span></li>
+<li><span class="math inline">P(Y = 0) = F(0) - \lim_{\varepsilon \to 0, \varepsilon &gt; 0} F(0-\varepsilon) = 0.5 - 0 = 0.5</span></li>
+<li><span class="math inline">P(-1 &lt; Y \leq 2) = F(2) - F(-1) = 1 - 0 = 1</span></li>
+</ol></section><section id="probability-mass-function" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="probability-mass-function">
+<span class="header-section-number">1.6</span> Probability Mass Function</h2>
+<p>In the previous section, we defined the point probability <span class="math inline">P(Y = a)</span> as the height of the jump in the CDF at point <span class="math inline">a</span>. These point probabilities are systematically organized in the probability mass function:</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Probability Mass Function (PMF)</strong></p>
+<p>The probability mass function (PMF) of a random variable <span class="math inline">Y</span> is <span class="math display">
+  \pi(a) := P(Y = a), \quad a \in \mathbb R
+</span></p>
+</div>
+<p><br></p>
+<p>The PMF of the <em>coin</em> variable is <span class="math display">
+  \pi(a) = P(Y=a) = \begin{cases}
+    0.5 &amp; \text{if} \ a \in\{0,1\}, \\
+    0 &amp; \text{otherwise}.
+  \end{cases}
+</span></p>
+<div id="fig-coin" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-coin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-coin" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-CDFcoin2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-CDFcoin2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CDF_coin.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-coin">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-CDFcoin2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) CDF of coin
+</figcaption></figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-coin" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-PMFcoin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-PMFcoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/PMF_coin.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-coin">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-PMFcoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) PMF of coin
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4: Coin variable: CDF (left) and PMF (right)
+</figcaption></figure>
+</div>
+<p>The <em>education</em> variable has the following PMF: <span class="math display">
+        \pi(a) = P(Y=a) = \begin{cases}
+        0.008 &amp; \text{if} \ a = 4 \\
+        0.055 &amp; \text{if} \ a = 10 \\
+        0.393 &amp; \text{if} \ a = 12 \\
+        0.079 &amp; \text{if} \ a = 13 \\
+        0.145 &amp; \text{if} \ a = 14 \\
+        0.078 &amp; \text{if} \ a = 16 \\
+        0.218 &amp; \text{if} \ a = 18 \\
+        0.024 &amp; \text{if} \ a = 21 \\
+        0   &amp; \text{otherwise}
+        \end{cases}
+  </span></p>
+<div id="fig-edu" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-edu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-edu" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-CDFedu2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-CDFedu2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CDF_edu.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-edu">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-CDFedu2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) CDF of education
+</figcaption></figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-edu" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-PMFedu" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-PMFedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/PMF_edu.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-edu">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-PMFedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) PMF of education
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-edu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.5: Education variable: CDF (left) and PMF (right)
+</figcaption></figure>
+</div>
+<p>The <strong>support</strong> <span class="math inline">\mathcal Y</span> of <span class="math inline">Y</span> is the set of all values that <span class="math inline">Y</span> can take with non-zero probability: <span class="math inline">\mathcal{Y} = \{ a \in \mathbb{R} : \pi(a) &gt; 0 \}.</span></p>
+<p>For the coin variable, the support is <span class="math inline">\mathcal{Y} = \{0, 1\}</span>, while for the education variable, the support is <span class="math inline">\mathcal{Y} = \{4, 10, 12, 13, 14, 16, 18, 21\}</span>.</p>
+<p>Any valid PMF must satisfy the following properties:</p>
+<ul>
+<li>
+<strong>Non-negativity</strong>: <span class="math inline">\pi(a) \geq 0</span> for all <span class="math inline">a \in \mathbb{R}</span>
+</li>
+<li>
+<strong>Sum to one</strong>: <span class="math inline">\sum_{a \in \mathcal{Y}} \pi(a) = 1</span>
+</li>
+<li>
+<strong>Relationship to CDF</strong>: <span class="math inline">F(b) = \sum_{a \in \mathcal{Y}, a \leq b} \pi(a)</span>
+</li>
+</ul></section><section id="probability-density-function" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="probability-density-function">
+<span class="header-section-number">1.7</span> Probability Density Function</h2>
+<p>For continuous random variables, the CDF has no jumps, meaning the probability of any specific value is zero, and probability is distributed continuously over intervals. Unlike discrete random variables, which are characterized by both the PMF and the CDF, continuous variables do not have a positive PMF. Instead, they are described by the probability density function (PDF), which serves as the continuous analogue. If the CDF is differentiable, the PDF is given by its derivative:</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Probability Density Function (PDF)</strong></p>
+<p>The <strong>probability density function (PDF)</strong> or simply <strong>density function</strong> of a continuous random variable <span class="math inline">Y</span> is the derivative of its CDF: <span class="math display">
+    f(a) = \frac{d}{da} F(a).
+</span></p>
+<p>Conversely, the CDF can be obtained from the PDF by integration: <span class="math display">
+    F(a) = \int_{-\infty}^a f(u) \ \text{d}u
+</span></p>
+</div>
+<p><br></p>
+<p>Any function <span class="math inline">f(a)</span> with the following properties defines a valid probability density function:</p>
+<ul>
+<li>
+<strong>Non-negativity</strong>: <span class="math inline">f(a) \geq 0</span> for all <span class="math inline">a \in \mathbb R</span>
+</li>
+<li>
+<strong>Normalization</strong>: <span class="math inline">\int_{-\infty}^\infty f(u) \ \text{d}u = 1</span>
+</li>
+</ul>
+<p>The <strong>support</strong> of a continuous random variable <span class="math inline">Y</span> with PDF <span class="math inline">f</span> is the set <span class="math inline">\mathcal{Y} = \{a \in \mathbb{R} : f(a) &gt; 0\}</span>, which contains all values where the density is positive. For instance, the support of the <em>wage</em> variable is <span class="math inline">\mathcal{Y} = \{a \in \mathbb{R} : a \geq 0\}</span>, reflecting that wages cannot be negative.</p>
+<div id="fig-wage" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-wage" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-CDFwage2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-CDFwage2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CDF_wage.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-wage">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-CDFwage2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) CDF of wage
+</figcaption></figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-wage" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-PDFwage" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-PDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/PDF_wage.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-wage">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-PDFwage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) PDF of wage
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.6: Wage variable: CDF (left) and PDF (right)
+</figcaption></figure>
+</div>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Basic Rules for Continuous Random Variables</strong> (with <span class="math inline">a \leq b</span>):</p>
+<ul>
+<li><span class="math inline">\displaystyle P(Y = a) = \int_a^a f(u) \ \text{d}u = 0</span></li>
+<li><span class="math inline">\displaystyle P(Y \leq a) = P(Y &lt; a) = F(a) = \int_{-\infty}^a f(u) \ \text{d}u</span></li>
+<li><span class="math inline">\displaystyle P(Y &gt; a) = P(Y \geq a) = 1 - F(a) = \int_a^\infty f(u) \ \text{d}u</span></li>
+<li><span class="math inline">\displaystyle P(a &lt; Y &lt; b) = F(b) - F(a) = \int_a^b f(u) \ \text{d}u</span></li>
+<li><span class="math inline">\displaystyle P(a &lt; Y &lt; b) = P(a &lt; Y \leq b) = P(a \leq Y \leq b) = P(a \leq Y &lt; b)</span></li>
+</ul>
+</div>
+<p><br></p>
+<p>Unlike the PMF, which directly gives probabilities, the PDF does not represent probability directly. Instead, the probability is given by the area under the PDF curve over an interval. The PDF value <span class="math inline">f(a)</span> itself can be greater than 1, as long as the total area under the curve equals 1.</p>
+<p>It is important to note that for continuous random variables, the probability of any single point is zero. This is why, as shown in the last rule above, the inequalities (strict or non-strict) don’t affect the probability calculations for intervals. This stands in contrast to discrete random variables, where the inclusion of endpoints can change the probability value.</p>
+</section><section id="conditional-distribution" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="conditional-distribution">
+<span class="header-section-number">1.8</span> Conditional Distribution</h2>
+<p>The distribution of <em>wage</em> may differ between men and women. Similarly, the distribution of <em>education</em> may vary between married and unmarried individuals. In contrast, the distribution of a <em>coin flip</em> should remain the same regardless of whether the person tossing the coin earns 15 or 20 EUR per hour.</p>
+<p>The <strong>conditional cumulative distribution function</strong> (CCDF), <span class="math display">F_{Y|Z=b}(a) = F_{Y|Z}(a|b) = P(Y\leq a|Z=b),</span> represents the distribution of a random variable <span class="math inline">Y</span> given that another random variable <span class="math inline">Z</span> takes a specific value <span class="math inline">b</span>. It answers the question: “If we know that <span class="math inline">Z=b</span>, what is the distribution of <span class="math inline">Y</span>?”</p>
+<p>For example, suppose that <span class="math inline">Y</span> represents <em>wage</em> and <span class="math inline">Z</span> represents <em>education</em>:</p>
+<ul>
+<li>
+<span class="math inline">F_{Y|Z=12}(a)</span> is the CDF of wages among individuals with 12 years of education.</li>
+<li>
+<span class="math inline">F_{Y|Z=14}(a)</span> is the CDF of wages among individuals with 14 years of education.</li>
+<li>
+<span class="math inline">F_{Y|Z=18}(a)</span> is the CDF of wages among individuals with 18 years of education.</li>
+</ul>
+<p>Since <em>wage</em> is a continuous variable, its conditional distribution given any specific value of another variable is also continuous. The conditional density of <span class="math inline">Y</span> given <span class="math inline">Z=b</span> is defined as the derivative of the conditional CDF: <span class="math display">
+        f_{Y|Z=b}(a) = f_{Y|Z}(a|b) = \frac{d}{d a} F_{Y|Z=b}(a).
+</span></p>
+<div id="fig-condWageEdu" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-condWageEdu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-condWageEdu" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-cCDFedu" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-cCDFedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CCDF_wage_edu.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-condWageEdu">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-cCDFedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Conditional CDFs of wage given education
+</figcaption></figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-condWageEdu" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-cPDFedu" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-cPDFedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CPDF_wage_edu.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-condWageEdu">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-cPDFedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Conditional PDFs of wage given education
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-condWageEdu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.7: Wage distributions conditional on education level
+</figcaption></figure>
+</div>
+<p>We observe that the distribution of wage varies across different levels of education. For example, individuals with fewer years of education are more likely to earn less than 20 EUR per hour: <span class="math display">
+P(Y\leq 20 | Z=12) = F_{Y|Z=12}(20) &gt; F_{Y|Z=18}(20) = P(Y\leq 20|Z = 18).
+</span> Because the conditional distribution of <span class="math inline">Y</span> given <span class="math inline">Z=b</span> depends on the value of <span class="math inline">Z=b</span>, we say that the random variables <span class="math inline">Y</span> and <span class="math inline">Z</span> are <strong>dependent random variables</strong>.</p>
+<p>Note that the conditional CDF <span class="math inline">F_{Y|Z=b}(a)</span> can only be defined for values of <span class="math inline">b</span> in the support of <span class="math inline">Z</span>.</p>
+<p>We can also condition on more than one variable. Let <span class="math inline">Z_1</span> represent the labor market <em>experience</em> in years and <span class="math inline">Z_2</span> be the <em>female</em> dummy variable. The conditional CDF of <span class="math inline">Y</span> given <span class="math inline">Z_1 = b</span> and <span class="math inline">Z_2 = c</span> is: <span class="math display">
+F_{Y|Z_1=b,Z_2=c}(a) = F_{Y|Z_1,Z_2}(a|b,c) = P(Y \leq a|Z_1=b, Z_2=c).
+</span></p>
+<p>For example:</p>
+<ul>
+<li>
+<span class="math inline">F_{Y|Z_1=10,Z_2=1}(a)</span> is the CDF of wages among women with 10 years of experience.</li>
+<li>
+<span class="math inline">F_{Y|Z_1=10,Z_2=0}(a)</span> is the CDF of wages among men with 10 years of experience.</li>
+</ul>
+<div id="fig-condWageExpFem" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-condWageExpFem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-condWageExpFem" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-cCDFwag" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-cCDFwag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CCDF_wage_ex_fem.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-condWageExpFem">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-cCDFwag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Conditional CDFs
+</figcaption></figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-condWageExpFem" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-cPDFwag" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-cPDFwag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CPDF_wage_ex_fem.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-condWageExpFem">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-cPDFwag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Conditional PDFs
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-condWageExpFem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.8: Wage distributions conditional on 10 years of experience and gender
+</figcaption></figure>
+</div>
+<p>Clearly the random variable <span class="math inline">Y</span> and the random vector <span class="math inline">(Z_1, Z_2)</span> are dependent.</p>
+<p>More generally, we can condition on the event that a <span class="math inline">k</span>-variate random vector <span class="math inline">\boldsymbol Z = (Z_1, \ldots, Z_k)'</span> takes the value <span class="math inline">\{\boldsymbol Z = \boldsymbol b\}</span>, i.e., <span class="math inline">\{Z_1 = b_1, \ldots, Z_k = b_k\}</span>. The conditional CDF of <span class="math inline">Y</span> given <span class="math inline">\{\boldsymbol Z = \boldsymbol b\}</span> is <span class="math display">
+  F_{Y|\boldsymbol Z = \boldsymbol b}(a) = F_{Y|Z_1 = b_1, \ldots, Z_k = b_k}(a).
+</span></p>
+<p>The variable of interest, <span class="math inline">Y</span>, can also be discrete. Then, any conditional CDF of <span class="math inline">Y</span> is also discrete. Below is the conditional CDF of <em>education</em> given the <em>married</em> dummy variable:</p>
+<ul>
+<li>
+<span class="math inline">F_{Y|Z=0}(a)</span> is the CDF of education among unmarried individuals.</li>
+<li>
+<span class="math inline">F_{Y|Z=1}(a)</span> is the CDF of education among married individuals.</li>
+</ul>
+<div id="fig-condCDFEduMarr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-condCDFEduMarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CCDF_edu_marr.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-condCDFEduMarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.9: Conditional CDFs of education given married
+</figcaption></figure>
+</div>
+<p>The conditional PMFs <span class="math inline">\pi_{Y|Z=0}(a) = P(Y = a | Z=0)</span> and <span class="math inline">\pi_{Y|Z=1}(a)= P(Y = a | Z=1)</span> indicate the jump heights of <span class="math inline">F_{Y|Z=0}(a)</span> and <span class="math inline">F_{Y|Z=1}(a)</span> at <span class="math inline">a</span>.</p>
+<div id="fig-condEduMarrPMF" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-condEduMarrPMF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-condEduMarrPMF" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-cPMFeduUnmarr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-cPMFeduUnmarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CPMF_edu_unmarried.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-condEduMarrPMF">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-cPMFeduUnmarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Education given unmarried
+</figcaption></figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-condEduMarrPMF" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-cPMFeduMarr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-cPMFeduMarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CPMF_edu_married.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-condEduMarrPMF">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-cPMFeduMarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Education given married
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-condEduMarrPMF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.10: Conditional PMFs of education for unmarried (left) and married (right) individuals
+</figcaption></figure>
+</div>
+<p>Clearly, <em>education</em> and <em>married</em> are dependent random variables. For example, <span class="math inline">\pi_{Y|Z=0}(12) &gt; \pi_{Y|Z=1}(12)</span> and <span class="math inline">\pi_{Y|Z=0}(18) &lt; \pi_{Y|Z=1}(18)</span>.</p>
+<p>In contrast, consider <span class="math inline">Y=</span> coin flip and <span class="math inline">Z=</span> married dummy variable. The CDF of a coin flip should be the same for married or unmarried individuals:</p>
+<div id="fig-condCoinFlip" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-condCoinFlip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-condCoinFlip" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-coinUnmarried" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-coinUnmarried-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CCDF_coin_b1.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-condCoinFlip">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-coinUnmarried-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Coin flip given unmarried
+</figcaption></figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-condCoinFlip" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-coinMarried" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-coinMarried-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CCDF_coin_b0.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-condCoinFlip">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-coinMarried-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Coin flip given married
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-condCoinFlip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.11: Conditional CDFs of a coin flip for unmarried (left) and married (right) individuals
+</figcaption></figure>
+</div>
+<p>Because <span class="math display">
+  F_Y(a) = F_{Y|Z=0}(a) = F_{Y|Z=1}(a) \quad \text{for all} \ a
+</span> we say that <span class="math inline">Y</span> and <span class="math inline">Z</span> are <strong>independent random variables</strong>.</p>
+</section><section id="independence-of-random-variables" class="level2" data-number="1.9"><h2 data-number="1.9" class="anchored" data-anchor-id="independence-of-random-variables">
+<span class="header-section-number">1.9</span> Independence of Random Variables</h2>
+<p>In the previous section, we saw that the distribution of a coin flip remains the same regardless of a person’s marital status, illustrating the concept of independence. Let’s now formalize this important concept.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Independence</strong></p>
+<p><span class="math inline">Y</span> and <span class="math inline">Z</span> are <strong>independent</strong> if and only if <span class="math display">
+  F_{Y|Z=b}(a) = F_{Y}(a) \quad \text{for all} \ a \ \text{and} \ b.
+</span></p>
+</div>
+<p><br></p>
+<p>Note that if <span class="math inline">F_{Y|Z=b}(a) = F_{Y}(a)</span> for all <span class="math inline">b</span>, then automatically <span class="math inline">F_{Z|Y=a}(b) = F_{Z}(b)</span> for all <span class="math inline">a</span>. Due to this symmetry we can equivalently define independence through the property <span class="math inline">F_{Z|Y=a}(b) = F_{Z}(b)</span>.</p>
+<blockquote class="blockquote">
+<p><strong>Technical Note</strong>: More rigorously, the independence condition should state “for almost every <span class="math inline">b</span>” rather than “for all <span class="math inline">b</span>”. This means the condition must hold for every <span class="math inline">b</span> in the support of <span class="math inline">Z</span>, apart from a set of values that has probability <span class="math inline">0</span> under <span class="math inline">Z</span>. Put differently, the condition must hold for all <span class="math inline">b</span>-values that <span class="math inline">Z</span> can actually take, with exceptions allowed only on a set whose probability is <span class="math inline">0</span>. Think of it as “for all practical purposes”. For instance, we only need independence to hold for non-negative wages. We don’t need to check independence for negative wages since they can’t occur.</p>
+</blockquote>
+<p>For discrete random variables, independence can be expressed using PMFs: <span class="math inline">Y</span> and <span class="math inline">Z</span> are independent if and only if <span class="math inline">\pi_{Y|Z=b}(a) = \pi_Y(a)</span> for all <span class="math inline">a,b</span>. Similarly, for continuous random variables, independence means the conditional PDF factorizes <span class="math inline">f_{Y|Z=b}(a) = f_Y(a)</span>.</p>
+<p>The definition naturally generalizes to <span class="math inline">Z_1, Z_2, Z_3</span>. They are <strong>mutually independent</strong> if, for each <span class="math inline">i \in \{1,2,3\}</span>, the conditional distribution of <span class="math inline">Z_i</span> given the other two equals its marginal distribution. In CDF form, this means:</p>
+<ol type="i">
+<li><span class="math inline">F_{Z_1|Z_2=b_2, Z_3=b_3}(a) = F_{Z_1}(a)</span></li>
+<li><span class="math inline">F_{Z_2|Z_1=b_1, Z_3=b_3}(a) = F_{Z_2}(a)</span></li>
+<li><span class="math inline">F_{Z_3|Z_1=b_1, Z_2=b_2}(a) = F_{Z_3}(a)</span></li>
+</ol>
+<p>for all <span class="math inline">a</span> and for all <span class="math inline">(b_1, b_2, b_3)</span>. Here, we need all three conditions.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Mutual Independence</strong></p>
+<p>The random variables <span class="math inline">Z_1, \ldots, Z_n</span> are <strong>mutually independent</strong> if and only if, for each <span class="math inline">i = 1,\dots,n</span>, <span class="math display">
+  F_{Z_i | Z_1=b_1,\ldots,Z_{i-1}=b_{i-1},\,Z_{i+1}=b_{i+1},\ldots,Z_n=b_n}(a)
+=
+F_{Z_i}(a).
+</span> for all <span class="math inline">a</span> and all <span class="math inline">(b_1, \ldots, b_n)</span>.</p>
+</div>
+<p><br></p>
+<p>An equivalent viewpoint uses the <strong>joint CDF</strong> of the vector <span class="math inline">\boldsymbol Z = (Z_1, \ldots, Z_n)'</span>, which is defined as: <span class="math display">
+  F_{\boldsymbol Z}(\boldsymbol a) = F_{Z_1, \ldots, Z_n}(a_1, \ldots, a_n) = P(Z_1 \leq a_1, \ldots, Z_n \leq a_n) = P(\boldsymbol Z \leq \boldsymbol a),
+</span> where <span class="math display">
+P(Z_1 \leq a_1, \ldots, Z_n \leq a_n) = P(\{Z_1 \leq a_1\} \cap \ldots \cap \{Z_n \leq a_n\}).
+</span></p>
+<p>Then <span class="math inline">Z_1, \ldots, Z_n</span> are mutually independent if and only if the joint CDF is the product of the marginal CDFs: <span class="math display">
+  F_{\boldsymbol Z}(\boldsymbol a) = F_{Z_1}(a_1) \cdots F_{Z_n}(a_n) \quad \text{for all} \ a_1, \ldots, a_n.
+</span></p>
+</section><section id="i.i.d.-sample" class="level2" data-number="1.10"><h2 data-number="1.10" class="anchored" data-anchor-id="i.i.d.-sample">
+<span class="header-section-number">1.10</span> I.I.D. Sample</h2>
+<p>An important concept in statistics is that of an independent and identically distributed (i.i.d.) sample. This arises naturally when we consider multiple random variables that share the same distribution and do not influence each other.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>i.i.d. Sample / Random Sample</strong></p>
+<p>A collection of random variables <span class="math inline">Y_1, \dots, Y_n</span> is <strong>i.i.d.</strong> (independent and identically distributed) if:</p>
+<ol type="1">
+<li><p>They are mutually independent: for each <span class="math inline">i = 1,\dots,n</span>, <span class="math display">
+  F_{Y_i | Y_1=b_1, \ldots, Y_{i-1}=b_{i-1}, Y_{i+1}=b_{i+1}, \ldots, Y_n = b_n}(a) = F_{Y_i}(a)
+</span> for all <span class="math inline">a</span> and all <span class="math inline">(b_1, \ldots, b_n)</span>.</p></li>
+<li><p>They have the same distribution function: <span class="math inline">F_{Y_i}(a) = F(a)</span> for all <span class="math inline">i=1,\ldots,n</span> and all <span class="math inline">a</span>.</p></li>
+</ol>
+</div>
+<p><br></p>
+<p>For example, consider <span class="math inline">n</span> coin flips, where each <span class="math inline">Y_i</span> represents the outcome of the <span class="math inline">i</span>-th flip (with <span class="math inline">Y_i=1</span> for heads and <span class="math inline">Y_i=0</span> for tails). If the coin is fair and the flips are performed independently, then <span class="math inline">Y_1, \ldots, Y_n</span> form an i.i.d. sample with</p>
+<p><span class="math display">
+F(a) = F_{Y_i}(a) = \begin{cases} 0 &amp; a &lt; 0 \\ 0.5 &amp; 0 \leq a &lt; 1 \\ 1 &amp; a \geq 1 \end{cases}
+\qquad \text{for all} \ i=1, \ldots, n.
+</span></p>
+<p>Similarly, if we randomly select <span class="math inline">n</span> individuals from a large population and measure their wages, the resulting measurements <span class="math inline">Y_1, \ldots, Y_n</span> can be treated as an i.i.d. sample. Each <span class="math inline">Y_i</span> follows the same distribution (the wage distribution in the population), and knowledge of one person’s wage doesn’t affect the distribution of another’s. The function <span class="math inline">F</span> is called the <strong>population distribution</strong> or the <strong>data-generating process (DGP)</strong>.</p>
+</section><section id="independence-of-random-vectors" class="level2" data-number="1.11"><h2 data-number="1.11" class="anchored" data-anchor-id="independence-of-random-vectors">
+<span class="header-section-number">1.11</span> Independence of Random Vectors</h2>
+<p>Often in practice, we work with multiple variables recorded for different individuals or time points. For example, consider two random vectors: <span class="math display">
+  \boldsymbol{X}_1 = (X_{11}, \ldots, X_{1k})',
+  \quad
+  \boldsymbol{X}_2 = (X_{21}, \ldots, X_{2k})'.
+</span></p>
+<p>The conditional distribution function of <span class="math inline">\boldsymbol{X}_1</span> given that <span class="math inline">\boldsymbol{X}_2</span> takes the value <span class="math inline">\boldsymbol{b}=(b_1,\ldots,b_k)'</span> is <span class="math display">
+  F_{\boldsymbol{X}_1 | \boldsymbol{X}_2 = \boldsymbol{b}}(\boldsymbol{a})
+  =
+  P(\boldsymbol{X}_1 \le \boldsymbol{a}|\boldsymbol{X}_2 = \boldsymbol{b}),
+</span> where <span class="math inline">\boldsymbol{X}_1 \le \boldsymbol{a}</span> means <span class="math inline">X_{1j} \le a_j</span> for each coordinate <span class="math inline">j=1,\ldots,k</span>.</p>
+<p>For instance, if <span class="math inline">\boldsymbol{X}_1</span> and <span class="math inline">\boldsymbol{X}_2</span> represent the survey answers of two different, randomly chosen people, then <span class="math inline">F_{\boldsymbol{X}_2 | \boldsymbol{X}_1=\boldsymbol{b}}(\boldsymbol{a})</span> describes the distribution of the second person’s answers, given that the first person’s answers are <span class="math inline">\boldsymbol{b}</span>.</p>
+<p>If the two people are truly randomly selected and unrelated to one another, we would not expect <span class="math inline">\boldsymbol{X}_2</span> to depend on whether <span class="math inline">\boldsymbol{X}_1</span> equals <span class="math inline">\boldsymbol{b}</span> or some other value <span class="math inline">\boldsymbol{c}</span>. In other words, knowing <span class="math inline">\boldsymbol X_1</span> provides no information that changes the distribution of <span class="math inline">\boldsymbol X_2</span>.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Independence of Random Vectors</strong></p>
+<p>Two random vectors <span class="math inline">\boldsymbol{X}_1</span> and <span class="math inline">\boldsymbol{X}_2</span> are <strong>independent</strong> if and only if <span class="math display">
+F_{\boldsymbol{X}_1 | \boldsymbol{X}_2 = \boldsymbol{b}}(\boldsymbol{a})
+=
+F_{\boldsymbol{X}_1}(\boldsymbol{a})
+\quad
+\text{for all } \boldsymbol{a}
+\quad
+\text{and} \ \boldsymbol{b}.
+</span></p>
+</div>
+<p><br></p>
+<p>This definition extends naturally to mutual independence of <span class="math inline">n</span> random vectors <span class="math inline">\boldsymbol{X}_1,\dots,\boldsymbol{X}_n</span>, where <span class="math inline">\boldsymbol{X}_i = (X_{i1},\dots,X_{ik})'</span>. They are called <strong>mutually independent</strong> if, for each <span class="math inline">i = 1,\dots,n</span>, <span class="math display">
+  F_{\boldsymbol X_i| \boldsymbol X_1=\boldsymbol b_1, \ldots, \boldsymbol X_{i-1}=\boldsymbol b_{i-1}, \boldsymbol X_{i+1}=\boldsymbol b_{i+1}, \ldots, \boldsymbol X_n = \boldsymbol b_n}(\boldsymbol a) = F_{\boldsymbol X_i}(\boldsymbol a)
+</span> for all <span class="math inline">\boldsymbol{a}</span> and all <span class="math inline">(\boldsymbol{b}_1,\dots,\boldsymbol{b}_n)</span>.</p>
+<p>Hence, in an independent sample, what the <span class="math inline">i</span>-th randomly chosen person answers does not depend on anyone else’s answers.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>i.i.d. Sample of Random Vectors</strong></p>
+<p>The concept of i.i.d. samples naturally extends to random vectors. A collection of random vectors <span class="math inline">\boldsymbol{X}_1, \dots, \boldsymbol{X}_n</span> is <strong>i.i.d.</strong> if they are mutually independent and have the same distribution function <span class="math inline">F</span>. Formally, <span class="math display">
+  F_{\boldsymbol X_i| \boldsymbol X_1=\boldsymbol b_1, \ldots, \boldsymbol X_{i-1}=\boldsymbol b_{i-1}, \boldsymbol X_{i+1}=\boldsymbol b_{i+1}, \ldots, \boldsymbol X_n = \boldsymbol b_n}(\boldsymbol a) = F(\boldsymbol a)
+</span> for all <span class="math inline">i=1, \ldots, n</span>, for all <span class="math inline">\boldsymbol{a}</span>, and all <span class="math inline">(\boldsymbol{b}_1,\dots,\boldsymbol{b}_n)</span>.</p>
+<p>An <strong>i.i.d. dataset</strong> (or <strong>random sample</strong>) is one where each multivariate observation not only comes from the same population distribution <span class="math inline">F</span> but is independent of the others.</p>
+</div>
+<p><br></p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1011,9 +1498,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./sec02_probability.html" class="pagination-link" aria-label="Probability">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

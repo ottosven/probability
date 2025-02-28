@@ -419,12 +419,6 @@ Conditional CDFs and PDFs of wage given experience and gender
 :::
 
 
-<!-- ::: {#fig-condCDFWageExpFem} -->
-
-<!-- ![](./img/WageExFemCondCDF.png){width=50%} -->
-
-<!-- Conditional CDFs of wage given experience and gender -->
-<!-- ::: -->
 
 Clearly the random variable $Y$ and the random vector $(Z_1, Z_2)$ are dependent.
 

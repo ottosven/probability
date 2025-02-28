@@ -1,4 +1,4 @@
-# Distribution
+# Probability Distribution
 
 
 ## Random Experiment
@@ -53,6 +53,7 @@ isced_levels = 1:8
 levelnames = c("Primary", "Lower Secondary", "Upper secondary", "Post-Secondary", "Short-Cycle Tertiary", "Bachelor's", "Master's","Doctoral")
 yearsofschooling = c(4, 10, 12, 13, 14, 16, 18, 21)
 tab = data.frame("ISCED level" = isced_levels, "Education level" = levelnames, "Years of schooling" = yearsofschooling)
+colnames(tab) = c("ISCED level", "Education level", "Years of schooling")
 kable(tab, align = 'c')
 ```
 
@@ -122,9 +123,10 @@ $$
 $$
 
 * Combinations of multiple events:
-$$
-    A_9 = A_1 \cup A_2 \cup A_3 \cup A_5 \cup A_6 \cup A_7 \cup A_8 = \{Y \in (-\infty, 1] \cup \{2.5\}\}
-$$
+\begin{align*}
+  A_9 &= A_1 \cup A_2 \cup A_3 \cup A_5 \cup A_6 \cup A_7 \cup A_8 \\
+  &= \{Y \in (-\infty, 1] \cup \{2.5\}\}
+\end{align*}
 
 * **Certain event** (contains all possible outcomes):
 $$
@@ -154,7 +156,7 @@ To illustrate how events and probabilities apply in other contexts, consider our
 
 ## Probability Function
 
-Now that we hve defined events, we need a formal way to assign probabilities to them consistently. The probability function $P$ assigns probabilities to events within the Borel sigma-algebra (denoted as $\mathcal B$), which contains all events we would ever need to compute probabilities for in practice. This includes our previously mentioned events $A_1, \ldots, A_{11}$, any interval of the form $\{ Y \in (a,b) \}$ with $a, b \in \mathbb{R}$, and all possible unions, intersections, and complements of these events.
+Now that we have defined events, we need a formal way to assign probabilities to them consistently. The probability function $P$ assigns probabilities to events within the Borel sigma-algebra (denoted as $\mathcal B$), which contains all events we would ever need to compute probabilities for in practice. This includes our previously mentioned events $A_1, \ldots, A_{11}$, any interval of the form $\{ Y \in (a,b) \}$ with $a, b \in \mathbb{R}$, and all possible unions, intersections, and complements of these events.
 
 Two events $A$ and $B$ are **disjoint** if $A \cap B = \{\}$, meaning they have no common outcomes. For example, $A_1 = \{Y=0\}$ and $A_2 = \{Y=1\}$ are disjoint (a coin cannot show both heads and tails simultaneously), while $A_1$ and $A_4 = \{Y \geq 0\}$ are not disjoint since $A_1 \cap A_4 = \{Y=0\}$.
 
@@ -193,4 +195,504 @@ These events are disjoint (a person cannot simultaneously have exactly primary a
 2. The sum $0.1 + 0.6 + 0.3 = 1$ (satisfying axiom 2)
 3. The probability of having either primary or secondary education is $P(\text{Primary or Secondary}) = P(\text{Primary}) + P(\text{Secondary}) = 0.1 + 0.6 = 0.7$ (using axiom 3 for disjoint events)
 
-From the derived properties, we can also calculate that the probability of not having tertiary education is $P(\text{No tertiary}) = 1 - P(\text{Tertiary}) = 1 - 0.3 = 0.7$.
+From the implied properties, we can also calculate that the probability of not having tertiary education is $P(\text{No tertiary}) = 1 - P(\text{Tertiary}) = 1 - 0.3 = 0.7$.
+
+
+## Distribution Function
+
+Assigning probabilities to events is straightforward for binary variables, like coin tosses. For instance, knowing that $P(Y = 1) = 0.5$ allows us to derive the probabilities for all events in $\mathcal B$.
+
+However, for more complex variables, such as *education* or *wage*, defining probabilities for all possible events becomes more challenging due to the vast number of potential set operations involved.
+
+Fortunately, it turns out that knowing the probabilities of events of the form $\{Y \leq a\}$ is enough to determine the probabilities of all other events. These probabilities are summarized in the cumulative distribution function.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Cumulative Distribution Function (CDF)**
+
+The cumulative distribution function (CDF) of a random variable $Y$ is
+$$
+  F(a) := P(Y \leq a), \quad a \in \mathbb R.
+$$
+:::
+\
+
+The CDF is sometimes simply referred to as the **distribution function**, or the **distribution**.
+
+The cumulative distribution function (CDF) of the variable *coin* is
+$$
+  F(a) = \begin{cases} 
+    0 & a < 0, \\
+    0.5 & 0 \leq a < 1, \\
+    1 & a \geq 1, 
+  \end{cases}
+$$ {#eq-cdfCoin}
+
+with the following CDF plot:
+
+::: {#fig-CDFcoin}
+![](./plots/CDF_coin.png){width=50%}
+
+CDF of coin (discrete random variable)
+:::
+
+The CDF of the variable *education* could be:
+
+::: {#fig-CDFedu}
+![](./plots/CDF_edu.png){width=50%}
+
+CDF of education (discrete random variable)
+:::
+
+and the CDF of the variable *wage* may have the following form:
+
+::: {#fig-CDFwage}
+![](./plots/CDF_wage.png){width=50%}
+
+CDF of wage (continuous random variable)
+:::
+
+Notice the key difference: the CDF of a **continuous random variable** (like wage) is smooth, while the CDF of a **discrete random variable** (like coin and education) contains jumps and is flat between these jumps. The height of each jump corresponds to the probability of that specific value occurring.
+
+Any function $F(a)$ with the following properties defines a valid probability distribution:
+
+* **Non-decreasing**: $F(a) \leq F(b)$ for $a \leq b$. \
+Reflects the monotonicity of probability when the event $\{Y \leq a\}$ is contained in $\{Y \leq b\}$ for $a < b$.
+
+* **Limits at 0 and 1**: $\displaystyle \lim_{a \to -\infty} F(a) = 0$ and $\displaystyle \lim_{a \to \infty} F(a) = 1$. \
+Ensures the total probability equals 1 and impossible events have zero probability.
+
+* **Right-continuity**: $\displaystyle \lim_{\varepsilon \to 0, \varepsilon > 0} F(a + \varepsilon) = F(a)$. \
+Ensures $P(Y \leq a)$ includes $P(Y = a)$, which matters especially for discrete variables with jumps in the CDF.
+
+By the basic rules of probability, we can compute the probability of any event of interest if we know the CDF $F(a)$. Here are the most common calculations:
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Probability Calculations Using the CDF** (for $a < b$):
+
+* $P(Y \leq a) = F(a)$
+* $P(Y > a) = 1 - F(a)$
+* $P(Y < a) = F(a) - P(Y=a)$
+* $P(Y \geq a) = 1 - P(Y < a)$
+* $P(a < Y \leq b) = F(b) - F(a)$
+* $P(a < Y < b) = F(b) - F(a) - P(Y=b)$
+* $P(a \leq Y \leq b) = F(b) - F(a) + P(Y=a)$
+* $P(a \leq Y < b) = F(b) - F(a)$
+:::
+\
+
+The **point probability** $P(Y = a)$ represents the size of the jump at $a$ in the CDF $F(a)$:
+$$
+P(Y=a) = F(a) - \lim_{\varepsilon \to 0, \varepsilon > 0} F(a-\varepsilon),
+$$
+which is the jump height at $a$. For continuous random variables, point probabilities are always zero, while for discrete random variables, they can be positive.
+
+$\lim_{\varepsilon \to 0, \varepsilon > 0} F(a - \varepsilon)$ denotes the left limit at $a$ while $\lim_{\varepsilon \to 0, \varepsilon > 0} F(a+\varepsilon)$ denotes the right limit at $a$. When approaching from the left, the CDF can have a jump, while when approaching from the right, the CDF cannot jump (due to right-continuity).
+
+Let's use our coin toss example to illustrate how to calculate different probabilities using the CDF in @eq-cdfCoin:
+
+1. $P(Y \leq 0.5) = F(0.5) = 0.5$
+2. $P(Y > 0.5) = 1 - F(0.5) = 1 - 0.5 = 0.5$
+3. $P(Y = 0) = F(0) - \lim_{\varepsilon \to 0, \varepsilon > 0} F(0-\varepsilon) = 0.5 - 0 = 0.5$
+4. $P(-1 < Y \leq 2) = F(2) - F(-1) = 1 - 0 = 1$
+
+
+## Probability Mass Function
+
+In the previous section, we defined the point probability $P(Y = a)$ as the height of the jump in the CDF at point $a$. These point probabilities are systematically organized in the probability mass function:
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Probability Mass Function (PMF)**
+
+The probability mass function (PMF) of a random variable $Y$ is
+$$
+  \pi(a) := P(Y = a), \quad a \in \mathbb R
+$$
+:::
+\
+
+The PMF of the *coin* variable is
+$$
+  \pi(a) = P(Y=a) = \begin{cases} 
+    0.5 & \text{if} \ a \in\{0,1\}, \\
+    0 & \text{otherwise}. 
+  \end{cases}
+$$
+
+
+::: {#fig-coin layout-ncol=2}
+![CDF of coin](./plots/CDF_coin.png){#fig-CDFcoin2 width=100%}
+
+![PMF of coin](./plots/PMF_coin.png){#fig-PMFcoin width=100%}
+
+Coin variable: CDF (left) and PMF (right)
+:::
+
+
+The *education* variable has the following PMF:
+  $$
+		\pi(a) = P(Y=a) = \begin{cases} 
+		0.008 & \text{if} \ a = 4 \\
+		0.055 & \text{if} \ a = 10 \\
+		0.393 & \text{if} \ a = 12 \\
+		0.079 & \text{if} \ a = 13 \\
+		0.145 & \text{if} \ a = 14 \\
+		0.078 & \text{if} \ a = 16 \\
+		0.218 & \text{if} \ a = 18 \\
+		0.024 & \text{if} \ a = 21 \\
+		0   & \text{otherwise}
+		\end{cases}
+  $$
+
+
+
+::: {#fig-edu layout-ncol=2}
+![CDF of education](./plots/CDF_edu.png){#fig-CDFedu2 width=100%}
+
+![PMF of education](./plots/PMF_edu.png){#fig-PMFedu width=100%}
+
+Education variable: CDF (left) and PMF (right)
+:::
+
+
+
+
+
+The **support** $\mathcal Y$ of $Y$ is the set of all values that $Y$ can take with non-zero probability:
+$\mathcal{Y} = \{ a \in \mathbb{R} : \pi(a) > 0 \}.$
+
+For the coin variable, the support is $\mathcal{Y} = \{0, 1\}$, while for the education variable, the support is $\mathcal{Y} = \{4, 10, 12, 13, 14, 16, 18, 21\}$.
+
+Any valid PMF must satisfy the following properties:
+
+* **Non-negativity**: $\pi(a) \geq 0$ for all $a \in \mathbb{R}$ 
+* **Sum to one**: $\sum_{a \in \mathcal{Y}} \pi(a) = 1$
+* **Relationship to CDF**: $F(b) = \sum_{a \in \mathcal{Y}, a \leq b} \pi(a)$
+
+
+## Probability Density Function
+
+For continuous random variables, the CDF has no jumps, meaning the probability of any specific value is zero, and probability is distributed continuously over intervals. Unlike discrete random variables, which are characterized by both the PMF and the CDF, continuous variables do not have a positive PMF. Instead, they are described by the probability density function (PDF), which serves as the continuous analogue. If the CDF is differentiable, the PDF is given by its derivative:
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Probability Density Function (PDF)**
+
+The **probability density function (PDF)** or simply **density function** of a continuous random variable $Y$ is the derivative of its CDF:
+$$
+	f(a) = \frac{d}{da} F(a).
+$$
+
+Conversely, the CDF can be obtained from the PDF by integration:
+$$
+	F(a) = \int_{-\infty}^a f(u) \ \text{d}u
+$$
+:::
+\
+
+Any function $f(a)$ with the following properties defines a valid probability density function:
+
+* **Non-negativity**: $f(a) \geq 0$ for all $a \in \mathbb R$
+* **Normalization**: $\int_{-\infty}^\infty f(u) \ \text{d}u = 1$
+
+The **support** of a continuous random variable $Y$ with PDF $f$ is the set $\mathcal{Y} = \{a \in \mathbb{R} : f(a) > 0\}$, which contains all values where the density is positive. For instance, the support of the *wage* variable is $\mathcal{Y} = \{a \in \mathbb{R} : a \geq 0\}$, reflecting that wages cannot be negative.
+
+
+::: {#fig-wage layout-ncol=2}
+![CDF of wage](./plots/CDF_wage.png){#fig-CDFwage2 width=100%}
+
+![PDF of wage](./plots/PDF_wage.png){#fig-PDFwage width=100%}
+
+Wage variable: CDF (left) and PDF (right)
+:::
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Basic Rules for Continuous Random Variables** (with $a \leq b$):
+
+* $\displaystyle P(Y = a) = \int_a^a f(u) \ \text{d}u = 0$
+* $\displaystyle P(Y \leq a) = P(Y < a) = F(a) = \int_{-\infty}^a f(u) \ \text{d}u$
+* $\displaystyle P(Y > a) = P(Y \geq a) = 1 - F(a) = \int_a^\infty f(u) \ \text{d}u$ 
+* $\displaystyle P(a < Y < b) = F(b) - F(a) = \int_a^b f(u) \ \text{d}u$
+* $\displaystyle P(a < Y < b) = P(a < Y \leq b) = P(a \leq Y \leq b) = P(a \leq Y < b)$
+:::
+\
+
+Unlike the PMF, which directly gives probabilities, the PDF does not represent probability directly. Instead, the probability is given by the area under the PDF curve over an interval. The PDF value $f(a)$ itself can be greater than 1, as long as the total area under the curve equals 1.
+
+It is important to note that for continuous random variables, the probability of any single point is zero. This is why, as shown in the last rule above, the inequalities (strict or non-strict) don't affect the probability calculations for intervals. This stands in contrast to discrete random variables, where the inclusion of endpoints can change the probability value.
+
+
+
+
+## Conditional Distribution
+
+The distribution of *wage* may differ between men and women. Similarly, the distribution of *education* may vary between married and unmarried individuals.
+In contrast, the distribution of a *coin flip* should remain the same regardless of whether the person tossing the coin earns 15 or 20 EUR per hour.
+
+The **conditional cumulative distribution function** (CCDF),
+$$F_{Y|Z=b}(a) = F_{Y|Z}(a|b) = P(Y\leq a|Z=b),$$
+represents the distribution of a random variable $Y$ given that another random variable $Z$ takes a specific value $b$.
+It answers the question: "If we know that $Z=b$, what is the distribution of $Y$?"
+
+For example, suppose that $Y$ represents *wage* and $Z$ represents *education*:
+
+* $F_{Y|Z=12}(a)$ is the CDF of wages among individuals with 12 years of education.
+* $F_{Y|Z=14}(a)$ is the CDF of wages among individuals with 14 years of education.
+* $F_{Y|Z=18}(a)$ is the CDF of wages among individuals with 18 years of education.
+
+Since *wage* is a continuous variable, its conditional distribution given any specific value of another variable is also continuous.
+The conditional density of $Y$ given $Z=b$ is defined as the derivative of the conditional CDF:
+$$
+		f_{Y|Z=b}(a) = f_{Y|Z}(a|b) = \frac{d}{d a} F_{Y|Z=b}(a).
+$$
+
+::: {#fig-condWageEdu layout-ncol=2}
+![Conditional CDFs of wage given education](./plots/CCDF_wage_edu.png){#fig-cCDFedu width=100%}
+
+![Conditional PDFs of wage given education](./plots/CPDF_wage_edu.png){#fig-cPDFedu width=100%}
+
+Wage distributions conditional on education level
+:::
+
+
+We observe that the distribution of wage varies across different levels of education.
+For example, individuals with fewer years of education are more likely to earn less than 20 EUR per hour:
+$$
+ P(Y\leq 20 | Z=12) = F_{Y|Z=12}(20) > F_{Y|Z=18}(20) = P(Y\leq 20|Z = 18).
+$$
+Because the conditional distribution of $Y$ given $Z=b$ depends on the value of $Z=b$, we say that the random variables $Y$ and $Z$ are **dependent random variables**.
+
+Note that the conditional CDF $F_{Y|Z=b}(a)$ can only be defined for values of $b$ in the support of $Z$.
+
+We can also condition on more than one variable. Let $Z_1$ represent the labor market *experience* in years and $Z_2$ be the *female* dummy variable. The conditional CDF of $Y$ given $Z_1 = b$ and $Z_2 = c$ is:
+$$
+F_{Y|Z_1=b,Z_2=c}(a) = F_{Y|Z_1,Z_2}(a|b,c) = P(Y \leq a|Z_1=b, Z_2=c).
+$$
+
+For example:
+
+* $F_{Y|Z_1=10,Z_2=1}(a)$ is the CDF of wages among women with 10 years of experience.
+* $F_{Y|Z_1=10,Z_2=0}(a)$ is the CDF of wages among men with 10 years of experience.
+
+
+::: {#fig-condWageExpFem layout-ncol=2}
+![Conditional CDFs](./plots/CCDF_wage_ex_fem.png){#fig-cCDFwag width=100%}
+
+![Conditional PDFs](./plots/CPDF_wage_ex_fem.png){#fig-cPDFwag width=100%}
+
+Wage distributions conditional on 10 years of experience and gender
+:::
+
+
+
+Clearly the random variable $Y$ and the random vector $(Z_1, Z_2)$ are dependent.
+
+More generally, we can condition on the event that a $k$-variate random vector $\boldsymbol Z = (Z_1, \ldots, Z_k)'$ takes the value $\{\boldsymbol Z = \boldsymbol b\}$, i.e., $\{Z_1 = b_1, \ldots, Z_k = b_k\}$.
+The conditional CDF of $Y$ given $\{\boldsymbol Z = \boldsymbol b\}$ is
+$$
+  F_{Y|\boldsymbol Z = \boldsymbol b}(a) = F_{Y|Z_1 = b_1, \ldots, Z_k = b_k}(a).
+$$
+
+
+
+The variable of interest, $Y$, can also be discrete.
+Then, any conditional CDF of $Y$ is also discrete.
+Below is the conditional CDF of *education* given the *married* dummy variable:
+
+* $F_{Y|Z=0}(a)$ is the CDF of education among unmarried individuals.
+* $F_{Y|Z=1}(a)$ is the CDF of education among married individuals.
+
+
+::: {#fig-condCDFEduMarr}
+
+![](./plots/CCDF_edu_marr.png){width=50%}
+
+Conditional CDFs of education given married
+:::
+
+
+The conditional PMFs $\pi_{Y|Z=0}(a) = P(Y = a | Z=0)$ and $\pi_{Y|Z=1}(a)= P(Y = a | Z=1)$ indicate the jump heights of $F_{Y|Z=0}(a)$ and $F_{Y|Z=1}(a)$ at $a$.
+
+
+::: {#fig-condEduMarrPMF layout-ncol=2}
+![Education given unmarried](./plots/CPMF_edu_unmarried.png){#fig-cPMFeduUnmarr width=100%}
+
+![Education given married](./plots/CPMF_edu_married.png){#fig-cPMFeduMarr width=100%}
+
+Conditional PMFs of education for unmarried (left) and married (right) individuals
+:::
+
+
+
+Clearly, *education* and *married* are dependent random variables.
+For example, $\pi_{Y|Z=0}(12) > \pi_{Y|Z=1}(12)$ and $\pi_{Y|Z=0}(18) < \pi_{Y|Z=1}(18)$.
+
+
+In contrast, consider $Y=$ coin flip and $Z=$ married dummy variable.
+The CDF of a coin flip should be the same for married or unmarried individuals:
+
+::: {#fig-condCoinFlip layout-ncol=2}
+![Coin flip given unmarried](./plots/CCDF_coin_b1.png){#fig-coinUnmarried width=100%}
+
+![Coin flip given married](./plots/CCDF_coin_b0.png){#fig-coinMarried width=100%}
+
+Conditional CDFs of a coin flip for unmarried (left) and married (right) individuals
+:::
+
+
+Because
+$$
+  F_Y(a) = F_{Y|Z=0}(a) = F_{Y|Z=1}(a) \quad \text{for all} \ a
+$$
+we say that $Y$ and $Z$ are **independent random variables**.
+
+
+
+## Independence of Random Variables
+
+In the previous section, we saw that the distribution of a coin flip remains the same regardless of a person's marital status, illustrating the concept of independence. Let's now formalize this important concept.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Independence**
+
+$Y$ and $Z$ are **independent** if and only if
+$$
+  F_{Y|Z=b}(a) = F_{Y}(a) \quad \text{for all} \ a \ \text{and} \ b.
+$$
+:::
+\
+
+Note that if $F_{Y|Z=b}(a) = F_{Y}(a)$ for all $b$, then automatically $F_{Z|Y=a}(b) = F_{Z}(b)$ for all $a$. Due to this symmetry we can equivalently define independence through the property $F_{Z|Y=a}(b) = F_{Z}(b)$.
+
+> **Technical Note**: More rigorously, the independence condition should state "for almost every $b$" rather than "for all $b$". This means the condition must hold for every $b$ in the support of $Z$, apart from a set of values that has probability $0$ under $Z$. Put differently, the condition must hold for all $b$-values that $Z$ can actually take, with exceptions allowed only on a set whose probability is $0$. Think of it as "for all practical purposes". For instance, we only need independence to hold for non-negative wages. We don't need to check independence for negative wages since they can't occur.
+
+For discrete random variables, independence can be expressed using PMFs: $Y$ and $Z$ are independent if and only if $\pi_{Y|Z=b}(a) = \pi_Y(a)$ for all $a,b$. Similarly, for continuous random variables, independence means the conditional PDF factorizes $f_{Y|Z=b}(a) = f_Y(a)$.
+
+The definition naturally generalizes to $Z_1, Z_2, Z_3$.
+They are **mutually independent** if, for each $i \in \{1,2,3\}$, the conditional distribution of $Z_i$ given the other two equals its marginal distribution. In CDF form, this means:
+
+(i) $F_{Z_1|Z_2=b_2, Z_3=b_3}(a) = F_{Z_1}(a)$
+(ii) $F_{Z_2|Z_1=b_1, Z_3=b_3}(a) = F_{Z_2}(a)$
+(iii) $F_{Z_3|Z_1=b_1, Z_2=b_2}(a) = F_{Z_3}(a)$
+
+for all $a$ and for all $(b_1, b_2, b_3)$. Here, we need all three conditions.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Mutual Independence**
+
+The random variables $Z_1, \ldots, Z_n$ are **mutually independent** if and only if, for each $i = 1,\dots,n$,
+$$
+  F_{Z_i | Z_1=b_1,\ldots,Z_{i-1}=b_{i-1},\,Z_{i+1}=b_{i+1},\ldots,Z_n=b_n}(a)
+=
+F_{Z_i}(a).
+$$
+for all $a$ and all $(b_1, \ldots, b_n)$.
+:::
+\
+
+An equivalent viewpoint uses the **joint CDF** of the vector $\boldsymbol Z = (Z_1, \ldots, Z_n)'$, which is defined as:
+$$
+  F_{\boldsymbol Z}(\boldsymbol a) = F_{Z_1, \ldots, Z_n}(a_1, \ldots, a_n) = P(Z_1 \leq a_1, \ldots, Z_n \leq a_n) = P(\boldsymbol Z \leq \boldsymbol a),
+$$
+where
+$$
+P(Z_1 \leq a_1, \ldots, Z_n \leq a_n) = P(\{Z_1 \leq a_1\} \cap \ldots \cap \{Z_n \leq a_n\}).
+$$
+
+Then $Z_1, \ldots, Z_n$ are mutually independent if and only if the joint CDF is the product of the marginal CDFs:
+$$
+  F_{\boldsymbol Z}(\boldsymbol a) = F_{Z_1}(a_1) \cdots F_{Z_n}(a_n) \quad \text{for all} \ a_1, \ldots, a_n.
+$$
+
+
+## I.I.D. Sample
+
+An important concept in statistics is that of an independent and identically distributed (i.i.d.) sample. This arises naturally when we consider multiple random variables that share the same distribution and do not influence each other.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**i.i.d. Sample / Random Sample**
+
+A collection of random variables $Y_1, \dots, Y_n$ is **i.i.d.** (independent and identically distributed) if:
+
+1. They are mutually independent: for each $i = 1,\dots,n$,
+$$
+  F_{Y_i | Y_1=b_1, \ldots, Y_{i-1}=b_{i-1}, Y_{i+1}=b_{i+1}, \ldots, Y_n = b_n}(a) = F_{Y_i}(a)
+$$
+for all $a$ and all $(b_1, \ldots, b_n)$.
+
+2. They have the same distribution function: $F_{Y_i}(a) = F(a)$ for all $i=1,\ldots,n$ and all $a$.
+:::
+\
+
+For example, consider $n$ coin flips, where each $Y_i$ represents the outcome of the $i$-th flip (with $Y_i=1$ for heads and $Y_i=0$ for tails). If the coin is fair and the flips are performed independently, then $Y_1, \ldots, Y_n$ form an i.i.d. sample with
+
+$$
+F(a) = F_{Y_i}(a) = \begin{cases} 0 & a < 0 \\ 0.5 & 0 \leq a < 1 \\ 1 & a \geq 1 \end{cases}
+\qquad \text{for all} \ i=1, \ldots, n.
+$$
+
+Similarly, if we randomly select $n$ individuals from a large population and measure their wages, the resulting measurements $Y_1, \ldots, Y_n$ can be treated as an i.i.d. sample. Each $Y_i$ follows the same distribution (the wage distribution in the population), and knowledge of one person's wage doesn't affect the distribution of another's.
+The function $F$ is called the **population distribution** or the **data-generating process (DGP)**.
+
+
+## Independence of Random Vectors
+
+Often in practice, we work with multiple variables recorded for different individuals or time points. For example, consider two random vectors:
+$$
+  \boldsymbol{X}_1 = (X_{11}, \ldots, X_{1k})',
+  \quad
+  \boldsymbol{X}_2 = (X_{21}, \ldots, X_{2k})'.
+$$
+
+The conditional distribution function of $\boldsymbol{X}_1$ given that $\boldsymbol{X}_2$ takes the value $\boldsymbol{b}=(b_1,\ldots,b_k)'$ is
+$$
+  F_{\boldsymbol{X}_1 | \boldsymbol{X}_2 = \boldsymbol{b}}(\boldsymbol{a})
+  =
+  P(\boldsymbol{X}_1 \le \boldsymbol{a}|\boldsymbol{X}_2 = \boldsymbol{b}),
+$$
+where $\boldsymbol{X}_1 \le \boldsymbol{a}$ means $X_{1j} \le a_j$ for each coordinate $j=1,\ldots,k$.
+
+For instance, if $\boldsymbol{X}_1$ and $\boldsymbol{X}_2$ represent the survey answers of two different, randomly chosen people, then
+$F_{\boldsymbol{X}_2 | \boldsymbol{X}_1=\boldsymbol{b}}(\boldsymbol{a})$
+describes the distribution of the second person's answers, given that the first person's answers are $\boldsymbol{b}$.
+
+If the two people are truly randomly selected and unrelated to one another, we would not expect $\boldsymbol{X}_2$ to depend on whether $\boldsymbol{X}_1$ equals $\boldsymbol{b}$ or some other value $\boldsymbol{c}$.
+In other words, knowing $\boldsymbol X_1$ provides no information that changes the distribution of $\boldsymbol X_2$.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Independence of Random Vectors**
+
+Two random vectors $\boldsymbol{X}_1$ and $\boldsymbol{X}_2$ are **independent** if and only if
+$$
+F_{\boldsymbol{X}_1 | \boldsymbol{X}_2 = \boldsymbol{b}}(\boldsymbol{a})
+=
+F_{\boldsymbol{X}_1}(\boldsymbol{a})
+\quad
+\text{for all } \boldsymbol{a}
+\quad
+\text{and} \ \boldsymbol{b}.
+$$
+:::
+\
+
+This definition extends naturally to mutual independence of $n$ random vectors
+$\boldsymbol{X}_1,\dots,\boldsymbol{X}_n$, where
+$\boldsymbol{X}_i = (X_{i1},\dots,X_{ik})'$. They are called **mutually independent** if, for each $i = 1,\dots,n$,
+$$
+  F_{\boldsymbol X_i| \boldsymbol X_1=\boldsymbol b_1, \ldots, \boldsymbol X_{i-1}=\boldsymbol b_{i-1}, \boldsymbol X_{i+1}=\boldsymbol b_{i+1}, \ldots, \boldsymbol X_n = \boldsymbol b_n}(\boldsymbol a) = F_{\boldsymbol X_i}(\boldsymbol a)
+$$
+for all $\boldsymbol{a}$ and all $(\boldsymbol{b}_1,\dots,\boldsymbol{b}_n)$.
+
+Hence, in an independent sample, what the $i$-th randomly chosen person answers does not depend on anyone else's answers.
+
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**i.i.d. Sample of Random Vectors**
+
+The concept of i.i.d. samples naturally extends to random vectors. A collection of random vectors $\boldsymbol{X}_1, \dots, \boldsymbol{X}_n$ is **i.i.d.** if they are mutually independent and have the same distribution function $F$. Formally,
+$$
+  F_{\boldsymbol X_i| \boldsymbol X_1=\boldsymbol b_1, \ldots, \boldsymbol X_{i-1}=\boldsymbol b_{i-1}, \boldsymbol X_{i+1}=\boldsymbol b_{i+1}, \ldots, \boldsymbol X_n = \boldsymbol b_n}(\boldsymbol a) = F(\boldsymbol a)
+$$
+for all $i=1, \ldots, n$, for all $\boldsymbol{a}$, and all $(\boldsymbol{b}_1,\dots,\boldsymbol{b}_n)$.
+
+An **i.i.d. dataset** (or **random sample**) is one where each multivariate observation not only comes from the same population distribution $F$ but is independent of the others.
+:::
+\

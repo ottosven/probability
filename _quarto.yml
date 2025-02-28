@@ -17,12 +17,12 @@ book:
   chapters:
     - index.qmd
     - part1_distribution.qmd
-    - sec02_probability.qmd
-    - sec03_dependence.qmd
-    - stat1_data.qmd
-    - stat3_probability.qmd
-    - stat4_expectation.qmd
-    - stat5_conditional.qmd
+    # - sec02_probability.qmd
+    # - sec03_dependence.qmd
+    # - stat1_data.qmd
+    # - stat3_probability.qmd
+    # - stat4_expectation.qmd
+    # - stat5_conditional.qmd
 format:
   html:
     theme:
@@ -44,6 +44,7 @@ format:
     include-in-header: preamble-latex.tex
     documentclass: scrreprt
     fig-align: center
+    fig-pos: 'htbp'  # Add this line to control figure placement
     pdf-engine: pdflatex
   
 resources:
