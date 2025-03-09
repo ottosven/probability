@@ -1,9 +1,9 @@
 # Welcome {-}
 
-This tutorial provides a concise introduction to the fundamental concepts of probability theory and statistics essential for econometricians and data analysts.
+This tutorial provides a concise introduction to the fundamental concepts of probability theory for econometricians and data scientists.
 
 **Current Status:** This tutorial is still under development.
 
-The sections presented here originate from the *Statistics for Data Analytics* course taught in Winter Term 2024, offering a comprehensive review of probability theory.
+The sections presented here originate from the *Statistics for Data Analytics* course taught in Winter Term 2024.
 
 For a quick foundational review, I recommend sections 2 and 3 of Stock and Watson (2019): [Textbook Link](https://elibrary.pearson.de/book/99.150005/9781292264523)
