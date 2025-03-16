@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sven Otto">
-<meta name="dcterms.date" content="2025-03-16">
 
-<title>Probability Theory for Econometricians</title>
+<title>2&nbsp; Expected Value – Probability Theory for Econometricians</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./part1_distribution.html" rel="next">
+<link href="./part1_distribution.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -72,8 +70,51 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
-<meta property="og:title" content="Probability Theory for Econometricians">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="2&nbsp; Expected Value – Probability Theory for Econometricians">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Probability Theory for Econometricians">
 </head>
@@ -87,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part2_expectation.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Expected Value</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -118,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
@@ -130,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./part2_expectation.html" class="sidebar-item-text sidebar-link">
+  <a href="./part2_expectation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Expected Value</span></span></a>
   </div>
 </li>
@@ -144,7 +185,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
+  <li><a href="#discrete-case" id="toc-discrete-case" class="nav-link active" data-scroll-target="#discrete-case"><span class="header-section-number">2.1</span> Discrete Case</a>
+  <ul class="collapse">
+  <li><a href="#expectation" id="toc-expectation" class="nav-link" data-scroll-target="#expectation"><span class="header-section-number">2.1.1</span> Expectation</a></li>
+  <li><a href="#conditional-expectation" id="toc-conditional-expectation" class="nav-link" data-scroll-target="#conditional-expectation"><span class="header-section-number">2.1.2</span> Conditional Expectation</a></li>
+  <li><a href="#conditional-expectation-function-cef" id="toc-conditional-expectation-function-cef" class="nav-link" data-scroll-target="#conditional-expectation-function-cef"><span class="header-section-number">2.1.3</span> Conditional Expectation Function (CEF)</a></li>
+  <li><a href="#law-of-iterated-expectations-lie" id="toc-law-of-iterated-expectations-lie" class="nav-link" data-scroll-target="#law-of-iterated-expectations-lie"><span class="header-section-number">2.1.4</span> Law of Iterated Expectations (LIE)</a></li>
+  <li><a href="#conditioning-theorem-ct" id="toc-conditioning-theorem-ct" class="nav-link" data-scroll-target="#conditioning-theorem-ct"><span class="header-section-number">2.1.5</span> Conditioning Theorem (CT)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -153,26 +201,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Probability Theory for Econometricians</h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Expected Value</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Sven Otto </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">March 16, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -182,14 +218,168 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome</h1>
-<p>This tutorial provides a concise introduction to the fundamental concepts of probability theory for econometricians and data scientists.</p>
-<p><strong>Current Status:</strong> This tutorial is still under development.</p>
-<p>The sections presented here originate from the <em>Statistics for Data Analytics</em> course taught in Winter Term 2024.</p>
-<p>For a quick foundational review, I recommend sections 2 and 3 of Stock and Watson (2019): <a href="https://elibrary.pearson.de/book/99.150005/9781292264523">Textbook Link</a></p>
+<p>The CDF, PMF, and PDF fully characterize the probability distribution of a random variable but contain too much information for practical interpretation. We usually need summary measures that capture essential characteristics of a distribution. The <strong>expectation</strong> or <strong>expected value</strong> is the most important measure of the central tendency. It gives you the average value you can expect to get if you repeat the random experiment multiple times.</p>
+<section id="discrete-case" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="discrete-case"><span class="header-section-number">2.1</span> Discrete Case</h2>
+<p>As previously defined, a discrete random variable <span class="math inline">Y</span> is one that can take on a countable number of distinct values. The probability that <span class="math inline">Y</span> takes a specific value <span class="math inline">a</span> is given by the probability mass function (PMF) <span class="math inline">\pi(a)=P(Y=a)</span>.</p>
+<section id="expectation" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="expectation"><span class="header-section-number">2.1.1</span> Expectation</h3>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Expected Value (Discrete Case)</strong></p>
+<p>The <strong>expectation</strong> or <strong>expected value</strong> of a discrete random variable <span class="math inline">Y</span> with PMF <span class="math inline">\pi(\cdot)</span> and support <span class="math inline">\mathcal Y</span> is defined as <span id="eq-expectation-discrete"><span class="math display">E[Y] = \sum_{u \in \mathcal Y} u \cdot \pi(u). \tag{2.1}</span></span></p>
+</div>
+<p><br>
+</p>
+<p>The expected value can be interpreted as the long-run average outcome of the random variable <span class="math inline">Y</span> if we were to observe it repeatedly in independent experiments. For example, if we flip a fair coin many times, the proportion of heads will approach 0.5, which is the expected value of the coin toss random variable.</p>
+<section id="example-binary-random-variable" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example-binary-random-variable">Example: Binary Random Variable</h4>
+<p>A <strong>binary</strong> or <strong>Bernoulli</strong> random variable <span class="math inline">Y</span> takes on only two possible values: 0 and 1. The support is <span class="math inline">\mathcal Y = \{0,1\}</span>, and the PMF is <span class="math inline">\pi(1) = p</span> and <span class="math inline">\pi(0) = 1 - p</span> for some <span class="math inline">p \in (0,1)</span>. The expected value of <span class="math inline">Y</span> is:</p>
+<p><span class="math display">E[Y] = 0\cdot\pi(0) + 1\cdot\pi(1) = 0 \cdot(1-p) + 1 \cdot p = p.</span></p>
+<p>For the variable <em>coin</em>, the probability of heads is <span class="math inline">p=0.5</span> and the expected value is <span class="math inline">E[Y] = p = 0.5</span>.</p>
+</section>
+<section id="example-education-variable" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example-education-variable">Example: Education Variable</h4>
+<p>Using the variable <em>education</em> with its PMF values introduced previously, we can calculate the expected value:</p>
+<p><span class="math display">\begin{align*}
+E[Y] &amp;= 4\cdot\pi(4) + 10\cdot\pi(10) + 12\cdot \pi(12) + 13\cdot\pi(13) \\
+&amp;\quad + 14\cdot\pi(14) + 16\cdot \pi(16) + 18 \cdot \pi(18) + 21 \cdot \pi(21) \\
+&amp;= 0.032 + 0.55 + 4.716 + 1.027 + 2.03 + 1.248 + 3.924 + 0.504 \\
+&amp;= 14.031
+\end{align*}</span></p>
+<p>So, the expected value of <em>education</em> is 14.031 years, which corresponds roughly to the completion of short-cycle tertiary education (ISCED level 5).</p>
+</section>
+</section>
+<section id="conditional-expectation" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="conditional-expectation"><span class="header-section-number">2.1.2</span> Conditional Expectation</h3>
+<p>Previously, we introduced conditional probability distributions, which describe the distribution of a random variable given that another random variable takes a specific value. Building on this foundation, we can define the conditional expectation, which measures the expected value of a random variable when we have information about another random variable.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Conditional Expectation Given a Fixed Value</strong></p>
+<p>For a discrete random variable <span class="math inline">Y</span> with conditional PMF <span class="math inline">\pi_{Y|Z=b}(a)</span>, the conditional expectation of <span class="math inline">Y</span> given <span class="math inline">Z=b</span> is defined as:</p>
+<p><span class="math display">E[Y|Z=b] = \sum_{u \in \mathcal{Y}} u \cdot \pi_{Y|Z=b}(u)</span></p>
+</div>
+<p><br>
+</p>
+<p>This formula closely resembles the unconditional expectation, but uses the conditional PMF instead of the marginal PMF. The conditional expectation <span class="math inline">E[Y|Z=b]</span> can be interpreted as the average value of <span class="math inline">Y</span> we expect to observe, given that we know <span class="math inline">Z</span> has taken the value <span class="math inline">b</span>.</p>
+<section id="example-education-given-marital-status" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example-education-given-marital-status">Example: Education Given Marital Status</h4>
+<p>Let’s examine the conditional PMFs of <em>education</em> given <em>marital status</em> studied previously.</p>
+<p>For unmarried individuals (<span class="math inline">Z=0</span>): <span class="math display">\pi_{Y|Z=0}(a) =
+\begin{cases}
+0.01 &amp; \text{if } a = 4 \\
+0.07 &amp; \text{if } a = 10 \\
+0.43 &amp; \text{if } a = 12 \\
+0.09 &amp; \text{if } a = 13 \\
+0.10 &amp; \text{if } a = 14 \\
+0.09 &amp; \text{if } a = 16 \\
+0.19 &amp; \text{if } a = 18 \\
+0.02 &amp; \text{if } a = 21 \\
+0 &amp; \text{otherwise}
+\end{cases}</span></p>
+<p>For married individuals (<span class="math inline">Z=1</span>): <span class="math display">\pi_{Y|Z=1}(a) =
+\begin{cases}
+0.01 &amp; \text{if } a = 4 \\
+0.03 &amp; \text{if } a = 10 \\
+0.38 &amp; \text{if } a = 12 \\
+0.07 &amp; \text{if } a = 13 \\
+0.17 &amp; \text{if } a = 14 \\
+0.06 &amp; \text{if } a = 16 \\
+0.25 &amp; \text{if } a = 18 \\
+0.03 &amp; \text{if } a = 21 \\
+0 &amp; \text{otherwise}
+\end{cases}</span></p>
+<p>The conditional expectation of <em>education</em> for unmarried individuals is:</p>
+<p><span class="math display">\begin{align*}
+E[Y|Z=0] &amp;= 4 \cdot 0.01 + 10 \cdot 0.07 + 12 \cdot 0.43 + 13 \cdot 0.09 \\
+&amp;\quad + 14 \cdot 0.10 + 16 \cdot 0.09 + 18 \cdot 0.19 + 21 \cdot 0.02 \\
+&amp;= 13.75
+\end{align*}</span></p>
+<p>The conditional expectation of <em>education</em> for married individuals is:</p>
+<p><span class="math display">\begin{align*}
+  E[Y|Z=1] &amp;= 4 \cdot 0.01 + 10 \cdot 0.03 + 12 \cdot 0.38 + 13 \cdot 0.07 \\
+  &amp;\quad + 14 \cdot 0.17 + 16 \cdot 0.06 + 18 \cdot 0.25 + 21 \cdot 0.03 \\
+  &amp;= 14.28
+\end{align*}</span></p>
+<p>We observe that the expected education level is higher for married individuals (14.28 years) compared to unmarried individuals (13.75 years), which suggests a dependence between <em>marital status</em> and <em>education</em>.</p>
+</section>
+</section>
+<section id="conditional-expectation-function-cef" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="conditional-expectation-function-cef"><span class="header-section-number">2.1.3</span> Conditional Expectation Function (CEF)</h3>
+<p>So far, we have used <span class="math inline">E[Y|Z=b]</span> to denote the conditional expectation of <span class="math inline">Y</span> given a specific value <span class="math inline">b</span> of <span class="math inline">Z</span>. This is a fixed number for each value of <span class="math inline">b</span>. A related concept is the <strong>Conditional Expectation Function</strong>, denoted as <span class="math inline">E[Y|Z]</span> without specifying a particular value for <span class="math inline">Z</span>.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Conditional Expectation Function (CEF)</strong></p>
+<p>The conditional expectation function <span class="math inline">E[Y|Z]</span> represents a random variable that depends on the random outcome of <span class="math inline">Z</span>. It is a function that maps each possible value of <span class="math inline">Z</span> to the corresponding conditional expectation:</p>
+<p><span class="math display">E[Y|Z] = m(Z) \quad \text{where} \quad m(b) = E[Y|Z=b]</span></p>
+<p>Here, <span class="math inline">m(\cdot)</span> is the function that represents the CEF, mapping each possible value of <span class="math inline">Z</span> to the corresponding conditional expectation.</p>
+</div>
+<p><br>
+</p>
+<p>The CEF is random precisely because it is a function of the random variable <span class="math inline">Z</span>. Before we observe the value of <span class="math inline">Z</span>, we cannot determine the value of <span class="math inline">E[Y|Z]</span>. Once we observe <span class="math inline">Z</span>, the CEF gives us the expected value of <span class="math inline">Y</span> corresponding to that specific observation. This makes <span class="math inline">E[Y|Z]</span> a random variable whose value depends on the random outcome of <span class="math inline">Z</span>. In contrast, <span class="math inline">E[Y|Z=b]</span> is a deterministic scalar non-random value.</p>
+<p>For our marital status example, the CEF is:</p>
+<p><span class="math display">E[Y|Z] = m(Z) = \begin{cases}
+13.75 &amp; \text{if } Z = 0 \text{ (unmarried)} \\
+14.28 &amp; \text{if } Z = 1 \text{ (married)}
+\end{cases}</span></p>
+<p>In our population, the marginal PMF of <em>married</em> is <span class="math display">
+    \pi_Z(a) = \begin{cases}
+0.4698 &amp; \text{if } a = 0  \ (\text{unmarried})\\
+0.5302 &amp; \text{if } a = 1 \ (\text{married}) \\
+0 &amp; \text{otherwise}.
+\end{cases}
+</span></p>
+<p>Using these values the PMF of <span class="math inline">E[Y|Z]</span> is: <span class="math display">
+\pi_{E[Y|Z]}(a) = P(E[Y|Z] = a) = \begin{cases}
+0.4698 &amp; \text{if } a = 13.75  \\
+0.5302 &amp; \text{if } a = 14.28 \\
+0 &amp; \text{otherwise}.
+\end{cases}
+</span></p>
+</section>
+<section id="law-of-iterated-expectations-lie" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="law-of-iterated-expectations-lie"><span class="header-section-number">2.1.4</span> Law of Iterated Expectations (LIE)</h3>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Law of Iterated Expectations</strong></p>
+<p>For two random variables <span class="math inline">Y</span> and <span class="math inline">Z</span>: <span class="math display">E[Y] = E[E[Y|Z]]</span></p>
+</div>
+<p><br>
+</p>
+<p>This elegant equation states that the expected value of <span class="math inline">Y</span> can be found by first calculating the conditional expectation of <span class="math inline">Y</span> given <span class="math inline">Z</span> (which gives us the random variable <span class="math inline">E[Y|Z]</span>), and then taking the expected value of this random variable. In other words, we are taking the expectation of the conditional expectation.</p>
+<p>The Law of Iterated Expectations is a fundamental tool in econometrics with numerous applications. It is particularly important for understanding the properties of estimators in the presence of conditioning variables like in regression analysis.</p>
+<p>To understand why this law holds, let’s consider an intuitive argument based on the <strong>law of total probability</strong>. For discrete random variables, the law of total probability tells us that we can find the overall probability of an event <span class="math inline">Y=a</span> by considering all possible scenarios <span class="math inline">Z=b</span> that could lead to that event. More precisely, <span class="math inline">P(Y=a)</span> equals the weighted sum of conditional probabilities <span class="math inline">P(Y=a|Z=b)</span> across all possible values <span class="math inline">b</span> of <span class="math inline">Z</span>, where each conditional probability is weighted by <span class="math inline">P(Z=b)</span>: <span class="math display">\pi_Y(a) = \sum_{b \in \mathcal{Z}} \pi_{Y|Z=b}(a) \cdot \pi_Z(b)</span></p>
+<p>The LIE follows a similar logic. We can think of the overall expectation of <span class="math inline">Y</span> as a weighted average of conditional expectations <span class="math inline">E[Y|Z=b]</span> across all possible values of <span class="math inline">Z</span>, with each conditional expectation weighted by the probability of the corresponding <span class="math inline">Z</span> value:</p>
+<p><span class="math display">E[Y] = \sum_{u \in \mathcal{Z}} E[Y|Z=u] \cdot \pi_Z(u)</span></p>
+<p>The right hand side is precisely what <span class="math inline">E[E[Y|Z]]</span> means: take the conditional expectation function <span class="math inline">E[Y|Z]</span> and average it over all possible values <span class="math inline">u\in \mathcal Z</span> of <span class="math inline">Z</span>, where <span class="math inline">\mathcal Z</span> is the support of <span class="math inline">Z</span>.</p>
+<p>For our <em>education</em> and <em>marital status</em> example, the LIE gives us:</p>
+<p><span class="math display">\begin{align*}
+  E[Y] &amp;= E[E[Y|Z]] \\
+  &amp;= E[Y|Z=0] \cdot \pi_Z(0) + E[Y|Z=1] \cdot \pi_Z(1) \\
+  &amp;= 13.75 \cdot 0.4698 + 14.28 \cdot 0.5302 \\
+  &amp;= 6.460 + 7.571 \\
+  &amp;= 14.031
+\end{align*}</span></p>
+<p>This matches exactly with our directly calculated expected value of 14.031 years from the marginal PMF.</p>
+</section>
+<section id="conditioning-theorem-ct" class="level3" data-number="2.1.5">
+<h3 data-number="2.1.5" class="anchored" data-anchor-id="conditioning-theorem-ct"><span class="header-section-number">2.1.5</span> Conditioning Theorem (CT)</h3>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Conditioning Theorem / Factorization Property</strong></p>
+<p>For two random variables <span class="math inline">Y</span> and <span class="math inline">Z</span>:</p>
+<p><span class="math display">E[ZY|Z] = Z \cdot E[Y|Z]</span></p>
+</div>
+<p><br>
+</p>
+<p>To see this, let’s first consider the case for a specific value <span class="math inline">Z=b</span>:</p>
+<p><span class="math display">E[bY|Z=b] = \sum_{u \in \mathcal{Y}} b \cdot u \cdot \pi_{Y|Z=b}(u) = b \sum_{u \in \mathcal{Y}} u \cdot \pi_{Y|Z=b}(u) = b \cdot E[Y|Z=b]</span></p>
+<p>When we consider this factorization across all possible values of Z rather than a fixed value b, we get the general form of the Conditioning Theorem: <span class="math inline">E[ZY|Z] = Z \cdot E[Y|Z]</span>.</p>
+<p>The conditioning theorem states that we can factor out the conditioning variable <span class="math inline">Z</span> from the conditional expectation. The intuition is that when we condition on <span class="math inline">Z</span>, we’re essentially treating it as if we already know its value, so it behaves like a constant within the conditional expectation. Since summation is linear and constants can be factored out, <span class="math inline">Z</span> can be factored out of <span class="math inline">E[ZY|Z]</span>.</p>
+<p>This theorem is particularly useful in econometric derivations, especially when working with regression models.</p>
+<p>For example, in our marital status context, if we want to compute <span class="math inline">E[Z Y|Z]</span> (the conditional expectation of education multiplied by marital status, given marital status), we get:</p>
+<p><span class="math display">E[Z Y|Z] = Z \cdot E[Y|Z] = \begin{cases}
+0 \cdot 13.75 = 0 &amp; \text{if } Z = 0 \text{ (unmarried)} \\
+1 \cdot 14.28 = 14.28 &amp; \text{if } Z = 1 \text{ (married)}
+\end{cases}</span></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -759,11 +949,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./part1_distribution.html" class="pagination-link" aria-label="Probability Distribution">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability Distribution</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./part1_distribution.html" class="pagination-link" aria-label="Probability Distribution">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability Distribution</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

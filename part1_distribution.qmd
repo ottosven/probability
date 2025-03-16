@@ -218,7 +218,7 @@ $$
 
 The CDF is sometimes simply referred to as the **distribution function**, or the **distribution**.
 
-The cumulative distribution function (CDF) of the variable *coin* is
+The CDF of the variable *coin* is
 $$
   F(a) = \begin{cases} 
     0 & a < 0, \\
@@ -286,7 +286,8 @@ P(Y=a) = F(a) - \lim_{\varepsilon \to 0, \varepsilon > 0} F(a-\varepsilon),
 $$
 which is the jump height at $a$. For continuous random variables, point probabilities are always zero, while for discrete random variables, they can be positive.
 
-$\lim_{\varepsilon \to 0, \varepsilon > 0} F(a - \varepsilon)$ denotes the left limit at $a$ while $\lim_{\varepsilon \to 0, \varepsilon > 0} F(a+\varepsilon)$ denotes the right limit at $a$. When approaching from the left, the CDF can have a jump, while when approaching from the right, the CDF cannot jump (due to right-continuity).
+Here, $\lim_{\varepsilon \to 0, \varepsilon > 0} F(a - \varepsilon)$ denotes the left limit at $a$ while $\lim_{\varepsilon \to 0, \varepsilon > 0} F(a+\varepsilon)$ denotes the right limit at $a$. 
+When approaching any point from the left, the CDF can have a jump at that point, while when approaching from the right, the CDF cannot jump (due to right-continuity).
 
 Let's use our coin toss example to illustrate how to calculate different probabilities using the CDF in @eq-cdfCoin:
 
@@ -564,7 +565,9 @@ Note that if $F_{Y|Z=b}(a) = F_{Y}(a)$ for all $b$, then automatically $F_{Z|Y=a
 
 > **Technical Note**: More rigorously, the independence condition should state "for almost every $b$" rather than "for all $b$". This means the condition must hold for every $b$ in the support of $Z$, apart from a set of values that has probability $0$ under $Z$. Put differently, the condition must hold for all $b$-values that $Z$ can actually take, with exceptions allowed only on a set whose probability is $0$. Think of it as "for all practical purposes". For instance, we only need independence to hold for non-negative wages. We don't need to check independence for negative wages since they can't occur.
 
-For discrete random variables, independence can be expressed using PMFs: $Y$ and $Z$ are independent if and only if $\pi_{Y|Z=b}(a) = \pi_Y(a)$ for all $a,b$. Similarly, for continuous random variables, independence means the conditional PDF factorizes $f_{Y|Z=b}(a) = f_Y(a)$.
+For discrete random variables, independence can be expressed using PMFs: $Y$ and $Z$ are independent if and only if $\pi_{Y|Z=b}(a) = \pi_Y(a)$ for all $a$ in the support of $Y$ and all $b$ in the support of $Z$. Similarly, for continuous random variables, independence means the conditional PDF factorizes $f_{Y|Z=b}(a) = f_Y(a)$.
+
+
 
 The definition naturally generalizes to $Z_1, Z_2, Z_3$.
 They are **mutually independent** if, for each $i \in \{1,2,3\}$, the conditional distribution of $Z_i$ given the other two equals its marginal distribution. In CDF form, this means:
@@ -582,7 +585,7 @@ The random variables $Z_1, \ldots, Z_n$ are **mutually independent** if and only
 $$
   F_{Z_i | Z_1=b_1,\ldots,Z_{i-1}=b_{i-1},\,Z_{i+1}=b_{i+1},\ldots,Z_n=b_n}(a)
 =
-F_{Z_i}(a).
+F_{Z_i}(a)
 $$
 for all $a$ and all $(b_1, \ldots, b_n)$.
 :::
@@ -648,7 +651,7 @@ $$
   =
   P(\boldsymbol{X}_1 \le \boldsymbol{a}|\boldsymbol{X}_2 = \boldsymbol{b}),
 $$
-where $\boldsymbol{X}_1 \le \boldsymbol{a}$ means $X_{1j} \le a_j$ for each coordinate $j=1,\ldots,k$.
+where the vector inequality $\boldsymbol{X}_1 \le \boldsymbol{a}$ represents the intersection of component-wise inequalities, i.e., $\{X_{11} \le a_1\} \cap \{X_{12} \le a_2\} \cap \cdots \cap \{X_{1k} \le a_k\}$.
 
 For instance, if $\boldsymbol{X}_1$ and $\boldsymbol{X}_2$ represent the survey answers of two different, randomly chosen people, then
 $F_{\boldsymbol{X}_2 | \boldsymbol{X}_1=\boldsymbol{b}}(\boldsymbol{a})$
@@ -667,7 +670,7 @@ F_{\boldsymbol{X}_1 | \boldsymbol{X}_2 = \boldsymbol{b}}(\boldsymbol{a})
 F_{\boldsymbol{X}_1}(\boldsymbol{a})
 \quad
 \text{for all } \boldsymbol{a}
-\quad
+\
 \text{and} \ \boldsymbol{b}.
 $$
 :::

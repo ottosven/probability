@@ -26,6 +26,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./part2_expectation.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -149,6 +150,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./part1_distribution.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Probability Distribution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./part2_expectation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Expected Value</span></span></a>
   </div>
 </li>
     </ul>
@@ -424,7 +431,7 @@ A_{11} = A_{10}^c = \{Y \notin \mathbb{R}\} = \{\}
 </div>
 <p><br></p>
 <p>The CDF is sometimes simply referred to as the <strong>distribution function</strong>, or the <strong>distribution</strong>.</p>
-<p>The cumulative distribution function (CDF) of the variable <em>coin</em> is <span id="eq-cdfCoin"><span class="math display">
+<p>The CDF of the variable <em>coin</em> is <span id="eq-cdfCoin"><span class="math display">
   F(a) = \begin{cases}
     0 &amp; a &lt; 0, \\
     0.5 &amp; 0 \leq a &lt; 1, \\
@@ -486,7 +493,7 @@ Ensures <span class="math inline">P(Y \leq a)</span> includes <span class="math 
 <p>The <strong>point probability</strong> <span class="math inline">P(Y = a)</span> represents the size of the jump at <span class="math inline">a</span> in the CDF <span class="math inline">F(a)</span>: <span class="math display">
 P(Y=a) = F(a) - \lim_{\varepsilon \to 0, \varepsilon &gt; 0} F(a-\varepsilon),
 </span> which is the jump height at <span class="math inline">a</span>. For continuous random variables, point probabilities are always zero, while for discrete random variables, they can be positive.</p>
-<p><span class="math inline">\lim_{\varepsilon \to 0, \varepsilon &gt; 0} F(a - \varepsilon)</span> denotes the left limit at <span class="math inline">a</span> while <span class="math inline">\lim_{\varepsilon \to 0, \varepsilon &gt; 0} F(a+\varepsilon)</span> denotes the right limit at <span class="math inline">a</span>. When approaching from the left, the CDF can have a jump, while when approaching from the right, the CDF cannot jump (due to right-continuity).</p>
+<p>Here, <span class="math inline">\lim_{\varepsilon \to 0, \varepsilon &gt; 0} F(a - \varepsilon)</span> denotes the left limit at <span class="math inline">a</span> while <span class="math inline">\lim_{\varepsilon \to 0, \varepsilon &gt; 0} F(a+\varepsilon)</span> denotes the right limit at <span class="math inline">a</span>. When approaching any point from the left, the CDF can have a jump at that point, while when approaching from the right, the CDF cannot jump (due to right-continuity).</p>
 <p>Let’s use our coin toss example to illustrate how to calculate different probabilities using the CDF in <a href="#eq-cdfCoin" class="quarto-xref">Equation&nbsp;<span>1.1</span></a>:</p>
 <ol type="1">
 <li><span class="math inline">P(Y \leq 0.5) = F(0.5) = 0.5</span></li>
@@ -843,7 +850,7 @@ Figure&nbsp;1.11: Conditional CDFs of a coin flip for unmarried (left) and marri
 <blockquote class="blockquote">
 <p><strong>Technical Note</strong>: More rigorously, the independence condition should state “for almost every <span class="math inline">b</span>” rather than “for all <span class="math inline">b</span>”. This means the condition must hold for every <span class="math inline">b</span> in the support of <span class="math inline">Z</span>, apart from a set of values that has probability <span class="math inline">0</span> under <span class="math inline">Z</span>. Put differently, the condition must hold for all <span class="math inline">b</span>-values that <span class="math inline">Z</span> can actually take, with exceptions allowed only on a set whose probability is <span class="math inline">0</span>. Think of it as “for all practical purposes”. For instance, we only need independence to hold for non-negative wages. We don’t need to check independence for negative wages since they can’t occur.</p>
 </blockquote>
-<p>For discrete random variables, independence can be expressed using PMFs: <span class="math inline">Y</span> and <span class="math inline">Z</span> are independent if and only if <span class="math inline">\pi_{Y|Z=b}(a) = \pi_Y(a)</span> for all <span class="math inline">a,b</span>. Similarly, for continuous random variables, independence means the conditional PDF factorizes <span class="math inline">f_{Y|Z=b}(a) = f_Y(a)</span>.</p>
+<p>For discrete random variables, independence can be expressed using PMFs: <span class="math inline">Y</span> and <span class="math inline">Z</span> are independent if and only if <span class="math inline">\pi_{Y|Z=b}(a) = \pi_Y(a)</span> for all <span class="math inline">a</span> in the support of <span class="math inline">Y</span> and all <span class="math inline">b</span> in the support of <span class="math inline">Z</span>. Similarly, for continuous random variables, independence means the conditional PDF factorizes <span class="math inline">f_{Y|Z=b}(a) = f_Y(a)</span>.</p>
 <p>The definition naturally generalizes to <span class="math inline">Z_1, Z_2, Z_3</span>. They are <strong>mutually independent</strong> if, for each <span class="math inline">i \in \{1,2,3\}</span>, the conditional distribution of <span class="math inline">Z_i</span> given the other two equals its marginal distribution. In CDF form, this means:</p>
 <ol type="i">
 <li><span class="math inline">F_{Z_1|Z_2=b_2, Z_3=b_3}(a) = F_{Z_1}(a)</span></li>
@@ -856,7 +863,7 @@ Figure&nbsp;1.11: Conditional CDFs of a coin flip for unmarried (left) and marri
 <p>The random variables <span class="math inline">Z_1, \ldots, Z_n</span> are <strong>mutually independent</strong> if and only if, for each <span class="math inline">i = 1,\dots,n</span>, <span class="math display">
   F_{Z_i | Z_1=b_1,\ldots,Z_{i-1}=b_{i-1},\,Z_{i+1}=b_{i+1},\ldots,Z_n=b_n}(a)
 =
-F_{Z_i}(a).
+F_{Z_i}(a)
 </span> for all <span class="math inline">a</span> and all <span class="math inline">(b_1, \ldots, b_n)</span>.</p>
 </div>
 <p><br></p>
@@ -899,7 +906,7 @@ F(a) = F_{Y_i}(a) = \begin{cases} 0 &amp; a &lt; 0 \\ 0.5 &amp; 0 \leq a &lt; 1 
   F_{\boldsymbol{X}_1 | \boldsymbol{X}_2 = \boldsymbol{b}}(\boldsymbol{a})
   =
   P(\boldsymbol{X}_1 \le \boldsymbol{a}|\boldsymbol{X}_2 = \boldsymbol{b}),
-</span> where <span class="math inline">\boldsymbol{X}_1 \le \boldsymbol{a}</span> means <span class="math inline">X_{1j} \le a_j</span> for each coordinate <span class="math inline">j=1,\ldots,k</span>.</p>
+</span> where the vector inequality <span class="math inline">\boldsymbol{X}_1 \le \boldsymbol{a}</span> represents the intersection of component-wise inequalities, i.e., <span class="math inline">\{X_{11} \le a_1\} \cap \{X_{12} \le a_2\} \cap \cdots \cap \{X_{1k} \le a_k\}</span>.</p>
 <p>For instance, if <span class="math inline">\boldsymbol{X}_1</span> and <span class="math inline">\boldsymbol{X}_2</span> represent the survey answers of two different, randomly chosen people, then <span class="math inline">F_{\boldsymbol{X}_2 | \boldsymbol{X}_1=\boldsymbol{b}}(\boldsymbol{a})</span> describes the distribution of the second person’s answers, given that the first person’s answers are <span class="math inline">\boldsymbol{b}</span>.</p>
 <p>If the two people are truly randomly selected and unrelated to one another, we would not expect <span class="math inline">\boldsymbol{X}_2</span> to depend on whether <span class="math inline">\boldsymbol{X}_1</span> equals <span class="math inline">\boldsymbol{b}</span> or some other value <span class="math inline">\boldsymbol{c}</span>. In other words, knowing <span class="math inline">\boldsymbol X_1</span> provides no information that changes the distribution of <span class="math inline">\boldsymbol X_2</span>.</p>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
@@ -910,7 +917,7 @@ F_{\boldsymbol{X}_1 | \boldsymbol{X}_2 = \boldsymbol{b}}(\boldsymbol{a})
 F_{\boldsymbol{X}_1}(\boldsymbol{a})
 \quad
 \text{for all } \boldsymbol{a}
-\quad
+\
 \text{and} \ \boldsymbol{b}.
 </span></p>
 </div>
@@ -1498,6 +1505,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./part2_expectation.html" class="pagination-link" aria-label="Expected Value">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Expected Value</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

@@ -1,0 +1,216 @@
+# Expected Value
+
+The CDF, PMF, and PDF fully characterize the probability distribution of a random variable but contain too much information for practical interpretation. We usually need summary measures that capture essential characteristics of a distribution. The **expectation** or **expected value** is the most important measure of the central tendency. It gives you the average value you can expect to get if you repeat the random experiment multiple times.
+
+## Discrete Case
+
+As previously defined, a discrete random variable $Y$ is one that can take on a countable number of distinct values. The probability that $Y$ takes a specific value $a$ is given by the probability mass function (PMF) $\pi(a)=P(Y=a)$.
+
+### Expectation
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Expected Value (Discrete Case)**
+
+The **expectation** or **expected value** of a discrete random variable $Y$ with PMF $\pi(\cdot)$ and support $\mathcal Y$ is defined as
+$$E[Y] = \sum_{u \in \mathcal Y} u \cdot \pi(u).$$ {#eq-expectation-discrete}
+:::
+\
+
+The expected value can be interpreted as the long-run average outcome of the random variable $Y$ if we were to observe it repeatedly in independent experiments. For example, if we flip a fair coin many times, the proportion of heads will approach 0.5, which is the expected value of the coin toss random variable.
+
+#### Example: Binary Random Variable {-}
+
+A **binary** or **Bernoulli** random variable $Y$ takes on only two possible values: 0 and 1. The support is $\mathcal Y = \{0,1\}$, and the PMF is $\pi(1) = p$ and $\pi(0) = 1 - p$ for some $p \in (0,1)$.
+The expected value of $Y$ is:
+
+$$E[Y] = 0\cdot\pi(0) + 1\cdot\pi(1) = 0 \cdot(1-p) + 1 \cdot p = p.$$
+
+For the variable *coin*, the probability of heads is $p=0.5$ and the expected value is $E[Y] = p = 0.5$.
+
+
+#### Example: Education Variable {-}
+
+Using the variable *education* with its PMF values introduced previously, we can calculate the expected value:
+
+\begin{align*}
+E[Y] &= 4\cdot\pi(4) + 10\cdot\pi(10) + 12\cdot \pi(12) + 13\cdot\pi(13) \\
+&\quad + 14\cdot\pi(14) + 16\cdot \pi(16) + 18 \cdot \pi(18) + 21 \cdot \pi(21) \\
+&= 0.032 + 0.55 + 4.716 + 1.027 + 2.03 + 1.248 + 3.924 + 0.504 \\
+&= 14.031
+\end{align*}
+
+So, the expected value of *education* is 14.031 years, which corresponds roughly to the completion of short-cycle tertiary education (ISCED level 5).
+
+### Conditional Expectation
+
+Previously, we introduced conditional probability distributions, which describe the distribution of a random variable given that another random variable takes a specific value. Building on this foundation, we can define the conditional expectation, which measures the expected value of a random variable when we have information about another random variable.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Conditional Expectation Given a Fixed Value**
+
+For a discrete random variable $Y$ with conditional PMF $\pi_{Y|Z=b}(a)$, the conditional expectation of $Y$ given $Z=b$ is defined as:
+
+$$E[Y|Z=b] = \sum_{u \in \mathcal{Y}} u \cdot \pi_{Y|Z=b}(u)$$
+:::
+\
+
+This formula closely resembles the unconditional expectation, but uses the conditional PMF instead of the marginal PMF. The conditional expectation $E[Y|Z=b]$ can be interpreted as the average value of $Y$ we expect to observe, given that we know $Z$ has taken the value $b$.
+
+#### Example: Education Given Marital Status {-}
+
+Let's examine the conditional PMFs of *education* given *marital status* studied previously.
+
+For unmarried individuals ($Z=0$):
+$$\pi_{Y|Z=0}(a) =
+\begin{cases}
+0.01 & \text{if } a = 4 \\
+0.07 & \text{if } a = 10 \\
+0.43 & \text{if } a = 12 \\
+0.09 & \text{if } a = 13 \\
+0.10 & \text{if } a = 14 \\
+0.09 & \text{if } a = 16 \\
+0.19 & \text{if } a = 18 \\
+0.02 & \text{if } a = 21 \\
+0 & \text{otherwise}
+\end{cases}$$
+
+For married individuals ($Z=1$):
+$$\pi_{Y|Z=1}(a) =
+\begin{cases}
+0.01 & \text{if } a = 4 \\
+0.03 & \text{if } a = 10 \\
+0.38 & \text{if } a = 12 \\
+0.07 & \text{if } a = 13 \\
+0.17 & \text{if } a = 14 \\
+0.06 & \text{if } a = 16 \\
+0.25 & \text{if } a = 18 \\
+0.03 & \text{if } a = 21 \\
+0 & \text{otherwise}
+\end{cases}$$
+
+The conditional expectation of *education* for unmarried individuals is:
+
+\begin{align*}
+E[Y|Z=0] &= 4 \cdot 0.01 + 10 \cdot 0.07 + 12 \cdot 0.43 + 13 \cdot 0.09 \\
+&\quad + 14 \cdot 0.10 + 16 \cdot 0.09 + 18 \cdot 0.19 + 21 \cdot 0.02 \\
+&= 13.75
+\end{align*}
+
+The conditional expectation of *education* for married individuals is:
+
+\begin{align*}
+  E[Y|Z=1] &= 4 \cdot 0.01 + 10 \cdot 0.03 + 12 \cdot 0.38 + 13 \cdot 0.07 \\
+  &\quad + 14 \cdot 0.17 + 16 \cdot 0.06 + 18 \cdot 0.25 + 21 \cdot 0.03 \\
+  &= 14.28
+\end{align*}
+
+We observe that the expected education level is higher for married individuals (14.28 years) compared to unmarried individuals (13.75 years), which suggests a dependence between *marital status* and *education*.
+
+
+### Conditional Expectation Function (CEF)
+
+So far, we have used $E[Y|Z=b]$ to denote the conditional expectation of $Y$ given a specific value $b$ of $Z$. This is a fixed number for each value of $b$. A related concept is the **Conditional Expectation Function**, denoted as $E[Y|Z]$ without specifying a particular value for $Z$.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Conditional Expectation Function (CEF)**
+
+The conditional expectation function $E[Y|Z]$ represents a random variable that depends on the random outcome of $Z$. It is a function that maps each possible value of $Z$ to the corresponding conditional expectation:
+
+$$E[Y|Z] = m(Z) \quad \text{where} \quad m(b) = E[Y|Z=b]$$
+
+Here, $m(\cdot)$ is the function that represents the CEF, mapping each possible value of $Z$ to the corresponding conditional expectation.
+:::
+\
+
+The CEF is random precisely because it is a function of the random variable $Z$. Before we observe the value of $Z$, we cannot determine the value of $E[Y|Z]$. Once we observe $Z$, the CEF gives us the expected value of $Y$ corresponding to that specific observation. This makes $E[Y|Z]$ a random variable whose value depends on the random outcome of $Z$. In contrast, $E[Y|Z=b]$ is a deterministic scalar non-random value.
+
+For our marital status example, the CEF is:
+
+$$E[Y|Z] = m(Z) = \begin{cases}
+13.75 & \text{if } Z = 0 \text{ (unmarried)} \\
+14.28 & \text{if } Z = 1 \text{ (married)}
+\end{cases}$$
+
+
+In our population, the marginal PMF of *married* is
+$$
+	\pi_Z(a) = \begin{cases}
+0.4698 & \text{if } a = 0  \ (\text{unmarried})\\
+0.5302 & \text{if } a = 1 \ (\text{married}) \\
+0 & \text{otherwise}.
+\end{cases}
+$$
+
+Using these values the PMF of $E[Y|Z]$ is:
+$$
+\pi_{E[Y|Z]}(a) = P(E[Y|Z] = a) = \begin{cases}
+0.4698 & \text{if } a = 13.75  \\
+0.5302 & \text{if } a = 14.28 \\
+0 & \text{otherwise}.
+\end{cases}
+$$
+
+### Law of Iterated Expectations (LIE)
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Law of Iterated Expectations**
+
+For two random variables $Y$ and $Z$:
+$$E[Y] = E[E[Y|Z]]$$
+:::
+\
+
+This elegant equation states that the expected value of $Y$ can be found by first calculating the conditional expectation of $Y$ given $Z$ (which gives us the random variable $E[Y|Z]$), and then taking the expected value of this random variable. In other words, we are taking the expectation of the conditional expectation.
+
+The Law of Iterated Expectations is a fundamental tool in econometrics with numerous applications. It is particularly important for understanding the properties of estimators in the presence of conditioning variables like in regression analysis.
+
+To understand why this law holds, let's consider an intuitive argument based on the **law of total probability**. For discrete random variables, the law of total probability tells us that we can find the overall probability of an event $Y=a$ by considering all possible scenarios $Z=b$ that could lead to that event. More precisely, $P(Y=a)$ equals the weighted sum of conditional probabilities $P(Y=a|Z=b)$ across all possible values $b$ of $Z$, where each conditional probability is weighted by $P(Z=b)$:
+$$\pi_Y(a) = \sum_{b \in \mathcal{Z}} \pi_{Y|Z=b}(a) \cdot \pi_Z(b)$$
+
+The LIE follows a similar logic. We can think of the overall expectation of $Y$ as a weighted average of conditional expectations $E[Y|Z=b]$ across all possible values of $Z$, with each conditional expectation weighted by the probability of the corresponding $Z$ value:
+
+$$E[Y] = \sum_{u \in \mathcal{Z}} E[Y|Z=u] \cdot \pi_Z(u)$$
+
+The right hand side is precisely what $E[E[Y|Z]]$ means: take the conditional expectation function $E[Y|Z]$ and average it over all possible values $u\in \mathcal Z$ of $Z$, where $\mathcal Z$ is the support of $Z$.
+
+For our *education* and *marital status* example, the LIE gives us:
+
+\begin{align*}
+  E[Y] &= E[E[Y|Z]] \\
+  &= E[Y|Z=0] \cdot \pi_Z(0) + E[Y|Z=1] \cdot \pi_Z(1) \\
+  &= 13.75 \cdot 0.4698 + 14.28 \cdot 0.5302 \\
+  &= 6.460 + 7.571 \\
+  &= 14.031
+\end{align*}
+
+This matches exactly with our directly calculated expected value of 14.031 years from the marginal PMF.
+
+
+### Conditioning Theorem (CT)
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Conditioning Theorem / Factorization Property**
+
+For two random variables $Y$ and $Z$:
+
+$$E[ZY|Z] = Z \cdot E[Y|Z]$$
+:::
+\
+
+To see this, let's first consider the case for a specific value $Z=b$:
+
+$$E[bY|Z=b] = \sum_{u \in \mathcal{Y}} b \cdot u \cdot \pi_{Y|Z=b}(u) = b \sum_{u \in \mathcal{Y}} u \cdot \pi_{Y|Z=b}(u) = b \cdot E[Y|Z=b]$$
+
+When we consider this factorization across all possible values of Z rather than a fixed value b, we get the general form of the Conditioning Theorem: $E[ZY|Z] = Z \cdot E[Y|Z]$.
+
+The conditioning theorem states that we can factor out the conditioning variable $Z$ from the conditional expectation. The intuition is that when we condition on $Z$, we're essentially treating it as if we already know its value, so it behaves like a constant within the conditional expectation. Since summation is linear and constants can be factored out, $Z$ can be factored out of $E[ZY|Z]$.
+
+This theorem is particularly useful in econometric derivations, especially when working with regression models.
+
+For example, in our marital status context, if we want to compute $E[Z Y|Z]$ (the conditional expectation of education multiplied by marital status, given marital status), we get:
+
+$$E[Z Y|Z] = Z \cdot E[Y|Z] = \begin{cases}
+0 \cdot 13.75 = 0 & \text{if } Z = 0 \text{ (unmarried)} \\
+1 \cdot 14.28 = 14.28 & \text{if } Z = 1 \text{ (married)}
+\end{cases}$$
+
