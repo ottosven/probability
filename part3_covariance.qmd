@@ -2,7 +2,7 @@
 
 ## Expectations with Multiple Random Variables
 
-In Parts 1 and 2, we focused on single random variables and their properties. Now we extend these concepts to scenarios involving multiple random variables, which is essential for analyzing relationships between variables in statistical modeling.
+In the previous sections, we focused on single random variables and their properties. Now we extend these concepts to scenarios involving multiple random variables, which is essential for analyzing relationships between variables in statistical modeling.
 
 Recall that for any univariate function $g(\cdot)$, the expected value of $g(Y)$ and the conditional expectation given $Z=b$ are:
 $$E[g(Y)] = \int_{-\infty}^\infty g(u) \ \text{d}F_Y(u), \quad E[g(Y)|Z=b] = \int_{-\infty}^\infty g(u) \ \text{d}F_{Y|Z=b}(u)$$
@@ -73,7 +73,7 @@ $E[YZ]$ is also known as the **first cross moment** of $Y$ and $Z$.
 
 #### Example: Product of Education and Wage {-}
 
-Consider the random variables *education* ($Z$) and *wage* ($Y$) from our earlier examples. These variables are dependent, with $E[Y|Z=b]$ following the pattern shown in the CEF plot from the previos section.
+Consider the random variables *education* ($Z$) and *wage* ($Y$) from our earlier examples. These variables are dependent, with $E[Y|Z=b]$ following the pattern shown in the CEF plot from the previous section.
 
 If $E[Y|Z=b] = 2 + 1.2b$ (a simplified linear relationship), then:
 
@@ -100,7 +100,7 @@ This formula allows us to decompose the expectation iteratively, conditioning on
 
 Having explored expectations involving multiple random variables, we now introduce measures that quantify the relationship between random variables: covariance and correlation.
 
-### Definition of Covariance
+### Covariance
 
 ::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
 **Covariance**
@@ -122,15 +122,12 @@ The equivalence of these definitions can be shown by expanding the first express
 &= E[YZ] - E[Y]E[Z]
 \end{align*}
 
-### Interpreting Covariance
 
 Covariance measures the direction of the linear relationship between two variables:
 
 - $\text{Cov}(Y,Z) > 0$: $Y$ and $Z$ tend to move in the same direction (positive relationship)
 - $\text{Cov}(Y,Z) < 0$: $Y$ and $Z$ tend to move in opposite directions (negative relationship)
 - $\text{Cov}(Y,Z) = 0$: $Y$ and $Z$ have no linear relationship
-
-### Computing Covariance Using Conditional Expectations
 
 Using our previous results for $E[YZ]$, we can express covariance in terms of conditional expectations:
 
@@ -140,8 +137,6 @@ Using our previous results for $E[YZ]$, we can express covariance in terms of co
 \end{align*}
 
 This formula is particularly useful when we know the conditional expectation $E[Y|Z]$.
-
-### Properties of Covariance
 
 ::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
 **Properties of Covariance**
@@ -175,7 +170,7 @@ $$\text{Cov}(Y,Y^2) = 0 - 0 \cdot E[Y^2] = 0$$
 
 This highlights that covariance only captures linear relationships between variables, not all forms of dependence.
 
-### Correlation Coefficient
+### Correlation
 
 While covariance measures the direction of association between variables, its magnitude depends on the scales of the variables. The **correlation coefficient** standardizes this measure to be scale-invariant:
 
@@ -202,7 +197,6 @@ The correlation coefficient has the following properties:
 
 When working with multivariate data, we often need to analyze several random variables simultaneously. Let's consider a $k$-dimensional random vector $\boldsymbol{Z} = (Z_1, Z_2, \ldots, Z_k)'$, where the prime denotes vector transposition.
 
-### Expected Value Vector
 
 ::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
 **Expected Value Vector**
@@ -219,8 +213,6 @@ $$E[Z_i] = \int_{-\infty}^{\infty} z_i \ \text{d}F_{Z_i}(z_i)$$
 where $F_{Z_i}$ represents the marginal CDF of $Z_i$.
 
 The expected value vector provides the central location of the multivariate distribution, serving as a natural extension of the univariate expected value.
-
-### Covariance Matrix
 
 ::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
 **Covariance Matrix**
@@ -246,7 +238,6 @@ In this matrix:
 - Diagonal elements $\Sigma_{ii} = \text{Var}(Z_i)$ represent the variance of each component
 - Off-diagonal elements $\Sigma_{ij} = \text{Cov}(Z_i, Z_j)$ represent the covariance between components
 
-### Properties of the Covariance Matrix
 
 ::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
 **Properties of the Covariance Matrix**
@@ -263,7 +254,6 @@ In this matrix:
 
 The positive semi-definiteness of the covariance matrix follows because $\boldsymbol{a}'\boldsymbol{\Sigma}_Z\boldsymbol{a} = \text{Var}(\boldsymbol{a}'\boldsymbol{Z})$, which is the variance of a linear combination of the components of $\boldsymbol{Z}$, and variance is always non-negative.
 
-### Correlation Matrix
 
 The **correlation matrix** standardizes the covariance matrix by dividing each covariance by the product of the corresponding standard deviations:
 
@@ -288,67 +278,4 @@ Mathematically, if $\boldsymbol{D}$ is a diagonal matrix with $D_{ii} = \sqrt{\t
 $$\boldsymbol{R}_Z = \boldsymbol{D}^{-1}\boldsymbol{\Sigma}_Z\boldsymbol{D}^{-1}$$
 
 
-## Heavy Tails: When Expectations Fail to Exist
 
-Our previous discussions assumed that expected values and covariance matrices exist, but this isn't always guaranteed. Some probability distributions have such slow decay in their tails that moments of certain order may be infinite or undefined. These "heavy-tailed" distributions present special challenges for statistical analysis.
-
-### Infinite Expectations
-
-::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
-**Infinite Expectation**
-
-A random variable $Y$ has an infinite expectation if:
-$$E[Y] = \int_{-\infty}^{\infty} u \ \text{d}F_Y(u) = \infty$$
-
-In such cases, the sample mean does not converge to any finite value as the sample size increases.
-:::
-\
-
-The sample mean of i.i.d. samples from most distributions converges to the population mean as sample size increases (a property known as consistency). However, there are exceptional cases where consistency fails because the population mean itself is infinite.
-
-### Examples of Distributions with Infinite Moments
-
-#### Pareto Distribution
-
-The simple Pareto distribution with parameter $\alpha = 1$ has the PDF:
-$$f(u) = \begin{cases} \frac{1}{u^2} & \text{if} \ u > 1, \\
-0 & \text{if} \ u \leq 1, \end{cases}$$
-
-The expected value is:
-$$E[Y] = \int_{-\infty}^\infty u f(u) \ \text{d}u = \int_{1}^\infty \frac{u}{u^2} \ \text{d}u = \int_{1}^\infty \frac{1}{u} \ \text{d}u = \log(u)|_1^\infty = \infty$$
-
-Since the population mean is infinite, the sample mean cannot converge to any finite value and is therefore inconsistent.
-
-#### St. Petersburg Paradox
-
-The game of chance from the St. Petersburg paradox is a discrete example with infinite expectation. In this game, a fair coin is tossed until a tail appears; if the first tail is on the $n$th toss, the payoff is $2^n$ dollars. The expected payoff is:
-$$E[Y] = \sum_{n=1}^{\infty} 2^n \cdot \frac{1}{2^n} = \sum_{n=1}^{\infty} 1 = \infty$$
-
-This infinity arises from the infinite sum of 1's, reflecting the unbounded potential payoffs in the game.
-
-#### Cauchy Distribution
-
-The Cauchy distribution (also known as the t-distribution with 1 degree of freedom) has the PDF:
-$$f(u) = \frac{1}{\pi (1+u^2)}$$
-
-The Cauchy distribution presents a fascinating case where the sample mean of $n$ observations has exactly the same distribution as a single observation, regardless of how large $n$ becomes. This means the sample mean does not converge to any value as sample size increases.
-
-#### t-Distribution with Few Degrees of Freedom
-
-- **Cauchy distribution** ($t_1$): No finite moments
-- **$t_2$ distribution**: Finite mean but infinite variance
-- **$t_3$ distribution**: Finite variance but infinite skewness
-- **$t_4$ distribution**: Finite skewness but infinite kurtosis
-
-More generally, for a t-distribution with $m$ degrees of freedom:
-$$E[Y^k] < \infty \text{ for } k < m$$
-$$E[Y^k] = \infty \text{ for } k \geq m$$
-
-
-### Real-World Examples
-
-Heavy-tailed distributions arise in many real-world phenomena where extreme events and large outliers are common:
-
-1. **Financial returns**: Stock market crashes and extreme price movements
-2. **Income and wealth distributions**: Extreme wealth concentration
-3. **Natural disasters**: Extreme earthquakes, floods, or storms

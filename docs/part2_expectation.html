@@ -182,6 +182,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Random Variables</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./part4_convergence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Stochastic Convergence</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -220,6 +226,12 @@ window.Quarto = {
   <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity"><span class="header-section-number">2.4.1</span> Linearity</a></li>
   <li><a href="#law-of-iterated-expectations-lie-1" id="toc-law-of-iterated-expectations-lie-1" class="nav-link" data-scroll-target="#law-of-iterated-expectations-lie-1"><span class="header-section-number">2.4.2</span> Law of Iterated Expectations (LIE)</a></li>
   <li><a href="#conditioning-theorem-ct-1" id="toc-conditioning-theorem-ct-1" class="nav-link" data-scroll-target="#conditioning-theorem-ct-1"><span class="header-section-number">2.4.3</span> Conditioning Theorem (CT)</a></li>
+  </ul></li>
+  <li><a href="#heavy-tails-when-expectations-fail-to-exist" id="toc-heavy-tails-when-expectations-fail-to-exist" class="nav-link" data-scroll-target="#heavy-tails-when-expectations-fail-to-exist"><span class="header-section-number">2.5</span> Heavy Tails: When Expectations Fail to Exist</a>
+  <ul class="collapse">
+  <li><a href="#infinite-expectations" id="toc-infinite-expectations" class="nav-link" data-scroll-target="#infinite-expectations"><span class="header-section-number">2.5.1</span> Infinite Expectations</a></li>
+  <li><a href="#examples-of-distributions-with-infinite-moments" id="toc-examples-of-distributions-with-infinite-moments" class="nav-link" data-scroll-target="#examples-of-distributions-with-infinite-moments"><span class="header-section-number">2.5.2</span> Examples of Distributions with Infinite Moments</a></li>
+  <li><a href="#real-world-examples" id="toc-real-world-examples" class="nav-link" data-scroll-target="#real-world-examples"><span class="header-section-number">2.5.3</span> Real-World Examples</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -701,6 +713,61 @@ Figure&nbsp;2.3: CEF of wage given experience
 <p>To see why this holds, consider a specific value <span class="math inline">Z=b</span>. The conditional expectation becomes: <span class="math display">E[g(Z)Y|Z=b] = E[g(b)Y|Z=b] = g(b)E[Y|Z=b]</span></p>
 <p>The first equality follows because <span class="math inline">g(Z) = g(b)</span> when <span class="math inline">Z=b</span>. The second equality uses the linearity property of expectation, treating <span class="math inline">g(b)</span> as a constant.</p>
 <p>Since this relationship holds for every possible value of <span class="math inline">Z</span>, we have the general result: <span class="math display">E[g(Z)Y|Z]=g(Z)E[Y|Z]</span></p>
+</section>
+</section>
+<section id="heavy-tails-when-expectations-fail-to-exist" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="heavy-tails-when-expectations-fail-to-exist"><span class="header-section-number">2.5</span> Heavy Tails: When Expectations Fail to Exist</h2>
+<p>Our previous discussions assumed that expected values and covariance matrices exist, but this isn’t always guaranteed. Some probability distributions have such slow decay in their tails that moments of certain order may be infinite or undefined. These “heavy-tailed” distributions present special challenges for statistical analysis.</p>
+<section id="infinite-expectations" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="infinite-expectations"><span class="header-section-number">2.5.1</span> Infinite Expectations</h3>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Infinite Expectation</strong></p>
+<p>A random variable <span class="math inline">Y</span> has an infinite expectation if: <span class="math display">E[|Y|] = \int_{-\infty}^{\infty} |u| \, \text{d}F_Y(u) = \infty</span></p>
+<p>When this occurs, the expected value <span class="math inline">E[Y]</span> either diverges to positive infinity, negative infinity, or is not well-defined due to both positive and negative parts of the integral diverging.</p>
+<p>In such cases, the sample mean does not converge to any finite value as the sample size increases.</p>
+</div>
+<p><br>
+</p>
+<p>The sample mean of i.i.d. samples from most distributions converges to the population mean as sample size increases (a property known as consistency). However, there are exceptional cases where consistency fails because the population mean itself is infinite.</p>
+</section>
+<section id="examples-of-distributions-with-infinite-moments" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="examples-of-distributions-with-infinite-moments"><span class="header-section-number">2.5.2</span> Examples of Distributions with Infinite Moments</h3>
+<section id="pareto-distribution" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="pareto-distribution">Pareto Distribution</h4>
+<p>The simple Pareto distribution with parameter <span class="math inline">\alpha = 1</span> has the PDF: <span class="math display">f(u) = \begin{cases} \frac{1}{u^2} &amp; \text{if} \ u &gt; 1, \\
+0 &amp; \text{if} \ u \leq 1, \end{cases}</span></p>
+<p>The expected value is: <span class="math display">E[Y] = \int_{-\infty}^\infty u f(u) \ \text{d}u = \int_{1}^\infty \frac{u}{u^2} \ \text{d}u = \int_{1}^\infty \frac{1}{u} \ \text{d}u = \log(u)|_1^\infty = \infty</span></p>
+<p>Since the population mean is infinite, the sample mean cannot converge to any finite value and is therefore inconsistent.</p>
+</section>
+<section id="st.-petersburg-paradox" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="st.-petersburg-paradox">St.&nbsp;Petersburg Paradox</h4>
+<p>The game of chance from the St.&nbsp;Petersburg paradox is a discrete example with infinite expectation. In this game, a fair coin is tossed until a tail appears; if the first tail is on the <span class="math inline">n</span>th toss, the payoff is <span class="math inline">2^n</span> dollars. The expected payoff is: <span class="math display">E[Y] = \sum_{n=1}^{\infty} 2^n \cdot \frac{1}{2^n} = \sum_{n=1}^{\infty} 1 = \infty</span></p>
+<p>This infinity arises from the infinite sum of 1’s, reflecting the unbounded potential payoffs in the game.</p>
+</section>
+<section id="cauchy-distribution" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="cauchy-distribution">Cauchy Distribution</h4>
+<p>The Cauchy distribution (also known as the t-distribution with 1 degree of freedom) has the PDF: <span class="math display">f(u) = \frac{1}{\pi (1+u^2)}</span></p>
+<p>The Cauchy distribution presents a fascinating case where the sample mean of <span class="math inline">n</span> observations has exactly the same distribution as a single observation, regardless of how large <span class="math inline">n</span> becomes. This means the sample mean does not converge to any value as sample size increases.</p>
+</section>
+<section id="t-distribution-with-few-degrees-of-freedom" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="t-distribution-with-few-degrees-of-freedom">t-Distribution with Few Degrees of Freedom</h4>
+<ul>
+<li><strong>Cauchy distribution</strong> (<span class="math inline">t_1</span>): No finite moments</li>
+<li><strong><span class="math inline">t_2</span> distribution</strong>: Finite mean but infinite variance</li>
+<li><strong><span class="math inline">t_3</span> distribution</strong>: Finite variance but infinite skewness</li>
+<li><strong><span class="math inline">t_4</span> distribution</strong>: Finite skewness but infinite kurtosis</li>
+</ul>
+<p>More generally, for a t-distribution with <span class="math inline">m</span> degrees of freedom: <span class="math display">E[Y^k] &lt; \infty \text{ for } k &lt; m</span> <span class="math display">E[Y^k] = \infty \text{ for } k \geq m</span></p>
+</section>
+</section>
+<section id="real-world-examples" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="real-world-examples"><span class="header-section-number">2.5.3</span> Real-World Examples</h3>
+<p>Heavy-tailed distributions arise in many real-world phenomena where extreme events and large outliers are common:</p>
+<ol type="1">
+<li><strong>Financial returns</strong>: Stock market crashes and extreme price movements</li>
+<li><strong>Income and wealth distributions</strong>: Extreme wealth concentration</li>
+<li><strong>Natural disasters</strong>: Extreme earthquakes, floods, or storms</li>
+</ol>
 
 
 </section>

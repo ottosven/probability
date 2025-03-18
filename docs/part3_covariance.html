@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./part4_convergence.html" rel="next">
 <link href="./part2_expectation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -181,6 +182,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Random Variables</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./part4_convergence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Stochastic Convergence</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -198,26 +205,11 @@ window.Quarto = {
   </ul></li>
   <li><a href="#covariance-and-correlation" id="toc-covariance-and-correlation" class="nav-link" data-scroll-target="#covariance-and-correlation"><span class="header-section-number">3.2</span> Covariance and Correlation</a>
   <ul class="collapse">
-  <li><a href="#definition-of-covariance" id="toc-definition-of-covariance" class="nav-link" data-scroll-target="#definition-of-covariance"><span class="header-section-number">3.2.1</span> Definition of Covariance</a></li>
-  <li><a href="#interpreting-covariance" id="toc-interpreting-covariance" class="nav-link" data-scroll-target="#interpreting-covariance"><span class="header-section-number">3.2.2</span> Interpreting Covariance</a></li>
-  <li><a href="#computing-covariance-using-conditional-expectations" id="toc-computing-covariance-using-conditional-expectations" class="nav-link" data-scroll-target="#computing-covariance-using-conditional-expectations"><span class="header-section-number">3.2.3</span> Computing Covariance Using Conditional Expectations</a></li>
-  <li><a href="#properties-of-covariance" id="toc-properties-of-covariance" class="nav-link" data-scroll-target="#properties-of-covariance"><span class="header-section-number">3.2.4</span> Properties of Covariance</a></li>
-  <li><a href="#covariance-and-independence" id="toc-covariance-and-independence" class="nav-link" data-scroll-target="#covariance-and-independence"><span class="header-section-number">3.2.5</span> Covariance and Independence</a></li>
-  <li><a href="#correlation-coefficient" id="toc-correlation-coefficient" class="nav-link" data-scroll-target="#correlation-coefficient"><span class="header-section-number">3.2.6</span> Correlation Coefficient</a></li>
+  <li><a href="#covariance" id="toc-covariance" class="nav-link" data-scroll-target="#covariance"><span class="header-section-number">3.2.1</span> Covariance</a></li>
+  <li><a href="#covariance-and-independence" id="toc-covariance-and-independence" class="nav-link" data-scroll-target="#covariance-and-independence"><span class="header-section-number">3.2.2</span> Covariance and Independence</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">3.2.3</span> Correlation</a></li>
   </ul></li>
-  <li><a href="#expected-value-vector-and-covariance-matrix" id="toc-expected-value-vector-and-covariance-matrix" class="nav-link" data-scroll-target="#expected-value-vector-and-covariance-matrix"><span class="header-section-number">3.3</span> Expected Value Vector and Covariance Matrix</a>
-  <ul class="collapse">
-  <li><a href="#expected-value-vector" id="toc-expected-value-vector" class="nav-link" data-scroll-target="#expected-value-vector"><span class="header-section-number">3.3.1</span> Expected Value Vector</a></li>
-  <li><a href="#covariance-matrix" id="toc-covariance-matrix" class="nav-link" data-scroll-target="#covariance-matrix"><span class="header-section-number">3.3.2</span> Covariance Matrix</a></li>
-  <li><a href="#properties-of-the-covariance-matrix" id="toc-properties-of-the-covariance-matrix" class="nav-link" data-scroll-target="#properties-of-the-covariance-matrix"><span class="header-section-number">3.3.3</span> Properties of the Covariance Matrix</a></li>
-  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix"><span class="header-section-number">3.3.4</span> Correlation Matrix</a></li>
-  </ul></li>
-  <li><a href="#heavy-tails-when-expectations-fail-to-exist" id="toc-heavy-tails-when-expectations-fail-to-exist" class="nav-link" data-scroll-target="#heavy-tails-when-expectations-fail-to-exist"><span class="header-section-number">3.4</span> Heavy Tails: When Expectations Fail to Exist</a>
-  <ul class="collapse">
-  <li><a href="#infinite-expectations" id="toc-infinite-expectations" class="nav-link" data-scroll-target="#infinite-expectations"><span class="header-section-number">3.4.1</span> Infinite Expectations</a></li>
-  <li><a href="#examples-of-distributions-with-infinite-moments" id="toc-examples-of-distributions-with-infinite-moments" class="nav-link" data-scroll-target="#examples-of-distributions-with-infinite-moments"><span class="header-section-number">3.4.2</span> Examples of Distributions with Infinite Moments</a></li>
-  <li><a href="#real-world-examples" id="toc-real-world-examples" class="nav-link" data-scroll-target="#real-world-examples"><span class="header-section-number">3.4.3</span> Real-World Examples</a></li>
-  </ul></li>
+  <li><a href="#expected-value-vector-and-covariance-matrix" id="toc-expected-value-vector-and-covariance-matrix" class="nav-link" data-scroll-target="#expected-value-vector-and-covariance-matrix"><span class="header-section-number">3.3</span> Expected Value Vector and Covariance Matrix</a></li>
   </ul>
 </nav>
     </div>
@@ -245,7 +237,7 @@ window.Quarto = {
 
 <section id="expectations-with-multiple-random-variables" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="expectations-with-multiple-random-variables"><span class="header-section-number">3.1</span> Expectations with Multiple Random Variables</h2>
-<p>In Parts 1 and 2, we focused on single random variables and their properties. Now we extend these concepts to scenarios involving multiple random variables, which is essential for analyzing relationships between variables in statistical modeling.</p>
+<p>In the previous sections, we focused on single random variables and their properties. Now we extend these concepts to scenarios involving multiple random variables, which is essential for analyzing relationships between variables in statistical modeling.</p>
 <p>Recall that for any univariate function <span class="math inline">g(\cdot)</span>, the expected value of <span class="math inline">g(Y)</span> and the conditional expectation given <span class="math inline">Z=b</span> are: <span class="math display">E[g(Y)] = \int_{-\infty}^\infty g(u) \ \text{d}F_Y(u), \quad E[g(Y)|Z=b] = \int_{-\infty}^\infty g(u) \ \text{d}F_{Y|Z=b}(u)</span></p>
 <p>where <span class="math inline">F_Y(a)</span> is the marginal CDF of <span class="math inline">Y</span> and <span class="math inline">F_{Y|Z=b}(a)</span> is the conditional CDF of <span class="math inline">Y</span> given <span class="math inline">Z=b</span>.</p>
 <p>For functions of multiple random variables, we extend this approach using multivariate functions. For a bivariate function <span class="math inline">h(Y,Z)</span>, we can calculate the expected value using the Law of Iterated Expectations (LIE):</p>
@@ -300,7 +292,7 @@ E[YZ] &amp;= E[E[YZ|Z]] \\
 </section>
 <section id="example-product-of-education-and-wage" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="example-product-of-education-and-wage">Example: Product of Education and Wage</h4>
-<p>Consider the random variables <em>education</em> (<span class="math inline">Z</span>) and <em>wage</em> (<span class="math inline">Y</span>) from our earlier examples. These variables are dependent, with <span class="math inline">E[Y|Z=b]</span> following the pattern shown in the CEF plot from the previos section.</p>
+<p>Consider the random variables <em>education</em> (<span class="math inline">Z</span>) and <em>wage</em> (<span class="math inline">Y</span>) from our earlier examples. These variables are dependent, with <span class="math inline">E[Y|Z=b]</span> following the pattern shown in the CEF plot from the previous section.</p>
 <p>If <span class="math inline">E[Y|Z=b] = 2 + 1.2b</span> (a simplified linear relationship), then:</p>
 <p><span class="math display">\begin{align*}
 E[YZ] &amp;= E[Z \cdot E[Y|Z]] \\
@@ -321,8 +313,8 @@ E[YZ] &amp;= E[Z \cdot E[Y|Z]] \\
 <section id="covariance-and-correlation" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="covariance-and-correlation"><span class="header-section-number">3.2</span> Covariance and Correlation</h2>
 <p>Having explored expectations involving multiple random variables, we now introduce measures that quantify the relationship between random variables: covariance and correlation.</p>
-<section id="definition-of-covariance" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="definition-of-covariance"><span class="header-section-number">3.2.1</span> Definition of Covariance</h3>
+<section id="covariance" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="covariance"><span class="header-section-number">3.2.1</span> Covariance</h3>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Covariance</strong></p>
 <p>The <strong>covariance</strong> between two random variables <span class="math inline">Y</span> and <span class="math inline">Z</span> is defined as:</p>
@@ -337,27 +329,18 @@ E[YZ] &amp;= E[Z \cdot E[Y|Z]] \\
 &amp;= E[YZ] - E[Y]E[Z] - E[Y]E[Z] + E[Y]E[Z] \\
 &amp;= E[YZ] - E[Y]E[Z]
 \end{align*}</span></p>
-</section>
-<section id="interpreting-covariance" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="interpreting-covariance"><span class="header-section-number">3.2.2</span> Interpreting Covariance</h3>
 <p>Covariance measures the direction of the linear relationship between two variables:</p>
 <ul>
 <li><span class="math inline">\text{Cov}(Y,Z) &gt; 0</span>: <span class="math inline">Y</span> and <span class="math inline">Z</span> tend to move in the same direction (positive relationship)</li>
 <li><span class="math inline">\text{Cov}(Y,Z) &lt; 0</span>: <span class="math inline">Y</span> and <span class="math inline">Z</span> tend to move in opposite directions (negative relationship)</li>
 <li><span class="math inline">\text{Cov}(Y,Z) = 0</span>: <span class="math inline">Y</span> and <span class="math inline">Z</span> have no linear relationship</li>
 </ul>
-</section>
-<section id="computing-covariance-using-conditional-expectations" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="computing-covariance-using-conditional-expectations"><span class="header-section-number">3.2.3</span> Computing Covariance Using Conditional Expectations</h3>
 <p>Using our previous results for <span class="math inline">E[YZ]</span>, we can express covariance in terms of conditional expectations:</p>
 <p><span class="math display">\begin{align*}
 \text{Cov}(Y,Z) &amp;= E[YZ] - E[Y]E[Z] \\
 &amp;= E[Z \cdot E[Y|Z]] - E[Y]E[Z]
 \end{align*}</span></p>
 <p>This formula is particularly useful when we know the conditional expectation <span class="math inline">E[Y|Z]</span>.</p>
-</section>
-<section id="properties-of-covariance" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="properties-of-covariance"><span class="header-section-number">3.2.4</span> Properties of Covariance</h3>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Properties of Covariance</strong></p>
 <ol type="1">
@@ -374,16 +357,16 @@ If <span class="math inline">Y</span> and <span class="math inline">Z</span> are
 <p><br>
 </p>
 </section>
-<section id="covariance-and-independence" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="covariance-and-independence"><span class="header-section-number">3.2.5</span> Covariance and Independence</h3>
+<section id="covariance-and-independence" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="covariance-and-independence"><span class="header-section-number">3.2.2</span> Covariance and Independence</h3>
 <p>It’s important to note that while independence implies zero covariance, the converse is not generally true: zero covariance does not imply independence.</p>
 <p>A classic example of variables that have zero covariance yet are dependent is when <span class="math inline">Y</span> is a standard normal random variable and <span class="math inline">Z = Y^2</span>. These variables are clearly dependent (knowledge of <span class="math inline">Y</span> completely determines <span class="math inline">Z</span>), but:</p>
 <p><span class="math display">\text{Cov}(Y,Y^2) = E[Y \cdot Y^2] - E[Y]E[Y^2] = E[Y^3] - E[Y]E[Y^2]</span></p>
 <p>For a standard normal variable, <span class="math inline">E[Y] = 0</span> and <span class="math inline">E[Y^3] = 0</span> (due to symmetry around 0), so: <span class="math display">\text{Cov}(Y,Y^2) = 0 - 0 \cdot E[Y^2] = 0</span></p>
 <p>This highlights that covariance only captures linear relationships between variables, not all forms of dependence.</p>
 </section>
-<section id="correlation-coefficient" class="level3" data-number="3.2.6">
-<h3 data-number="3.2.6" class="anchored" data-anchor-id="correlation-coefficient"><span class="header-section-number">3.2.6</span> Correlation Coefficient</h3>
+<section id="correlation" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="correlation"><span class="header-section-number">3.2.3</span> Correlation</h3>
 <p>While covariance measures the direction of association between variables, its magnitude depends on the scales of the variables. The <strong>correlation coefficient</strong> standardizes this measure to be scale-invariant:</p>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Correlation Coefficient</strong></p>
@@ -404,8 +387,6 @@ If <span class="math inline">Y</span> and <span class="math inline">Z</span> are
 <section id="expected-value-vector-and-covariance-matrix" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="expected-value-vector-and-covariance-matrix"><span class="header-section-number">3.3</span> Expected Value Vector and Covariance Matrix</h2>
 <p>When working with multivariate data, we often need to analyze several random variables simultaneously. Let’s consider a <span class="math inline">k</span>-dimensional random vector <span class="math inline">\boldsymbol{Z} = (Z_1, Z_2, \ldots, Z_k)'</span>, where the prime denotes vector transposition.</p>
-<section id="expected-value-vector" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="expected-value-vector"><span class="header-section-number">3.3.1</span> Expected Value Vector</h3>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Expected Value Vector</strong></p>
 <p>The <strong>expected value vector</strong> (or mean vector) of a random vector <span class="math inline">\boldsymbol{Z} = (Z_1, Z_2, \ldots, Z_k)'</span> is defined as:</p>
@@ -416,9 +397,6 @@ If <span class="math inline">Y</span> and <span class="math inline">Z</span> are
 <p>Each component <span class="math inline">E[Z_i]</span> is calculated according to: <span class="math display">E[Z_i] = \int_{-\infty}^{\infty} z_i \ \text{d}F_{Z_i}(z_i)</span></p>
 <p>where <span class="math inline">F_{Z_i}</span> represents the marginal CDF of <span class="math inline">Z_i</span>.</p>
 <p>The expected value vector provides the central location of the multivariate distribution, serving as a natural extension of the univariate expected value.</p>
-</section>
-<section id="covariance-matrix" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="covariance-matrix"><span class="header-section-number">3.3.2</span> Covariance Matrix</h3>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Covariance Matrix</strong></p>
 <p>The <strong>covariance matrix</strong> of a random vector <span class="math inline">\boldsymbol{Z} = (Z_1, Z_2, \ldots, Z_k)'</span>, denoted by <span class="math inline">\boldsymbol{\Sigma}_Z</span>, is defined as:</p>
@@ -439,9 +417,6 @@ If <span class="math inline">Y</span> and <span class="math inline">Z</span> are
 <li>Diagonal elements <span class="math inline">\Sigma_{ii} = \text{Var}(Z_i)</span> represent the variance of each component</li>
 <li>Off-diagonal elements <span class="math inline">\Sigma_{ij} = \text{Cov}(Z_i, Z_j)</span> represent the covariance between components</li>
 </ul>
-</section>
-<section id="properties-of-the-covariance-matrix" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="properties-of-the-covariance-matrix"><span class="header-section-number">3.3.3</span> Properties of the Covariance Matrix</h3>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Properties of the Covariance Matrix</strong></p>
 <ol type="1">
@@ -457,9 +432,6 @@ If <span class="math inline">Y</span> and <span class="math inline">Z</span> are
 <p><br>
 </p>
 <p>The positive semi-definiteness of the covariance matrix follows because <span class="math inline">\boldsymbol{a}'\boldsymbol{\Sigma}_Z\boldsymbol{a} = \text{Var}(\boldsymbol{a}'\boldsymbol{Z})</span>, which is the variance of a linear combination of the components of <span class="math inline">\boldsymbol{Z}</span>, and variance is always non-negative.</p>
-</section>
-<section id="correlation-matrix" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="correlation-matrix"><span class="header-section-number">3.3.4</span> Correlation Matrix</h3>
 <p>The <strong>correlation matrix</strong> standardizes the covariance matrix by dividing each covariance by the product of the corresponding standard deviations:</p>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Correlation Matrix</strong></p>
@@ -476,63 +448,8 @@ If <span class="math inline">Y</span> and <span class="math inline">Z</span> are
 <p><br>
 </p>
 <p>Mathematically, if <span class="math inline">\boldsymbol{D}</span> is a diagonal matrix with <span class="math inline">D_{ii} = \sqrt{\text{Var}(Z_i)}</span>, then: <span class="math display">\boldsymbol{R}_Z = \boldsymbol{D}^{-1}\boldsymbol{\Sigma}_Z\boldsymbol{D}^{-1}</span></p>
-</section>
-</section>
-<section id="heavy-tails-when-expectations-fail-to-exist" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="heavy-tails-when-expectations-fail-to-exist"><span class="header-section-number">3.4</span> Heavy Tails: When Expectations Fail to Exist</h2>
-<p>Our previous discussions assumed that expected values and covariance matrices exist, but this isn’t always guaranteed. Some probability distributions have such slow decay in their tails that moments of certain order may be infinite or undefined. These “heavy-tailed” distributions present special challenges for statistical analysis.</p>
-<section id="infinite-expectations" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="infinite-expectations"><span class="header-section-number">3.4.1</span> Infinite Expectations</h3>
-<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
-<p><strong>Infinite Expectation</strong></p>
-<p>A random variable <span class="math inline">Y</span> has an infinite expectation if: <span class="math display">E[Y] = \int_{-\infty}^{\infty} u \ \text{d}F_Y(u) = \infty</span></p>
-<p>In such cases, the sample mean does not converge to any finite value as the sample size increases.</p>
-</div>
-<p><br>
-</p>
-<p>The sample mean of i.i.d. samples from most distributions converges to the population mean as sample size increases (a property known as consistency). However, there are exceptional cases where consistency fails because the population mean itself is infinite.</p>
-</section>
-<section id="examples-of-distributions-with-infinite-moments" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="examples-of-distributions-with-infinite-moments"><span class="header-section-number">3.4.2</span> Examples of Distributions with Infinite Moments</h3>
-<section id="pareto-distribution" class="level4" data-number="3.4.2.1">
-<h4 data-number="3.4.2.1" class="anchored" data-anchor-id="pareto-distribution"><span class="header-section-number">3.4.2.1</span> Pareto Distribution</h4>
-<p>The simple Pareto distribution with parameter <span class="math inline">\alpha = 1</span> has the PDF: <span class="math display">f(u) = \begin{cases} \frac{1}{u^2} &amp; \text{if} \ u &gt; 1, \\
-0 &amp; \text{if} \ u \leq 1, \end{cases}</span></p>
-<p>The expected value is: <span class="math display">E[Y] = \int_{-\infty}^\infty u f(u) \ \text{d}u = \int_{1}^\infty \frac{u}{u^2} \ \text{d}u = \int_{1}^\infty \frac{1}{u} \ \text{d}u = \log(u)|_1^\infty = \infty</span></p>
-<p>Since the population mean is infinite, the sample mean cannot converge to any finite value and is therefore inconsistent.</p>
-</section>
-<section id="st.-petersburg-paradox" class="level4" data-number="3.4.2.2">
-<h4 data-number="3.4.2.2" class="anchored" data-anchor-id="st.-petersburg-paradox"><span class="header-section-number">3.4.2.2</span> St.&nbsp;Petersburg Paradox</h4>
-<p>The game of chance from the St.&nbsp;Petersburg paradox is a discrete example with infinite expectation. In this game, a fair coin is tossed until a tail appears; if the first tail is on the <span class="math inline">n</span>th toss, the payoff is <span class="math inline">2^n</span> dollars. The expected payoff is: <span class="math display">E[Y] = \sum_{n=1}^{\infty} 2^n \cdot \frac{1}{2^n} = \sum_{n=1}^{\infty} 1 = \infty</span></p>
-<p>This infinity arises from the infinite sum of 1’s, reflecting the unbounded potential payoffs in the game.</p>
-</section>
-<section id="cauchy-distribution" class="level4" data-number="3.4.2.3">
-<h4 data-number="3.4.2.3" class="anchored" data-anchor-id="cauchy-distribution"><span class="header-section-number">3.4.2.3</span> Cauchy Distribution</h4>
-<p>The Cauchy distribution (also known as the t-distribution with 1 degree of freedom) has the PDF: <span class="math display">f(u) = \frac{1}{\pi (1+u^2)}</span></p>
-<p>The Cauchy distribution presents a fascinating case where the sample mean of <span class="math inline">n</span> observations has exactly the same distribution as a single observation, regardless of how large <span class="math inline">n</span> becomes. This means the sample mean does not converge to any value as sample size increases.</p>
-</section>
-<section id="t-distribution-with-few-degrees-of-freedom" class="level4" data-number="3.4.2.4">
-<h4 data-number="3.4.2.4" class="anchored" data-anchor-id="t-distribution-with-few-degrees-of-freedom"><span class="header-section-number">3.4.2.4</span> t-Distribution with Few Degrees of Freedom</h4>
-<ul>
-<li><strong>Cauchy distribution</strong> (<span class="math inline">t_1</span>): No finite moments</li>
-<li><strong><span class="math inline">t_2</span> distribution</strong>: Finite mean but infinite variance</li>
-<li><strong><span class="math inline">t_3</span> distribution</strong>: Finite variance but infinite skewness</li>
-<li><strong><span class="math inline">t_4</span> distribution</strong>: Finite skewness but infinite kurtosis</li>
-</ul>
-<p>More generally, for a t-distribution with <span class="math inline">m</span> degrees of freedom: <span class="math display">E[Y^k] &lt; \infty \text{ for } k &lt; m</span> <span class="math display">E[Y^k] = \infty \text{ for } k \geq m</span></p>
-</section>
-</section>
-<section id="real-world-examples" class="level3" data-number="3.4.3">
-<h3 data-number="3.4.3" class="anchored" data-anchor-id="real-world-examples"><span class="header-section-number">3.4.3</span> Real-World Examples</h3>
-<p>Heavy-tailed distributions arise in many real-world phenomena where extreme events and large outliers are common:</p>
-<ol type="1">
-<li><strong>Financial returns</strong>: Stock market crashes and extreme price movements</li>
-<li><strong>Income and wealth distributions</strong>: Extreme wealth concentration</li>
-<li><strong>Natural disasters</strong>: Extreme earthquakes, floods, or storms</li>
-</ol>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1107,6 +1024,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./part4_convergence.html" class="pagination-link" aria-label="Stochastic Convergence">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Stochastic Convergence</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

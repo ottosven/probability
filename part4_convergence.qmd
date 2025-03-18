@@ -1,0 +1,332 @@
+# Stochastic Convergence
+
+Building on the concepts of the previous sections, we now turn to stochastic convergence which helps us understand the behavior of estimators as sample sizes increase.
+Stochastic convergence provides the theoretical framework for understanding when and how our estimates approach the true population parameters, which is essential for conducting valid statistical inference in econometric analysis.
+
+## Estimation
+
+### Parameters and Estimators
+
+A **parameter** $\theta$ is a characteristic or feature of a population distribution. Parameters are typically fixed but unknown quantities that we aim to learn about through sampling and estimation. Examples of parameters include:
+
+- The mean (expected value) $\mu$ of a population distribution
+- The variance $\sigma^2$ of a population distribution
+- The coefficients $\boldsymbol{\beta}$ in a regression model
+- The correlation $\rho$ between two random variables
+
+An **estimator** $\widehat{\theta}$ is a function of sample data intended to approximate the unknown parameter $\theta$. Since an estimator is a function of random variables (the sample), it is itself a random variable. When we actually compute the estimator from a specific realized sample, we call the resulting value an **estimate**.
+
+For example, the sample mean $\overline{Y} = \frac{1}{n}\sum_{i=1}^n Y_i$ is an estimator for the population mean $\mu = E[Y]$.
+
+### Sequences of Random Variables
+
+When we consider the properties of estimators, we often examine what happens as the sample size increases. This leads us to study sequences of random variables.
+
+A **sequence of random variables** $\{W_n\}_{n=1}^{\infty}$ is an ordered collection of random variables indexed by sample size $n$. For estimators, we are interested in how the sequence $\{\widehat{\theta}_n\}_{n=1}^{\infty}$ behaves as $n$ increases, where $\widehat{\theta}_n$ represents the estimator based on a sample of size $n$.
+
+The behavior of such sequences as $n \to \infty$ is the focus of asymptotic theory in econometrics. Understanding this behavior allows us to evaluate the properties of estimators in large samples, even when their exact finite-sample distributions are intractable.
+
+## Convergence in Probability
+
+### Definition for General Sequences
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Convergence in Probability**
+
+A sequence of random variables $\{W_n\}_{n=1}^{\infty}$ **converges in probability** to a constant $c$ if, for any $\epsilon > 0$,
+
+$$\lim_{n \to \infty} P(|W_n - c| > \epsilon) = 0$$
+
+Equivalently, this can be expressed as:
+
+$$\lim_{n \to \infty} P(|W_n - c| \leq \epsilon) = 1$$
+
+This is denoted as $W_n \overset{p}{\to} c$.
+:::
+\
+
+Intuitively, convergence in probability means that as the sample size $n$ increases, the probability that $W_n$ deviates from $c$ by more than any fixed positive amount $\epsilon$ becomes arbitrarily small.
+
+For example, if $W_n \overset{p}{\to} c$, then for any small $\epsilon > 0$ (say, $\epsilon = 0.01$), we can make $P(|W_n - c| > 0.01)$ as small as we want by choosing a sufficiently large sample size $n$.
+
+### Consistency for a Parameter
+
+Applying the concept of convergence in probability to estimators leads to the important property of **consistency**.
+Good estimators get closer and closer to the true parameter being estimated as the sample size $n$ increases, eventually returning the true parameter value in a hypothetically infinitely large sample.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Consistency**
+
+An estimator $\widehat{\theta}_n$ is **consistent** for the parameter $\theta$ if:
+
+$$\widehat{\theta}_n \overset{p}{\to} \theta \quad \text{as} \quad n \to \infty$$
+
+That is, if for any $\epsilon > 0$:
+
+$$\lim_{n \to \infty} P(|\widehat{\theta}_n - \theta| > \epsilon) = 0$$
+:::
+\
+
+Consistency is a minimal requirement for a good estimator. It ensures that with a large enough sample, the estimator will be arbitrarily close to the true parameter with high probability. However, consistency alone doesn't tell us how quickly the estimator approaches the parameter as the sample size increases.
+
+If an estimator $\widehat \theta$ is a continuous random variable, it will almost never reach exactly the true parameter value because point probabilities are zero: $P(\widehat \theta = \theta) = 0$.
+
+However, the larger the sample size, the higher should be the probability that $\widehat \theta$ is close to the true value $\theta$.
+Consistency means that, if we fix some small precision value $\epsilon > 0$, then, 
+$$P(|\widehat \theta - \theta| \leq \epsilon) = P( \theta - \epsilon \leq \widehat \theta \leq \theta + \epsilon)$$
+should increase in the sample size $n$ and eventually reach 1.
+
+
+Here's the improved subsection on sufficient condition and MSE decomposition:
+
+I've analyzed your updated version in paste.txt, and I can make the proof more concise by directly substituting the variance and bias. Here's a revised version that maintains comprehensiveness while being more concise:
+
+### Sufficient Condition for Consistency and the MSE Decomposition
+
+A powerful approach to establishing consistency relies on examining the mean squared error (MSE) of an estimator and applying Markov's inequality.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Markov's Inequality**
+
+For any non-negative random variable $X$ and any positive constant $a$:
+
+$$P(X \geq a) \leq \frac{E[X]}{a}$$
+:::
+\
+
+Markov's inequality provides an upper bound on the probability that a non-negative random variable exceeds any positive threshold. While this bound may not be tight, it is extremely useful for proving convergence results.
+
+To apply Markov's inequality to establish consistency, we consider the squared deviation between the estimator and the parameter:
+
+\begin{align*}
+P(|\widehat{\theta}_n - \theta| > \epsilon) &= P((\widehat{\theta}_n - \theta)^2 > \epsilon^2) \\
+&\leq \frac{E[(\widehat{\theta}_n - \theta)^2]}{\epsilon^2} \\
+&= \frac{MSE(\widehat{\theta}_n)}{\epsilon^2}
+\end{align*}
+
+This derivation leads directly to a sufficient condition for consistency:
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Sufficient Condition for Consistency**
+
+Let $\widehat{\theta}_n$ be an estimator for parameter $\theta$. If:
+
+$$\lim_{n \to \infty} MSE(\widehat{\theta}_n) = \lim_{n \to \infty} E[(\widehat{\theta}_n - \theta)^2] = 0$$
+
+Then $\widehat{\theta}_n$ is consistent for $\theta$.
+:::
+\
+
+To analyze when this condition holds, we need to understand the components of the MSE. The **bias** of an estimator is defined as:
+
+$$Bias(\widehat{\theta}_n) = E[\widehat{\theta}_n] - \theta$$
+
+The bias measures the systematic deviation of the estimator from the true parameter. An estimator is **unbiased** if $Bias(\widehat{\theta}_n) = 0$ for all sample sizes, and **asymptotically unbiased** if $\lim_{n \to \infty} Bias(\widehat{\theta}_n) = 0$.
+
+The MSE can be decomposed into the sum of the variance and the squared bias. Here's a concise proof:
+
+\begin{align*}
+MSE(\widehat{\theta}_n) &= E[(\widehat{\theta}_n - \theta)^2] \\
+&= E[(\widehat{\theta}_n - E[\widehat{\theta}_n] + E[\widehat{\theta}_n] - \theta)^2] \\
+&= E[(\widehat{\theta}_n - E[\widehat{\theta}_n])^2 + 2(\widehat{\theta}_n - E[\widehat{\theta}_n])(E[\widehat{\theta}_n] - \theta) + (E[\widehat{\theta}_n] - \theta)^2] \\
+&= Var(\widehat{\theta}_n) + 2 \cdot 0 \cdot Bias(\widehat{\theta}_n) + [Bias(\widehat{\theta}_n)]^2 \\
+&= Var(\widehat{\theta}_n) + [Bias(\widehat{\theta}_n)]^2
+\end{align*}
+
+The middle term vanishes because $E[\widehat{\theta}_n - E[\widehat{\theta}_n]] = 0$ by definition.
+
+This fundamental decomposition reveals that estimation error comes from two sources: the variability of the estimator around its expected value (variance) and the systematic deviation of the expected value from the true parameter (bias).
+
+This leads to a practical sufficient condition for consistency:
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Practical Sufficient Condition for Consistency**
+
+An estimator $\widehat{\theta}_n$ is consistent for $\theta$ if both of the following conditions hold as $n \to \infty$:
+
+1. $Bias(\widehat{\theta}_n) \to 0$ (asymptotically unbiased)
+2. $Var(\widehat{\theta}_n) \to 0$ (variance approaches zero)
+:::
+\
+
+
+### Law of Large Numbers
+
+The **Law of Large Numbers (LLN)** is one of the fundamental results in probability theory and provides a key tool for establishing consistency of many estimators.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Weak Law of Large Numbers (WLLN)**
+
+Let $\{Y_1, Y_2, \ldots, Y_n\}$ be a sequence of independent and identically distributed (i.i.d.) random variables with $E[Y_i] = \mu$ and $Var(Y_i) = \sigma^2 < \infty$. Then the sample mean converges in probability to the population mean:
+
+$$\overline{Y}_n = \frac{1}{n}\sum_{i=1}^n Y_i \overset{p}{\to} \mu \quad \text{as} \quad n \to \infty$$
+:::
+\
+
+The WLLN essentially states that if we take a large enough sample from a population with finite mean, the sample mean will be close to the population mean with high probability.
+
+For the sample mean, we can directly verify the conditions for consistency:
+
+1. $E[\overline{Y}_n] = \mu$ (unbiased for all $n$)
+2. $Var(\overline{Y}_n) = \frac{\sigma^2}{n} \to 0$ as $n \to \infty$
+
+The LLN extends to functions of sample means as well. If $g(\cdot)$ is a continuous function and $\overline{Y}_n \overset{p}{\to} \mu$, then:
+
+$$g(\overline{Y}_n) \overset{p}{\to} g(\mu)$$
+
+This result, known as the **continuous mapping theorem**, allows us to establish consistency for a wide range of estimators that can be expressed as functions of sample means.
+
+### Rate of Convergence
+
+While consistency tells us that an estimator eventually converges to the true parameter, it doesn't indicate how quickly this convergence occurs. The **rate of convergence** provides this information.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Rate of Convergence**
+
+A consistent estimator $\widehat{\theta}_n$ converges at rate $r_n$ if:
+
+$$r_n(\widehat{\theta}_n - \theta) = O_p(1)$$
+
+where $O_p(1)$ indicates that the sequence is "bounded in probability."
+:::
+\
+
+For many standard estimators, including the sample mean of i.i.d. random variables, the rate of convergence is $r_n = \sqrt{n}$. This means:
+
+$$\sqrt{n}(\widehat{\theta}_n - \theta) = O_p(1)$$
+
+The rate of convergence $r_n = \sqrt{n}$ is often called the "root-n" rate or "parametric" rate of convergence. Estimators with this rate have the property that to halve the average estimation error, we need to quadruple the sample size.
+
+The root mean squared error (RMSE) captures this relationship:
+
+$$RMSE(\widehat{\theta}_n) = \sqrt{E[(\widehat{\theta}_n - \theta)^2]} \approx \frac{C}{\sqrt{n}}$$
+
+where $C$ is a constant that depends on the specific distribution and estimator.
+
+## Convergence in Distribution
+
+While convergence in probability describes how an estimator concentrates around the true parameter, **convergence in distribution** describes the limiting shape of the distribution of the estimator (or a transformation of it).
+
+### Limiting Distribution Definition for General Sequences
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Convergence in Distribution**
+
+A sequence of random variables $\{W_n\}_{n=1}^{\infty}$ **converges in distribution** to a random variable $W$ if:
+
+$$\lim_{n \to \infty} F_{W_n}(x) = F_W(x)$$
+
+for all points $x$ where $F_W(x)$ is continuous. Here, $F_{W_n}$ and $F_W$ are the cumulative distribution functions of $W_n$ and $W$, respectively.
+
+This is denoted as $W_n \overset{d}{\to} W$.
+:::
+\
+
+Unlike convergence in probability, which relates a sequence of random variables to a fixed constant, convergence in distribution relates the sequence to another random variable with a specific distribution. 
+
+It's important to note that $W_n \overset{d}{\to} W$ does not mean that the random variables $W_n$ approach $W$ in a pointwise sense. Rather, the distribution function of $W_n$ approaches the distribution function of $W$.
+
+### Consistent Estimator Has Degenerate Limiting Distribution
+
+If an estimator $\widehat{\theta}_n$ is consistent for $\theta$, then:
+
+$$\widehat{\theta}_n \overset{p}{\to} \theta$$
+
+This implies that $\widehat{\theta}_n$ also converges in distribution to the constant $\theta$:
+
+$$\widehat{\theta}_n \overset{d}{\to} \theta$$
+
+However, this limiting distribution is **degenerate** — it places all probability mass at the single point $\theta$. While this confirms consistency, it doesn't provide information about the shape of the sampling distribution for finite $n$.
+
+### Asymptotic Distribution of an Estimator
+
+To obtain a non-degenerate limiting distribution that provides useful information about the sampling variability of a consistent estimator, we typically examine a standardized version of the estimator.
+
+If $\widehat{\theta}_n$ converges to $\theta$ at rate $r_n$, then we study:
+
+$$r_n(\widehat{\theta}_n - \theta)$$
+
+For many estimators with $r_n = \sqrt{n}$, this standardized quantity converges in distribution to a normal random variable:
+
+$$\sqrt{n}(\widehat{\theta}_n - \theta) \overset{d}{\to} N(0, V)$$
+
+where $V$ is the asymptotic variance.
+
+The distribution of $\sqrt{n}(\widehat{\theta}_n - \theta)$ is called the **asymptotic distribution** of the estimator $\widehat{\theta}_n$. For large $n$, we can approximate:
+
+$$\widehat{\theta}_n \approx N\left(\theta, \frac{V}{n}\right)$$
+
+This approximation is the basis for constructing confidence intervals and conducting hypothesis tests in large samples.
+
+### Central Limit Theorem
+
+The **Central Limit Theorem (CLT)** is the key result that establishes the asymptotic normality of many estimators.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Central Limit Theorem (CLT)**
+
+Let $\{Y_1, Y_2, \ldots, Y_n\}$ be a sequence of i.i.d. random variables with mean $\mu$ and variance $\sigma^2 < \infty$. Then:
+
+$$\sqrt{n}(\overline{Y}_n - \mu) \overset{d}{\to} N(0, \sigma^2)$$
+
+Or equivalently:
+
+$$\frac{\overline{Y}_n - \mu}{\sigma/\sqrt{n}} \overset{d}{\to} N(0, 1)$$
+:::
+\
+
+The CLT tells us that the standardized sample mean follows a standard normal distribution in large samples, regardless of the underlying distribution of the individual observations (as long as the variance is finite).
+
+This remarkable result means that we can construct approximate confidence intervals and conduct hypothesis tests for the mean using the normal distribution, even when the population distribution is non-normal, provided the sample size is sufficiently large.
+
+The CLT extends to more complex estimators as well. If an estimator can be expressed as a function of sample means, the **delta method** allows us to derive its asymptotic distribution.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Delta Method**
+
+If $\sqrt{n}(\widehat{\theta}_n - \theta) \overset{d}{\to} N(0, V)$ and $g(\cdot)$ is a differentiable function with $g'(\theta) \neq 0$, then:
+
+$$\sqrt{n}(g(\widehat{\theta}_n) - g(\theta)) \overset{d}{\to} N(0, [g'(\theta)]^2 V)$$
+:::
+\
+
+### The Normal Distribution and Its Properties
+
+Given the central role of the normal distribution in asymptotic theory, it's worthwhile to review its key properties.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Normal Distribution**
+
+A random variable $X$ follows a normal distribution with mean $\mu$ and variance $\sigma^2$, denoted $X \sim N(\mu, \sigma^2)$, if its probability density function (PDF) is:
+
+$$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
+
+The standard normal distribution, denoted $Z \sim N(0, 1)$, has mean 0 and variance 1, with PDF:
+
+$$\phi(z) = \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{z^2}{2}\right)$$
+
+and cumulative distribution function (CDF) $\Phi(z)$.
+:::
+\
+
+Key properties of the normal distribution relevant to econometrics include:
+
+1. **Linear combinations**: If $X_1 \sim N(\mu_1, \sigma_1^2)$ and $X_2 \sim N(\mu_2, \sigma_2^2)$ are independent, then:
+   $$a X_1 + b X_2 \sim N(a\mu_1 + b\mu_2, a^2\sigma_1^2 + b^2\sigma_2^2)$$
+
+2. **Standardization**: If $X \sim N(\mu, \sigma^2)$, then:
+   $$Z = \frac{X - \mu}{\sigma} \sim N(0, 1)$$
+
+3. **Symmetry**: The standard normal distribution is symmetric around zero:
+   $$\phi(z) = \phi(-z)$$ 
+   $$\Phi(z) = 1 - \Phi(-z)$$
+
+4. **Quantiles**: The $p$-quantile of the standard normal distribution, denoted $z_p$, satisfies $\Phi(z_p) = p$. Some important quantiles include:
+   - $z_{0.975} = 1.96$ (used for 95% confidence intervals)
+   - $z_{0.995} = 2.58$ (used for 99% confidence intervals)
+   - $z_{0.9} = 1.28$ (used for 90% confidence intervals)
+
+5. **Multivariate normal distribution**: A random vector $\mathbf{X} = (X_1, X_2, \ldots, X_k)'$ follows a multivariate normal distribution, denoted $\mathbf{X} \sim N(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, if every linear combination of its components follows a univariate normal distribution.
+
+The pervasiveness of the normal distribution in asymptotic theory stems from the CLT and related results. Even when the exact finite-sample distribution of an estimator is complex or unknown, its asymptotic normal distribution often provides a good approximation in large samples.
+

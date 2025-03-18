@@ -626,3 +626,70 @@ The first equality follows because $g(Z) = g(b)$ when $Z=b$. The second equality
 
 Since this relationship holds for every possible value of $Z$, we have the general result:
 $$E[g(Z)Y|Z]=g(Z)E[Y|Z]$$
+
+## Heavy Tails: When Expectations Fail to Exist
+
+Our previous discussions assumed that expected values and covariance matrices exist, but this isn't always guaranteed. Some probability distributions have such slow decay in their tails that moments of certain order may be infinite or undefined. These "heavy-tailed" distributions present special challenges for statistical analysis.
+
+### Infinite Expectations
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Infinite Expectation**
+
+A random variable $Y$ has an infinite expectation if:
+$$E[|Y|] = \int_{-\infty}^{\infty} |u| \, \text{d}F_Y(u) = \infty$$
+
+When this occurs, the expected value $E[Y]$ either diverges to positive infinity, negative infinity, or is not well-defined due to both positive and negative parts of the integral diverging.
+
+In such cases, the sample mean does not converge to any finite value as the sample size increases.
+:::
+\
+
+The sample mean of i.i.d. samples from most distributions converges to the population mean as sample size increases (a property known as consistency). However, there are exceptional cases where consistency fails because the population mean itself is infinite.
+
+### Examples of Distributions with Infinite Moments
+
+#### Pareto Distribution {-}
+
+The simple Pareto distribution with parameter $\alpha = 1$ has the PDF:
+$$f(u) = \begin{cases} \frac{1}{u^2} & \text{if} \ u > 1, \\
+0 & \text{if} \ u \leq 1, \end{cases}$$
+
+The expected value is:
+$$E[Y] = \int_{-\infty}^\infty u f(u) \ \text{d}u = \int_{1}^\infty \frac{u}{u^2} \ \text{d}u = \int_{1}^\infty \frac{1}{u} \ \text{d}u = \log(u)|_1^\infty = \infty$$
+
+Since the population mean is infinite, the sample mean cannot converge to any finite value and is therefore inconsistent.
+
+#### St. Petersburg Paradox {-}
+
+The game of chance from the St. Petersburg paradox is a discrete example with infinite expectation. In this game, a fair coin is tossed until a tail appears; if the first tail is on the $n$th toss, the payoff is $2^n$ dollars. The expected payoff is:
+$$E[Y] = \sum_{n=1}^{\infty} 2^n \cdot \frac{1}{2^n} = \sum_{n=1}^{\infty} 1 = \infty$$
+
+This infinity arises from the infinite sum of 1's, reflecting the unbounded potential payoffs in the game.
+
+#### Cauchy Distribution {-}
+
+The Cauchy distribution (also known as the t-distribution with 1 degree of freedom) has the PDF:
+$$f(u) = \frac{1}{\pi (1+u^2)}$$
+
+The Cauchy distribution presents a fascinating case where the sample mean of $n$ observations has exactly the same distribution as a single observation, regardless of how large $n$ becomes. This means the sample mean does not converge to any value as sample size increases.
+
+#### t-Distribution with Few Degrees of Freedom {-}
+
+- **Cauchy distribution** ($t_1$): No finite moments
+- **$t_2$ distribution**: Finite mean but infinite variance
+- **$t_3$ distribution**: Finite variance but infinite skewness
+- **$t_4$ distribution**: Finite skewness but infinite kurtosis
+
+More generally, for a t-distribution with $m$ degrees of freedom:
+$$E[Y^k] < \infty \text{ for } k < m$$
+$$E[Y^k] = \infty \text{ for } k \geq m$$
+
+
+### Real-World Examples
+
+Heavy-tailed distributions arise in many real-world phenomena where extreme events and large outliers are common:
+
+1. **Financial returns**: Stock market crashes and extreme price movements
+2. **Income and wealth distributions**: Extreme wealth concentration
+3. **Natural disasters**: Extreme earthquakes, floods, or storms

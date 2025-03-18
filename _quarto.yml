@@ -19,6 +19,7 @@ book:
     - part1_distribution.qmd
     - part2_expectation.qmd
     - part3_covariance.qmd
+    - part4_convergence.qmd
     # - sec02_probability.qmd
     # - sec03_dependence.qmd
     # - stat1_data.qmd
