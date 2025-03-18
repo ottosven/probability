@@ -297,11 +297,13 @@ Y = \text{income per working hour in EUR}.
 <span class="header-section-number">1.3</span> Events and Probabilities</h2>
 <p>To quantify the uncertainty in random variables, we need to assign probabilities to different possible outcomes or sets of outcomes. This is where events and probability functions come into play.</p>
 <p>An <strong>event</strong> of a random variable <span class="math inline">Y</span> is a specific subset of the real line. Any real number defines an event (elementary event), and any open, half-open, or closed interval represents an event as well.</p>
-<p>Let’s define some specific events:</p>
+<p>Let’s define some specific events, using our coin toss example where <span class="math inline">Y=1</span> represents heads and <span class="math inline">Y=0</span> represents tails:</p>
 <ul>
-<li><p>Elementary events: <span class="math display">
-  A_1 = \{Y=0\}, \quad A_2 = \{Y=1\}, \quad A_3 = \{Y=2.5\}
-</span></p></li>
+<li><p>Elementary events: <span class="math display">\begin{align*}
+A_1 &amp;= \{Y=0\} \text{ (coin shows tails)} \\
+A_2 &amp;= \{Y=1\} \text{ (coin shows heads)} \\
+A_3 &amp;= \{Y=2.5\} \text{ (impossible outcome)}
+\end{align*}</span></p></li>
 <li><p>Half-open events: <span class="math display">\begin{align*}
 A_4 &amp;= \{Y \geq 0\} = \{ Y \in [0,\infty) \} \\
 A_5 &amp;= \{ -1 \leq Y &lt; 1 \} = \{ Y \in [-1,1) \}
@@ -473,7 +475,7 @@ Reflects the monotonicity of probability when the event <span class="math inline
 <li><p><strong>Limits at 0 and 1</strong>: <span class="math inline">\displaystyle \lim_{a \to -\infty} F(a) = 0</span> and <span class="math inline">\displaystyle \lim_{a \to \infty} F(a) = 1</span>.<br>
 Ensures the total probability equals 1 and impossible events have zero probability.</p></li>
 <li><p><strong>Right-continuity</strong>: <span class="math inline">\displaystyle \lim_{\varepsilon \to 0, \varepsilon &gt; 0} F(a + \varepsilon) = F(a)</span>.<br>
-Ensures <span class="math inline">P(Y \leq a)</span> includes <span class="math inline">P(Y = a)</span>, which matters especially for discrete variables with jumps in the CDF.</p></li>
+Ensures <span class="math inline">P(Y \leq a)</span> includes <span class="math inline">P(Y = a)</span>, which matters especially for discrete variables with jumps in the CDF. This property means that at any point <span class="math inline">a</span>, the CDF value includes the probability mass exactly at that point, making <span class="math inline">F(a) = P(Y \leq a)</span> rather than <span class="math inline">P(Y &lt; a)</span>.</p></li>
 </ul>
 <p>By the basic rules of probability, we can compute the probability of any event of interest if we know the CDF <span class="math inline">F(a)</span>. Here are the most common calculations:</p>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
@@ -558,6 +560,7 @@ Figure&nbsp;1.4: Coin variable: CDF (left) and PMF (right)
         0   &amp; \text{otherwise}
         \end{cases}
   </span></p>
+<p>Note that these probability values sum to 1.</p>
 <div id="fig-edu" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-edu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
