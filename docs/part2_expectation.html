@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./part3_covariance.html" rel="next">
 <link href="./part1_distribution.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -175,6 +176,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Expected Value</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./part3_covariance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Random Variables</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -192,6 +199,27 @@ window.Quarto = {
   <li><a href="#conditional-expectation-function-cef" id="toc-conditional-expectation-function-cef" class="nav-link" data-scroll-target="#conditional-expectation-function-cef"><span class="header-section-number">2.1.3</span> Conditional Expectation Function (CEF)</a></li>
   <li><a href="#law-of-iterated-expectations-lie" id="toc-law-of-iterated-expectations-lie" class="nav-link" data-scroll-target="#law-of-iterated-expectations-lie"><span class="header-section-number">2.1.4</span> Law of Iterated Expectations (LIE)</a></li>
   <li><a href="#conditioning-theorem-ct" id="toc-conditioning-theorem-ct" class="nav-link" data-scroll-target="#conditioning-theorem-ct"><span class="header-section-number">2.1.5</span> Conditioning Theorem (CT)</a></li>
+  </ul></li>
+  <li><a href="#continuous-case" id="toc-continuous-case" class="nav-link" data-scroll-target="#continuous-case"><span class="header-section-number">2.2</span> Continuous Case</a>
+  <ul class="collapse">
+  <li><a href="#conditional-expectation-for-continuous-variables" id="toc-conditional-expectation-for-continuous-variables" class="nav-link" data-scroll-target="#conditional-expectation-for-continuous-variables"><span class="header-section-number">2.2.1</span> Conditional Expectation for Continuous Variables</a></li>
+  <li><a href="#examples-with-continuous-random-variables" id="toc-examples-with-continuous-random-variables" class="nav-link" data-scroll-target="#examples-with-continuous-random-variables"><span class="header-section-number">2.2.2</span> Examples with Continuous Random Variables</a></li>
+  </ul></li>
+  <li><a href="#general-case" id="toc-general-case" class="nav-link" data-scroll-target="#general-case"><span class="header-section-number">2.3</span> General Case</a>
+  <ul class="collapse">
+  <li><a href="#special-case-continuous-random-variables" id="toc-special-case-continuous-random-variables" class="nav-link" data-scroll-target="#special-case-continuous-random-variables"><span class="header-section-number">2.3.1</span> Special Case: Continuous Random Variables</a></li>
+  <li><a href="#special-case-discrete-random-variables" id="toc-special-case-discrete-random-variables" class="nav-link" data-scroll-target="#special-case-discrete-random-variables"><span class="header-section-number">2.3.2</span> Special Case: Discrete Random Variables</a></li>
+  <li><a href="#why-the-general-case-matters" id="toc-why-the-general-case-matters" class="nav-link" data-scroll-target="#why-the-general-case-matters"><span class="header-section-number">2.3.3</span> Why the General Case Matters</a></li>
+  <li><a href="#general-definition-of-conditional-expectation" id="toc-general-definition-of-conditional-expectation" class="nav-link" data-scroll-target="#general-definition-of-conditional-expectation"><span class="header-section-number">2.3.4</span> General Definition of Conditional Expectation</a></li>
+  <li><a href="#conditional-expectation-and-independence" id="toc-conditional-expectation-and-independence" class="nav-link" data-scroll-target="#conditional-expectation-and-independence"><span class="header-section-number">2.3.5</span> Conditional Expectation and Independence</a></li>
+  <li><a href="#expected-value-of-functions" id="toc-expected-value-of-functions" class="nav-link" data-scroll-target="#expected-value-of-functions"><span class="header-section-number">2.3.6</span> Expected Value of Functions</a></li>
+  <li><a href="#moments-and-related-measures" id="toc-moments-and-related-measures" class="nav-link" data-scroll-target="#moments-and-related-measures"><span class="header-section-number">2.3.7</span> Moments and Related Measures</a></li>
+  </ul></li>
+  <li><a href="#properties-of-expectation" id="toc-properties-of-expectation" class="nav-link" data-scroll-target="#properties-of-expectation"><span class="header-section-number">2.4</span> Properties of Expectation</a>
+  <ul class="collapse">
+  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity"><span class="header-section-number">2.4.1</span> Linearity</a></li>
+  <li><a href="#law-of-iterated-expectations-lie-1" id="toc-law-of-iterated-expectations-lie-1" class="nav-link" data-scroll-target="#law-of-iterated-expectations-lie-1"><span class="header-section-number">2.4.2</span> Law of Iterated Expectations (LIE)</a></li>
+  <li><a href="#conditioning-theorem-ct-1" id="toc-conditioning-theorem-ct-1" class="nav-link" data-scroll-target="#conditioning-theorem-ct-1"><span class="header-section-number">2.4.3</span> Conditioning Theorem (CT)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -377,6 +405,302 @@ E[Y|Z=0] &amp;= 4 \cdot 0.01 + 10 \cdot 0.07 + 12 \cdot 0.43 + 13 \cdot 0.09 \\
 0 \cdot 13.75 = 0 &amp; \text{if } Z = 0 \text{ (unmarried)} \\
 1 \cdot 14.28 = 14.28 &amp; \text{if } Z = 1 \text{ (married)}
 \end{cases}</span></p>
+<p>I’ve evaluated your draft for the “Continuous Case” subsection, and it’s a good start. Here’s my suggested improved version with better organization, more detailed explanations, and enhanced examples:</p>
+</section>
+</section>
+<section id="continuous-case" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="continuous-case"><span class="header-section-number">2.2</span> Continuous Case</h2>
+<p>Now, let’s extend our discussion of expected values to continuous random variables, which are characterized by probability density functions (PDFs) rather than probability mass functions (PMFs).</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Expected Value (Continuous Case)</strong></p>
+<p>The <strong>expectation</strong> or <strong>expected value</strong> of a continuous random variable <span class="math inline">Y</span> with PDF <span class="math inline">f_Y(u)</span> and support <span class="math inline">\mathcal{Y}</span> is defined as <span id="eq-expectation-continuous"><span class="math display">E[Y] = \int_{\mathcal{Y}} u f_Y(u) \, du = \int_{-\infty}^{\infty} u f_Y(u) \, du. \tag{2.2}</span></span></p>
+</div>
+<p><br>
+</p>
+<p>Intuitively, this integral calculates a weighted average of all possible values of <span class="math inline">Y</span>, where the weight of each value is given by its density. This is analogous to the discrete case, where we computed a weighted sum. The key difference is that continuous random variables have infinitely many possible values within their support, requiring integration rather than summation.</p>
+<section id="conditional-expectation-for-continuous-variables" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="conditional-expectation-for-continuous-variables"><span class="header-section-number">2.2.1</span> Conditional Expectation for Continuous Variables</h3>
+<p>For continuous random variables, the conditional expectation given that <span class="math inline">Z=b</span> is defined similarly:</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Conditional Expectation (Continuous Case)</strong></p>
+<p>For a continuous random variable <span class="math inline">Y</span> with conditional PDF <span class="math inline">f_{Y|Z=b}(u)</span>, the conditional expectation of <span class="math inline">Y</span> given <span class="math inline">Z=b</span> is:</p>
+<p><span class="math display">E[Y|Z=b] = \int_{-\infty}^{\infty} u f_{Y|Z=b}(u) \, du</span></p>
+</div>
+<p><br>
+</p>
+<p>The same principles of conditional expectation functions (CEF) that we discussed for discrete variables apply here as well. The CEF <span class="math inline">E[Y|Z] = m(Z)</span> is a random variable that depends on the random outcome of <span class="math inline">Z</span>, where <span class="math inline">m(b) = E[Y|Z=b]</span> is the function mapping each possible value of <span class="math inline">Z</span> to the corresponding conditional expectation.</p>
+</section>
+<section id="examples-with-continuous-random-variables" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="examples-with-continuous-random-variables"><span class="header-section-number">2.2.2</span> Examples with Continuous Random Variables</h3>
+<section id="example-1-uniform-distribution" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example-1-uniform-distribution">Example 1: Uniform Distribution</h4>
+<p>A random variable <span class="math inline">Y</span> follows a <strong>uniform distribution</strong> on the interval <span class="math inline">[0,1]</span> if its PDF is constant across this interval:</p>
+<p><span class="math display">f(u) = \begin{cases} 1 &amp; \text{if} \ u \in[0,1], \\ 0 &amp; \text{otherwise.} \end{cases}</span></p>
+<p>The expected value is calculated as:</p>
+<p><span class="math display">E[Y] = \int_{-\infty}^\infty u f(u) \, du = \int_{0}^1 u \cdot 1 \, du = \int_{0}^1 u \, du = \left. \frac{u^2}{2} \right|_{0}^1 = \frac{1}{2}</span></p>
+<p>So the expected value of a uniform random variable on <span class="math inline">[0,1]</span> is exactly <span class="math inline">\frac{1}{2}</span>, the midpoint of the interval. More generally, for a uniform distribution on <span class="math inline">[a,b]</span>, the expected value is <span class="math inline">\frac{a+b}{2}</span>.</p>
+</section>
+<section id="example-2-wage-distribution" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example-2-wage-distribution">Example 2: Wage Distribution</h4>
+<p>Let’s return to our <em>wage</em> variable from Part 1. Suppose the wage distribution in our population has the following PDF:</p>
+<p><span class="math display">f(u) = \begin{cases}
+\frac{1}{20}e^{-u/20} &amp; \text{if} \ u \geq 0, \\
+0 &amp; \text{otherwise,}
+\end{cases}</span></p>
+<p>This represents an exponential distribution with parameter <span class="math inline">\lambda = 1/20</span>. The expected value is:</p>
+<p><span class="math display">E[Y] = \int_{0}^{\infty} u \cdot \frac{1}{20}e^{-u/20} \, du = \frac{1}{20} \int_{0}^{\infty} u \cdot e^{-u/20} \, du</span></p>
+<p>Using integration by parts or leveraging the known mean of an exponential distribution (<span class="math inline">1/\lambda</span>), we get <span class="math inline">E[Y] = 20</span> EUR per hour.</p>
+</section>
+<section id="example-3-wage-given-education" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example-3-wage-given-education">Example 3: Wage Given Education</h4>
+<p>From <a href="part1_distribution.html#fig-cPDFedu" class="quarto-xref">Figure&nbsp;<span>1.7 (b)</span></a>, we saw that the conditional distribution of <em>wage</em> given <em>education</em> varies substantially:</p>
+<div id="fig-cPDFedu1" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cPDFedu1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./plots/CPDF_wage_edu.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Conditional PDFs of wage given education</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-cPDFedu1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1
+</figcaption>
+</figure>
+</div>
+<p>These different distributions lead to different conditional expectations:</p>
+<ul>
+<li><span class="math inline">E[Y|Z=12] = 14.3</span> EUR/hour</li>
+<li><span class="math inline">E[Y|Z=14] = 17.8</span> EUR/hour</li>
+<li><span class="math inline">E[Y|Z=18] = 27.0</span> EUR/hour</li>
+</ul>
+<p>The CEF plot is given below:</p>
+<div id="fig-CEFwageedu" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-CEFwageedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<img src="./plots/CEF_wageedu.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CEFwageedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: CEF of wage given education
+</figcaption>
+</figure>
+</div>
+<p>The increasing conditional expectations reflect the positive relationship between education and wages. This dependency confirms that education and wages are not independent random variables.</p>
+</section>
+<section id="example-4-wage-given-experience" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example-4-wage-given-experience">Example 4: Wage Given Experience</h4>
+<p>Now consider the relationship between <em>wage</em> (<span class="math inline">Y</span>) and years of <em>experience</em> (<span class="math inline">Z</span>). Labor economics theory suggests that wages typically increase with experience but at a diminishing rate. Suppose empirical analysis reveals that the conditional expectation of wage given experience level <span class="math inline">b</span> follows a quadratic form:</p>
+<p><span class="math display">m(b) = E[Y|Z=b] = 19 + 0.5b - 0.013b^2</span></p>
+<p>This functional form captures the initial increase in wages with experience (positive linear term <span class="math inline">0.5b</span>) and the diminishing returns over time (negative quadratic term <span class="math inline">-0.013b^2</span>).</p>
+<p>For some specific values:</p>
+<ul>
+<li><span class="math inline">m(5) = E[Y|Z=5] = 21.2</span> EUR/hour</li>
+<li><span class="math inline">m(10) = E[Y|Z=10] = 22.7</span> EUR/hour</li>
+<li><span class="math inline">m(20) = E[Y|Z=20] = 23.8</span> EUR/hour</li>
+<li><span class="math inline">m(30) = E[Y|Z=30] = 22.3</span> EUR/hour</li>
+</ul>
+<p>The conditional expectation function is maximized at the point where its derivative equals zero:</p>
+<p><span class="math display">\frac{d}{db}m(b) = 0.5 - 0.026b = 0 \implies b = \frac{0.5}{0.026} \approx 19.2</span></p>
+<p>This suggests that, on average, wages peak at around 19.2 years of experience in this population.</p>
+<p>As a function of the random variable <span class="math inline">Z</span>, the CEF is:</p>
+<p><span class="math display">E[Y|Z] = m(Z) = 19 + 0.5Z - 0.013Z^2</span></p>
+<p>This is itself a random variable because its value depends on the random outcome of <span class="math inline">Z</span>.</p>
+<div id="fig-CEFwageexper" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-CEFwageexper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./plots/CEF_wageex.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CEFwageexper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: CEF of wage given experience
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="general-case" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="general-case"><span class="header-section-number">2.3</span> General Case</h2>
+<p>We can define the expected value of a random variable <span class="math inline">Y</span> in a unified way that applies to both discrete and continuous cases using its CDF <span class="math inline">F_Y(u)</span>.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Expected Value (General Definition)</strong></p>
+<p><span id="eq-expectation-general"><span class="math display">E[Y] = \int_{-\infty}^\infty u \, \text{d}F_Y(u) \tag{2.3}</span></span></p>
+</div>
+<p><br>
+</p>
+<p>This formula uses the <strong>Riemann-Stieltjes integral</strong>, which generalizes the familiar Riemann integral. To understand this, recall that the standard <strong>Riemann integral</strong> <span class="math inline">\int_a^b g(x) \, dx</span> is defined as: <span class="math display">\int_a^b g(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} g(x_i^*) \Delta x_i</span> where <span class="math inline">[a,b]</span> is partitioned into <span class="math inline">n</span> subintervals <span class="math inline">[x_{i-1}, x_i]</span> of width <span class="math inline">\Delta x_i = x_i - x_{i-1}</span>, and <span class="math inline">x_i^*</span> is any point in the <span class="math inline">i</span>-th subinterval. The limit is taken as the maximum width of all subintervals approaches zero.</p>
+<p>In contrast, the <strong>Riemann-Stieltjes integral</strong> <span class="math inline">\int_a^b g(x) \, dh(x)</span> is defined as: <span class="math display">\int_a^b g(x) \, dh(x) = \lim_{n \to \infty} \sum_{i=1}^{n} g(x_i^*) \Delta h_i</span> where <span class="math inline">\Delta h_i = h(x_i) - h(x_{i-1})</span> represents the increment in the function <span class="math inline">h</span> over the <span class="math inline">i</span>-th subinterval.</p>
+<p>Intuitively, while the standard Riemann integral weighs the function values by increments in the x-axis, the Riemann-Stieltjes integral weighs them by increments in another function, allowing us to seamlessly handle both continuous distributions (where we integrate against a smooth CDF) and discrete distributions (where the integrator function has jumps).</p>
+<p>For infinite intervals, as in <span class="math inline">\int_{-\infty}^{\infty} u \, dF_Y(u)</span>, the integral is defined as: <span class="math display">\int_{-\infty}^{\infty} u \, dF_Y(u) = \lim_{a \to -\infty, b \to \infty} \int_a^b u \, dF_Y(u)</span></p>
+<section id="special-case-continuous-random-variables" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="special-case-continuous-random-variables"><span class="header-section-number">2.3.1</span> Special Case: Continuous Random Variables</h3>
+<p>For a continuous random variable <span class="math inline">Y</span> with PDF <span class="math inline">f_Y(u)</span>, the CDF <span class="math inline">F_Y(u)</span> is differentiable with <span class="math display">\frac{dF_Y(u)}{du}=f_Y(u)</span></p>
+<p>Hence: <span class="math display">\text{d}F_Y(u) = f_Y(u) \, \text{d}u</span></p>
+<p>Substituting this into our unified definition: <span class="math display">E[Y] = \int_{-\infty}^\infty u \, \text{d}F_Y(u) = \int_{-\infty}^\infty u \cdot f_Y(u) \, \text{d}u</span></p>
+<p>This recovers the standard definition for continuous random variables we saw earlier.</p>
+</section>
+<section id="special-case-discrete-random-variables" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="special-case-discrete-random-variables"><span class="header-section-number">2.3.2</span> Special Case: Discrete Random Variables</h3>
+<p>For a discrete random variable, the CDF <span class="math inline">F_Y(u)</span> has jumps at each point <span class="math inline">u \in \mathcal{Y}</span> where <span class="math inline">Y</span> can take values. The size of each jump is: <span class="math display">\Delta F_Y(u) = F_Y(u) - F_Y(u^-) = P(Y=u) = \pi_Y(u)</span> where <span class="math inline">F_Y(u^-) = \lim_{\varepsilon \to 0, \varepsilon &gt; 0} F_Y(u - \varepsilon)</span> is the left limit of <span class="math inline">F_Y</span> at <span class="math inline">u</span>.</p>
+<p>For discrete variables, the Riemann-Stieltjes integral simplifies to a sum over these jumps: <span class="math display">E[Y] = \int_{-\infty}^\infty u \, \text{d}F_Y(u) = \sum_{u \in \mathcal{Y}} u \cdot \Delta F_Y(u) = \sum_{u \in \mathcal{Y}} u \cdot \pi_Y(u)</span></p>
+<p>This matches our earlier definition for discrete random variables.</p>
+</section>
+<section id="why-the-general-case-matters" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="why-the-general-case-matters"><span class="header-section-number">2.3.3</span> Why the General Case Matters</h3>
+<p>The unified approach to expected values offers several important advantages:</p>
+<ol type="1">
+<li><p><strong>Conceptual and practical simplicity</strong>: Using the CDF as the foundation emphasizes that distinguishing between discrete and continuous random variables isn’t critically important for defining expectations. In econometric practice, expectations are computed without needing to categorize the distribution first, as the same principles apply regardless of distribution type.</p></li>
+<li><p><strong>Handling mixed and exotic distributions</strong>: Many real-world variables have distributions that don’t fit neatly into pure categories—like wages with both continuous values and “spikes” at round numbers, or insurance claims that are zero with positive probability but continuous for positive values. The general definition also accommodates more exotic theoretical cases like the Cantor distribution.</p></li>
+<li><p><strong>Unified theoretical development</strong>: For developing econometric theory, having a single definition simplifies proofs and ensures results apply broadly without requiring separate cases for different distribution types, allowing us to focus on understanding the properties and relationships between random variables.</p></li>
+</ol>
+</section>
+<section id="general-definition-of-conditional-expectation" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="general-definition-of-conditional-expectation"><span class="header-section-number">2.3.4</span> General Definition of Conditional Expectation</h3>
+<p>Just as we can define the expected value in a unified way, we can also define conditional expectation in a general form that applies to all types of random variables.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Conditional Expectation (General Definition)</strong></p>
+<p>For random variables <span class="math inline">Y</span> and <span class="math inline">Z</span>, the conditional expectation of <span class="math inline">Y</span> given <span class="math inline">Z=b</span> is defined as: <span class="math display">E[Y|Z=b] = \int_{-\infty}^{\infty} u \, \text{d}F_{Y|Z=b}(u)</span> where <span class="math inline">F_{Y|Z=b}(u)</span> is the conditional CDF of <span class="math inline">Y</span> given <span class="math inline">Z=b</span>.</p>
+<p>Similarly, for any random vector <span class="math inline">\boldsymbol Z = (Z_1, \ldots, Z_k)'</span>, the conditional expectation of <span class="math inline">Y</span> given <span class="math inline">\boldsymbol Z = \boldsymbol b</span> is: <span class="math display">E[Y|\boldsymbol Z=\boldsymbol b] = \int_{-\infty}^{\infty} u \, \text{d}F_{Y|\boldsymbol Z=\boldsymbol b}(u)</span></p>
+</div>
+<p><br>
+</p>
+<p>This definition uses the Riemann-Stieltjes integral with respect to the conditional CDF. For continuous random variables with conditional PDF <span class="math inline">f_{Y|Z=b}(u)</span>, this becomes: <span class="math display">E[Y|Z=b] = \int_{-\infty}^{\infty} u \cdot f_{Y|Z=b}(u) \, \text{d}u</span></p>
+<p>For discrete random variables with conditional PMF <span class="math inline">\pi_{Y|Z=b}(u)</span>, it simplifies to: <span class="math display">E[Y|Z=b] = \sum_{u \in \mathcal{Y}} u \cdot \pi_{Y|Z=b}(u)</span></p>
+<p>The <strong>conditional expectation function</strong> (CEF) is then defined as: <span class="math display">E[Y|Z] = m(Z)</span> where <span class="math inline">m(b) = E[Y|Z=b]</span> for each possible value <span class="math inline">b</span> that <span class="math inline">Z</span> can take. This makes <span class="math inline">E[Y|Z]</span> a random variable whose value depends on the random outcome of <span class="math inline">Z</span>.</p>
+<p>Similarly, if <span class="math inline">\boldsymbol Z</span> is a vector, we have: <span class="math display">E[Y|\boldsymbol Z] = m(\boldsymbol Z)</span> where <span class="math inline">m(\boldsymbol b) = E[Y|\boldsymbol Z = \boldsymbol b]</span>.</p>
+<p>This can also be extended to conditioning on a <span class="math inline">n\times k</span> matrix of random variables <span class="math inline">\boldsymbol X</span> (e.g., a regressor matrix), which gives <span class="math inline">E[Y|\boldsymbol X]</span>. This extension is particularly important in econometrics for regression analysis.</p>
+</section>
+<section id="conditional-expectation-and-independence" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="conditional-expectation-and-independence"><span class="header-section-number">2.3.5</span> Conditional Expectation and Independence</h3>
+<p>When two random variables <span class="math inline">Y</span> and <span class="math inline">Z</span> are independent, the conditional distributions simplify considerably. As we saw in the first section, independence means that the conditional distribution of <span class="math inline">Y</span> given <span class="math inline">Z=b</span> is the same as the marginal distribution of <span class="math inline">Y</span>. This fundamental property has important implications for conditional expectations.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Conditional Expectation and Independence</strong></p>
+<p>If random variables <span class="math inline">Y</span> and <span class="math inline">Z</span> are independent, then:</p>
+<p><span class="math display">E[Y|Z=b] = E[Y] \quad \text{for all } b</span></p>
+<p>And consequently:</p>
+<p><span class="math display">E[Y|Z] = E[Y]</span></p>
+</div>
+<p><br>
+</p>
+<p>In other words, when <span class="math inline">Y</span> and <span class="math inline">Z</span> are independent, knowing the value of <span class="math inline">Z</span> provides no information about the expected value of <span class="math inline">Y</span>. The conditional expectation equals the unconditional expectation for every possible value of <span class="math inline">Z</span>.</p>
+<p>To understand why this holds, recall that for independent random variables, the conditional CDF equals the marginal CDF. Using the general definition of conditional expectation:</p>
+<p><span class="math display">E[Y|Z=b] = \int_{-\infty}^{\infty} u \, \text{d}F_{Y|Z=b}(u) = \int_{-\infty}^{\infty} u \, \text{d}F_Y(u) = E[Y]</span></p>
+<p>The middle equality holds because <span class="math inline">F_{Y|Z=b}(u) = F_Y(u)</span> for all <span class="math inline">u</span> when <span class="math inline">Y</span> and <span class="math inline">Z</span> are independent.</p>
+<p>This means that the conditional expectation function <span class="math inline">E[Y|Z] = m(Z)</span> reduces to a constant function:</p>
+<p><span class="math display">m(b) = E[Y] \quad \text{for all } b</span></p>
+<p>For example, recall our coin flip example from Part 1, where we noted that the distribution of a coin toss remains the same regardless of whether a person is married or unmarried:</p>
+<p><span class="math display">F_{Y|Z=0}(a) = F_{Y|Z=1}(a) = F_Y(a) \quad \text{for all } a</span></p>
+<p>where <span class="math inline">Y</span> represents the coin outcome and <span class="math inline">Z</span> is the marital status. In this case, <span class="math inline">E[Y|Z=0] = E[Y|Z=1] = E[Y] = 0.5</span>, reflecting that the expected outcome of a fair coin toss is 0.5 regardless of the marital status of the person tossing it. Hence, <span class="math inline">E[Y|Z] = E[Y]</span> for this example.</p>
+</section>
+<section id="expected-value-of-functions" class="level3" data-number="2.3.6">
+<h3 data-number="2.3.6" class="anchored" data-anchor-id="expected-value-of-functions"><span class="header-section-number">2.3.6</span> Expected Value of Functions</h3>
+<p>Often, we are interested not just in the expected value of a random variable <span class="math inline">Y</span> itself, but in the expected value of some function of <span class="math inline">Y</span>, such as <span class="math inline">Y^2</span> or <span class="math inline">\log(Y)</span>.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Expected Value of a Function</strong></p>
+<p>For any function <span class="math inline">g(\cdot)</span>, the expected value of <span class="math inline">g(Y)</span> is: <span class="math display">E[g(Y)] = \int_{-\infty}^{\infty} g(u) \, \text{d}F_Y(u)</span></p>
+<p>For conditional expectations: <span class="math display">E[g(Y)|Z=b] = \int_{-\infty}^{\infty} g(u) \, \text{d}F_{Y|Z=b}(u)</span></p>
+</div>
+<p><br>
+</p>
+<p>The conditional expectation function is <span class="math inline">E[g(Y)|Z]=m(Z)</span>, where <span class="math inline">m(b) = E[g(Y)|Z=b]</span>.</p>
+<p>As discussed above for the different cases, <span class="math inline">\text{d}F_Y(u)</span> can be replaced by the PMF or the PDF: <span class="math display">
+  \int_{-\infty}^\infty g(u) \, \text{d}F_Y(u) = \begin{cases}
+      \sum_{u \in \mathcal Y} g(u) \pi_Y(u) &amp; \text{if} \ Y \ \text{is discrete,} \\
+      \int_{-\infty}^\infty g(u) f_Y(u)\,\text{d}u &amp; \text{if} \ Y \ \text{is continuous.} \end{cases}
+</span></p>
+<section id="example-transformation-of-a-binary-variable" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example-transformation-of-a-binary-variable">Example: Transformation of a Binary Variable</h4>
+<p>For instance, if we take the <em>coin</em> variable <span class="math inline">Y</span> and consider the transformed random variable <span class="math inline">\log(Y+1)</span>, the expected value is: <span class="math display">\begin{align*}
+  E[\log(Y+1)]
+  &amp;= \log(1) \cdot \pi_Y(0) + \log(2) \cdot \pi_Y(1) \\
+  &amp;= \log(1) \cdot \frac{1}{2} + \log(2) \cdot \frac{1}{2} \\
+  &amp;= \frac{\log(2)}{2} \approx 0.347
+\end{align*}</span></p>
+<p>This approach allows us to compute expectations of arbitrary functions of random variables.</p>
+</section>
+</section>
+<section id="moments-and-related-measures" class="level3" data-number="2.3.7">
+<h3 data-number="2.3.7" class="anchored" data-anchor-id="moments-and-related-measures"><span class="header-section-number">2.3.7</span> Moments and Related Measures</h3>
+<p>We can define various moments of a random variable and functions of these moments using our general expectation framework:</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Moments and Related Measures</strong></p>
+<ul>
+<li><p><strong><span class="math inline">r</span>-th moment</strong> of <span class="math inline">Y</span>: <span class="math display">E[Y^r] = \int_{-\infty}^\infty u^r \, \text{d}F_Y(u)</span></p></li>
+<li><p><strong><span class="math inline">r</span>-th central moment</strong>: <span class="math display">E[(Y-E[Y])^r] = \int_{-\infty}^\infty (u - E[Y])^r \, \text{d}F_Y(u)</span></p></li>
+<li><p><strong>Variance</strong> (2nd central moment): <span class="math display">\text{Var}(Y) = E[(Y-E[Y])^2] = \int_{-\infty}^\infty (u - E[Y])^2 \, \text{d}F_Y(u)</span></p></li>
+<li><p><strong>Standard deviation</strong>: <span class="math display">\text{sd}(Y) = \sqrt{\text{Var}(Y)}</span></p></li>
+<li><p><strong><span class="math inline">r</span>-th standardized moment</strong>: <span class="math display">E \left[ \left(\frac{Y-E[Y]}{\text{sd}(Y)}\right)^r \right] = \int_{-\infty}^\infty \left(\frac{u-E[Y]}{\text{sd}(Y)}\right)^r \, \text{d}F_Y(u)</span></p></li>
+<li><p><strong>Skewness</strong> (3rd standardized moment): <span class="math display">\text{ske}(Y) = E \left[ \left(\frac{Y-E[Y]}{\text{sd}(Y)}\right)^3 \right]</span></p></li>
+<li><p><strong>Kurtosis</strong> (4th standardized moment): <span class="math display">\text{kur}(Y) = E \left[ \left(\frac{Y-E[Y]}{\text{sd}(Y)}\right)^4 \right]</span></p></li>
+</ul>
+</div>
+<p><br>
+</p>
+<p>Similarly, conditional versions of these moments can be defined. For example:</p>
+<ul>
+<li><p>The <span class="math inline">r</span>-th conditional moment: <span class="math display">E[Y^r|Z=b] = \int_{-\infty}^\infty u^r \, \text{d}F_{Y|Z=b}(u)</span></p></li>
+<li><p>The conditional variance: <span class="math display">\begin{align*}
+\text{Var}(Y|Z=b)
+&amp;= E[(Y-E[Y|Z=b])^2|Z=b] \\
+&amp;= \int_{-\infty}^\infty (u - E[Y|Z=b])^2 \, \text{d}F_{Y|Z=b}(u)
+\end{align*}</span></p></li>
+<li><p>The conditional variance function: <span class="math display">\text{Var}(Y|Z) = v(Z), \quad \text{where} \ v(b) = \text{Var}(Y|Z=b)</span></p></li>
+</ul>
+</section>
+</section>
+<section id="properties-of-expectation" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="properties-of-expectation"><span class="header-section-number">2.4</span> Properties of Expectation</h2>
+<p>The general expected value operator has several important properties. Here we focus on three fundamental properties: linearity, the Law of Iterated Expectations, and the Conditioning Theorem.</p>
+<section id="linearity" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="linearity"><span class="header-section-number">2.4.1</span> Linearity</h3>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Linearity of Expectation</strong></p>
+<p>For any constants <span class="math inline">a, b \in \mathbb{R}</span> and random variable <span class="math inline">Y</span>: <span class="math display">E[a+bY]=a+bE[Y]</span></p>
+<p>The same property holds for conditional expectations: <span class="math display">E[a+bY|Z] = a + bE[Y|Z]</span></p>
+</div>
+<p><br>
+</p>
+<p>This property tells us that the expectation of a linear transformation of a random variable equals the same linear transformation of the expectation.</p>
+<p>To understand why this holds, consider the definition of expectation using the Riemann-Stieltjes integral: <span class="math display">E[a+bY] = \int_{-\infty}^\infty (a+bu) \, \text{d}F_Y(u)</span></p>
+<p>We can separate this into two parts: <span class="math display">\int_{-\infty}^\infty (a+bu) \, \text{d}F_Y(u) = \int_{-\infty}^\infty a \, \text{d}F_Y(u) + \int_{-\infty}^\infty bu \, \text{d}F_Y(u)</span></p>
+<p>The first integral equals <span class="math inline">a</span> because <span class="math inline">\int_{-\infty}^\infty \text{d}F_Y(u) = 1</span> for any probability distribution. The second integral equals <span class="math inline">b\cdot E[Y]</span>. Combining these results gives us <span class="math inline">a + bE[Y]</span>.</p>
+</section>
+<section id="law-of-iterated-expectations-lie-1" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="law-of-iterated-expectations-lie-1"><span class="header-section-number">2.4.2</span> Law of Iterated Expectations (LIE)</h3>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Law of Iterated Expectations</strong></p>
+<p>For any random variables <span class="math inline">Y</span> and <span class="math inline">Z</span>: <span class="math display">E[Y]=E[E[Y|Z]]</span></p>
+</div>
+<p><br>
+</p>
+<p>The LIE states that the expected value of <span class="math inline">Y</span> can be found by first taking the conditional expectation of <span class="math inline">Y</span> given <span class="math inline">Z</span>, and then taking the expectation of this result over the distribution of <span class="math inline">Z</span>.</p>
+<p>This result relies on the law of total probability, which connects marginal and conditional distributions. For discrete random variables, this law states: <span class="math display">\pi_Y(u) = \sum_{b \in \mathcal{Z}} \pi_{Y|Z=b}(u) \cdot \pi_Z(b)</span></p>
+<p>For continuous random variables with densities, the law takes the form: <span class="math display">f_Y(u) = \int_{-\infty}^\infty f_{Y|Z=b}(u) \cdot f_Z(b) \, db</span></p>
+<p>In the general case using CDFs, the law of total probability is expressed as: <span class="math display">\text{d}F_Y(u) = \int_{-\infty}^\infty \text{d}F_{Y|Z=b}(u) \, \text{d}F_Z(b)</span></p>
+<p>When we evaluate <span class="math inline">E[E[Y|Z]]</span>, we are calculating: <span class="math display">E[E[Y|Z]] = \int_{-\infty}^\infty E[Y|Z=b] \, \text{d}F_Z(b)</span></p>
+<p>Expanding the inner conditional expectation: <span class="math display">E[E[Y|Z]] = \int_{-\infty}^\infty \left(\int_{-\infty}^\infty u \, \text{d}F_{Y|Z=b}(u)\right) \, \text{d}F_Z(b)</span></p>
+<p>Applying the general form of the law of total probability, this double integral simplifies to: <span class="math display">E[E[Y|Z]] = \int_{-\infty}^\infty u \, \text{d}F_Y(u) = E[Y]</span></p>
+</section>
+<section id="conditioning-theorem-ct-1" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="conditioning-theorem-ct-1"><span class="header-section-number">2.4.3</span> Conditioning Theorem (CT)</h3>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Conditioning Theorem</strong></p>
+<p>For any random variables <span class="math inline">Y</span> and <span class="math inline">Z</span>, and any measurable function <span class="math inline">g(\cdot)</span>: <span class="math display">E[g(Z)Y|Z]=g(Z)E[Y|Z]</span></p>
+</div>
+<p><br>
+</p>
+<p>The Conditioning Theorem states that when we condition on <span class="math inline">Z</span>, we can factor out any function of <span class="math inline">Z</span> from the conditional expectation.</p>
+<p>To see why this holds, consider a specific value <span class="math inline">Z=b</span>. The conditional expectation becomes: <span class="math display">E[g(Z)Y|Z=b] = E[g(b)Y|Z=b] = g(b)E[Y|Z=b]</span></p>
+<p>The first equality follows because <span class="math inline">g(Z) = g(b)</span> when <span class="math inline">Z=b</span>. The second equality uses the linearity property of expectation, treating <span class="math inline">g(b)</span> as a constant.</p>
+<p>Since this relationship holds for every possible value of <span class="math inline">Z</span>, we have the general result: <span class="math display">E[g(Z)Y|Z]=g(Z)E[Y|Z]</span></p>
 
 
 </section>
@@ -954,6 +1278,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./part3_covariance.html" class="pagination-link" aria-label="Multiple Random Variables">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Random Variables</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

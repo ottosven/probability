@@ -1,0 +1,354 @@
+# Multiple Random Variables
+
+## Expectations with Multiple Random Variables
+
+In Parts 1 and 2, we focused on single random variables and their properties. Now we extend these concepts to scenarios involving multiple random variables, which is essential for analyzing relationships between variables in statistical modeling.
+
+Recall that for any univariate function $g(\cdot)$, the expected value of $g(Y)$ and the conditional expectation given $Z=b$ are:
+$$E[g(Y)] = \int_{-\infty}^\infty g(u) \ \text{d}F_Y(u), \quad E[g(Y)|Z=b] = \int_{-\infty}^\infty g(u) \ \text{d}F_{Y|Z=b}(u)$$
+
+where $F_Y(a)$ is the marginal CDF of $Y$ and $F_{Y|Z=b}(a)$ is the conditional CDF of $Y$ given $Z=b$.
+
+For functions of multiple random variables, we extend this approach using multivariate functions. For a bivariate function $h(Y,Z)$, we can calculate the expected value using the Law of Iterated Expectations (LIE):
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Expected Value of a Bivariate Function**
+
+For a bivariate function $h(Y,Z)$, the expected value can be calculated as:
+$$E[h(Y,Z)] = E[E[h(Y,Z)|Z]]$$
+
+This double expectation can be expressed as:
+\begin{align*}
+E[E[h(Y,Z)|Z]] &= \int_{-\infty}^\infty E[h(Y,Z)|Z=b] \ \text{d}F_Z(b) \\
+&= \int_{-\infty}^\infty \left(\int_{-\infty}^\infty h(u,b) \ \text{d}F_{Y|Z=b}(u)\right) \ \text{d}F_Z(b)
+\end{align*}
+:::
+\
+
+### Important Special Cases
+
+#### Sum of Random Variables {-}
+
+For the sum of two random variables, $h(Y,Z) = Y + Z$, we have:
+
+\begin{align*}
+E[Y+Z] &= E[E[Y+Z|Z]] \\
+&= E[E[Y|Z] + Z] \quad \text{(linearity of conditional expectation)} \\
+&= E[E[Y|Z]] + E[Z] \quad \text{(linearity of expectation)} \\
+&= E[Y] + E[Z] \quad \text{(by the LIE)}
+\end{align*}
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Linearity of Expectation for Sums**
+
+The expected value of a sum equals the sum of the expected values:
+$$E[Y+Z] = E[Y] + E[Z]$$
+
+This property holds regardless of whether $Y$ and $Z$ are independent or dependent.
+:::
+\
+
+#### Product of Random Variables {-}
+
+For the product of two random variables, $h(Y,Z) = YZ$, we have:
+
+\begin{align*}
+E[YZ] &= E[E[YZ|Z]] \\
+&= E[Z \cdot E[Y|Z]] \quad \text{(by the CT)}
+\end{align*}
+
+When $Y$ and $Z$ are independent, $E[Y|Z]=E[Y]$, so:
+
+$$E[YZ] = E[Z \cdot E[Y]] = E[Z] \cdot E[Y]$$
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Expected Value of a Product**
+
+- **General case**: $E[YZ] = E[Z \cdot E[Y|Z]]$
+- **Independent case**: If $Y$ and $Z$ are independent, then $E[YZ] = E[Y] \cdot E[Z]$
+:::
+\
+
+$E[YZ]$ is also known as the **first cross moment** of $Y$ and $Z$.
+
+#### Example: Product of Education and Wage {-}
+
+Consider the random variables *education* ($Z$) and *wage* ($Y$) from our earlier examples. These variables are dependent, with $E[Y|Z=b]$ following the pattern shown in the CEF plot from the previos section.
+
+If $E[Y|Z=b] = 2 + 1.2b$ (a simplified linear relationship), then:
+
+\begin{align*}
+E[YZ] &= E[Z \cdot E[Y|Z]] \\
+&= E[Z \cdot (2 + 1.2Z)] \\
+&= E[2Z + 1.2Z^2] \\
+&= 2E[Z] + 1.2E[Z^2]
+\end{align*}
+
+If $E[Z] = 14$ years (mean education) and $E[Z^2] = 210$ (second moment of education), then:
+$$E[YZ] = 2 \cdot 14 + 1.2 \cdot 210 = 28 + 252 = 280$$
+
+
+### Extending to Three or More Variables
+
+For functions of three or more random variables, we can extend this approach by nesting conditional expectations. For $h(X,Y,Z)$:
+
+$$E[h(X,Y,Z)] = E[E[E[h(X,Y,Z)|X,Y]|X]]$$
+
+This formula allows us to decompose the expectation iteratively, conditioning on one variable at a time.
+
+## Covariance and Correlation
+
+Having explored expectations involving multiple random variables, we now introduce measures that quantify the relationship between random variables: covariance and correlation.
+
+### Definition of Covariance
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Covariance**
+
+The **covariance** between two random variables $Y$ and $Z$ is defined as:
+
+$$\text{Cov}(Y,Z) = E[(Y-E[Y])(Z-E[Z])]$$
+
+An equivalent and often more practical definition is:
+$$\text{Cov}(Y,Z) = E[YZ] - E[Y]E[Z]$$
+:::
+\
+
+The equivalence of these definitions can be shown by expanding the first expression:
+\begin{align*}
+\text{Cov}(Y,Z) &= E[(Y-E[Y])(Z-E[Z])] \\
+&= E[YZ - Y\cdot E[Z] - Z \cdot E[Y] + E[Y]E[Z]] \\
+&= E[YZ] - E[Y]E[Z] - E[Y]E[Z] + E[Y]E[Z] \\
+&= E[YZ] - E[Y]E[Z]
+\end{align*}
+
+### Interpreting Covariance
+
+Covariance measures the direction of the linear relationship between two variables:
+
+- $\text{Cov}(Y,Z) > 0$: $Y$ and $Z$ tend to move in the same direction (positive relationship)
+- $\text{Cov}(Y,Z) < 0$: $Y$ and $Z$ tend to move in opposite directions (negative relationship)
+- $\text{Cov}(Y,Z) = 0$: $Y$ and $Z$ have no linear relationship
+
+### Computing Covariance Using Conditional Expectations
+
+Using our previous results for $E[YZ]$, we can express covariance in terms of conditional expectations:
+
+\begin{align*}
+\text{Cov}(Y,Z) &= E[YZ] - E[Y]E[Z] \\
+&= E[Z \cdot E[Y|Z]] - E[Y]E[Z]
+\end{align*}
+
+This formula is particularly useful when we know the conditional expectation $E[Y|Z]$.
+
+### Properties of Covariance
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Properties of Covariance**
+
+1. **Symmetry**: $\text{Cov}(Y,Z) = \text{Cov}(Z,Y)$
+
+2. **Linearity in each argument**: For constants $a, b$ and random variables $Y, Z, W, V$:
+\begin{align*}
+&\text{Cov}(aY + Z, bW + V)\\
+&= ab\text{Cov}(Y,W) + a\text{Cov}(Y,V) + b\text{Cov}(Z,W) + \text{Cov}(Z,V)
+\end{align*}
+
+3. **Variance as a special case**: $\text{Var}(Y) = \text{Cov}(Y,Y) = E[Y^2] - E[Y]^2$
+
+4. **Independence implies zero covariance**: \
+If $Y$ and $Z$ are independent, then $\text{Cov}(Y,Z) = 0$
+:::
+\
+
+
+### Covariance and Independence
+
+It's important to note that while independence implies zero covariance, the converse is not generally true: zero covariance does not imply independence.
+
+A classic example of variables that have zero covariance yet are dependent is when $Y$ is a standard normal random variable and $Z = Y^2$. These variables are clearly dependent (knowledge of $Y$ completely determines $Z$), but:
+
+$$\text{Cov}(Y,Y^2) = E[Y \cdot Y^2] - E[Y]E[Y^2] = E[Y^3] - E[Y]E[Y^2]$$
+
+For a standard normal variable, $E[Y] = 0$ and $E[Y^3] = 0$ (due to symmetry around 0), so:
+$$\text{Cov}(Y,Y^2) = 0 - 0 \cdot E[Y^2] = 0$$
+
+This highlights that covariance only captures linear relationships between variables, not all forms of dependence.
+
+### Correlation Coefficient
+
+While covariance measures the direction of association between variables, its magnitude depends on the scales of the variables. The **correlation coefficient** standardizes this measure to be scale-invariant:
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Correlation Coefficient**
+
+The correlation coefficient between random variables $Y$ and $Z$ is defined as:
+
+$$\text{Corr}(Y,Z) = \rho_{Y,Z} = \frac{\text{Cov}(Y,Z)}{\sqrt{\text{Var}(Y)\text{Var}(Z)}}$$
+:::
+\
+
+The correlation coefficient has the following properties:
+
+1. $-1 \leq \rho_{Y,Z} \leq 1$
+2. $\rho_{Y,Z} = 1$ implies a perfect positive linear relationship
+3. $\rho_{Y,Z} = -1$ implies a perfect negative linear relationship
+4. $\rho_{Y,Z} = 0$ implies no linear relationship
+
+
+
+
+## Expected Value Vector and Covariance Matrix
+
+When working with multivariate data, we often need to analyze several random variables simultaneously. Let's consider a $k$-dimensional random vector $\boldsymbol{Z} = (Z_1, Z_2, \ldots, Z_k)'$, where the prime denotes vector transposition.
+
+### Expected Value Vector
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Expected Value Vector**
+
+The **expected value vector** (or mean vector) of a random vector $\boldsymbol{Z} = (Z_1, Z_2, \ldots, Z_k)'$ is defined as:
+
+$$\boldsymbol{\mu}_Z = E[\boldsymbol{Z}] = (E[Z_1], E[Z_2], \ldots, E[Z_k])'$$
+:::
+\
+
+Each component $E[Z_i]$ is calculated according to:
+$$E[Z_i] = \int_{-\infty}^{\infty} z_i \ \text{d}F_{Z_i}(z_i)$$
+
+where $F_{Z_i}$ represents the marginal CDF of $Z_i$.
+
+The expected value vector provides the central location of the multivariate distribution, serving as a natural extension of the univariate expected value.
+
+### Covariance Matrix
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Covariance Matrix**
+
+The **covariance matrix** of a random vector $\boldsymbol{Z} = (Z_1, Z_2, \ldots, Z_k)'$, denoted by $\boldsymbol{\Sigma}_Z$, is defined as:
+
+$$\boldsymbol{\Sigma}_Z = E[(\boldsymbol{Z} - \boldsymbol{\mu}_Z)(\boldsymbol{Z} - \boldsymbol{\mu}_Z)']$$
+
+Expanding this definition, we get a $k \times k$ matrix:
+
+$$\boldsymbol{\Sigma}_Z =
+\begin{pmatrix}
+\text{Var}(Z_1) & \text{Cov}(Z_1, Z_2) & \cdots & \text{Cov}(Z_1, Z_k) \\
+\text{Cov}(Z_2, Z_1) & \text{Var}(Z_2) & \cdots & \text{Cov}(Z_2, Z_k) \\
+\vdots & \vdots & \ddots & \vdots \\
+\text{Cov}(Z_k, Z_1) & \text{Cov}(Z_k, Z_2) & \cdots & \text{Var}(Z_k)
+\end{pmatrix}$$
+:::
+\
+
+In this matrix:
+
+- Diagonal elements $\Sigma_{ii} = \text{Var}(Z_i)$ represent the variance of each component
+- Off-diagonal elements $\Sigma_{ij} = \text{Cov}(Z_i, Z_j)$ represent the covariance between components
+
+### Properties of the Covariance Matrix
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Properties of the Covariance Matrix**
+
+1. **Symmetry**: $\boldsymbol{\Sigma}_Z = \boldsymbol{\Sigma}_Z'$ since $\text{Cov}(Z_i, Z_j) = \text{Cov}(Z_j, Z_i)$
+
+2. **Positive Semi-Definiteness**: For any non-zero vector $\boldsymbol{a} \in \mathbb{R}^k$, $\boldsymbol{a}'\boldsymbol{\Sigma}_Z\boldsymbol{a} \geq 0$
+
+3. **Linear Transformations**: For a matrix $\boldsymbol{A}$ and vector $\boldsymbol{b}$, if $\boldsymbol{Y} = \boldsymbol{A}\boldsymbol{Z} + \boldsymbol{b}$, then:
+   - $E[\boldsymbol{Y}] = \boldsymbol{A}E[\boldsymbol{Z}] + \boldsymbol{b}$
+   - $\boldsymbol{\Sigma}_Y = \boldsymbol{A}\boldsymbol{\Sigma}_Z\boldsymbol{A}'$
+:::
+\
+
+The positive semi-definiteness of the covariance matrix follows because $\boldsymbol{a}'\boldsymbol{\Sigma}_Z\boldsymbol{a} = \text{Var}(\boldsymbol{a}'\boldsymbol{Z})$, which is the variance of a linear combination of the components of $\boldsymbol{Z}$, and variance is always non-negative.
+
+### Correlation Matrix
+
+The **correlation matrix** standardizes the covariance matrix by dividing each covariance by the product of the corresponding standard deviations:
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Correlation Matrix**
+
+The correlation matrix of a random vector $\boldsymbol{Z}$, denoted by $\boldsymbol{R}_Z$, is defined as:
+
+$$\boldsymbol{R}_Z =
+\begin{pmatrix}
+1 & \rho_{12} & \cdots & \rho_{1k} \\
+\rho_{21} & 1 & \cdots & \rho_{2k} \\
+\vdots & \vdots & \ddots & \vdots \\
+\rho_{k1} & \rho_{k2} & \cdots & 1
+\end{pmatrix}$$
+
+where $\rho_{ij} = \frac{\text{Cov}(Z_i, Z_j)}{\sqrt{\text{Var}(Z_i)\text{Var}(Z_j)}}$ is the correlation coefficient between $Z_i$ and $Z_j$.
+:::
+\
+
+Mathematically, if $\boldsymbol{D}$ is a diagonal matrix with $D_{ii} = \sqrt{\text{Var}(Z_i)}$, then:
+$$\boldsymbol{R}_Z = \boldsymbol{D}^{-1}\boldsymbol{\Sigma}_Z\boldsymbol{D}^{-1}$$
+
+
+## Heavy Tails: When Expectations Fail to Exist
+
+Our previous discussions assumed that expected values and covariance matrices exist, but this isn't always guaranteed. Some probability distributions have such slow decay in their tails that moments of certain order may be infinite or undefined. These "heavy-tailed" distributions present special challenges for statistical analysis.
+
+### Infinite Expectations
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Infinite Expectation**
+
+A random variable $Y$ has an infinite expectation if:
+$$E[Y] = \int_{-\infty}^{\infty} u \ \text{d}F_Y(u) = \infty$$
+
+In such cases, the sample mean does not converge to any finite value as the sample size increases.
+:::
+\
+
+The sample mean of i.i.d. samples from most distributions converges to the population mean as sample size increases (a property known as consistency). However, there are exceptional cases where consistency fails because the population mean itself is infinite.
+
+### Examples of Distributions with Infinite Moments
+
+#### Pareto Distribution
+
+The simple Pareto distribution with parameter $\alpha = 1$ has the PDF:
+$$f(u) = \begin{cases} \frac{1}{u^2} & \text{if} \ u > 1, \\
+0 & \text{if} \ u \leq 1, \end{cases}$$
+
+The expected value is:
+$$E[Y] = \int_{-\infty}^\infty u f(u) \ \text{d}u = \int_{1}^\infty \frac{u}{u^2} \ \text{d}u = \int_{1}^\infty \frac{1}{u} \ \text{d}u = \log(u)|_1^\infty = \infty$$
+
+Since the population mean is infinite, the sample mean cannot converge to any finite value and is therefore inconsistent.
+
+#### St. Petersburg Paradox
+
+The game of chance from the St. Petersburg paradox is a discrete example with infinite expectation. In this game, a fair coin is tossed until a tail appears; if the first tail is on the $n$th toss, the payoff is $2^n$ dollars. The expected payoff is:
+$$E[Y] = \sum_{n=1}^{\infty} 2^n \cdot \frac{1}{2^n} = \sum_{n=1}^{\infty} 1 = \infty$$
+
+This infinity arises from the infinite sum of 1's, reflecting the unbounded potential payoffs in the game.
+
+#### Cauchy Distribution
+
+The Cauchy distribution (also known as the t-distribution with 1 degree of freedom) has the PDF:
+$$f(u) = \frac{1}{\pi (1+u^2)}$$
+
+The Cauchy distribution presents a fascinating case where the sample mean of $n$ observations has exactly the same distribution as a single observation, regardless of how large $n$ becomes. This means the sample mean does not converge to any value as sample size increases.
+
+#### t-Distribution with Few Degrees of Freedom
+
+- **Cauchy distribution** ($t_1$): No finite moments
+- **$t_2$ distribution**: Finite mean but infinite variance
+- **$t_3$ distribution**: Finite variance but infinite skewness
+- **$t_4$ distribution**: Finite skewness but infinite kurtosis
+
+More generally, for a t-distribution with $m$ degrees of freedom:
+$$E[Y^k] < \infty \text{ for } k < m$$
+$$E[Y^k] = \infty \text{ for } k \geq m$$
+
+
+### Real-World Examples
+
+Heavy-tailed distributions arise in many real-world phenomena where extreme events and large outliers are common:
+
+1. **Financial returns**: Stock market crashes and extreme price movements
+2. **Income and wealth distributions**: Extreme wealth concentration
+3. **Natural disasters**: Extreme earthquakes, floods, or storms

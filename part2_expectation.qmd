@@ -214,3 +214,415 @@ $$E[Z Y|Z] = Z \cdot E[Y|Z] = \begin{cases}
 1 \cdot 14.28 = 14.28 & \text{if } Z = 1 \text{ (married)}
 \end{cases}$$
 
+I've evaluated your draft for the "Continuous Case" subsection, and it's a good start. Here's my suggested improved version with better organization, more detailed explanations, and enhanced examples:
+
+## Continuous Case
+
+Now, let's extend our discussion of expected values to continuous random variables, which are characterized by probability density functions (PDFs) rather than probability mass functions (PMFs).
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Expected Value (Continuous Case)**
+
+The **expectation** or **expected value** of a continuous random variable $Y$ with PDF $f_Y(u)$ and support $\mathcal{Y}$ is defined as
+$$E[Y] = \int_{\mathcal{Y}} u f_Y(u) \, du = \int_{-\infty}^{\infty} u f_Y(u) \, du.$$ {#eq-expectation-continuous}
+:::
+\
+
+Intuitively, this integral calculates a weighted average of all possible values of $Y$, where the weight of each value is given by its density. This is analogous to the discrete case, where we computed a weighted sum. The key difference is that continuous random variables have infinitely many possible values within their support, requiring integration rather than summation.
+
+### Conditional Expectation for Continuous Variables
+
+For continuous random variables, the conditional expectation given that $Z=b$ is defined similarly:
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Conditional Expectation (Continuous Case)**
+
+For a continuous random variable $Y$ with conditional PDF $f_{Y|Z=b}(u)$, the conditional expectation of $Y$ given $Z=b$ is:
+
+$$E[Y|Z=b] = \int_{-\infty}^{\infty} u f_{Y|Z=b}(u) \, du$$
+:::
+\
+
+The same principles of conditional expectation functions (CEF) that we discussed for discrete variables apply here as well. The CEF $E[Y|Z] = m(Z)$ is a random variable that depends on the random outcome of $Z$, where $m(b) = E[Y|Z=b]$ is the function mapping each possible value of $Z$ to the corresponding conditional expectation.
+
+### Examples with Continuous Random Variables
+
+#### Example 1: Uniform Distribution {-}
+
+A random variable $Y$ follows a **uniform distribution** on the interval $[0,1]$ if its PDF is constant across this interval:
+
+$$f(u) = \begin{cases} 1 & \text{if} \ u \in[0,1], \\ 0 & \text{otherwise.} \end{cases}$$
+
+The expected value is calculated as:
+
+$$E[Y] = \int_{-\infty}^\infty u f(u) \, du = \int_{0}^1 u \cdot 1 \, du = \int_{0}^1 u \, du = \left. \frac{u^2}{2} \right|_{0}^1 = \frac{1}{2}$$
+
+So the expected value of a uniform random variable on $[0,1]$ is exactly $\frac{1}{2}$, the midpoint of the interval. More generally, for a uniform distribution on $[a,b]$, the expected value is $\frac{a+b}{2}$.
+
+#### Example 2: Wage Distribution {-}
+
+Let's return to our *wage* variable from Part 1. Suppose the wage distribution in our population has the following PDF:
+
+$$f(u) = \begin{cases}
+\frac{1}{20}e^{-u/20} & \text{if} \ u \geq 0, \\
+0 & \text{otherwise,}
+\end{cases}$$
+
+This represents an exponential distribution with parameter $\lambda = 1/20$. The expected value is:
+
+$$E[Y] = \int_{0}^{\infty} u \cdot \frac{1}{20}e^{-u/20} \, du = \frac{1}{20} \int_{0}^{\infty} u \cdot e^{-u/20} \, du$$
+
+Using integration by parts or leveraging the known mean of an exponential distribution ($1/\lambda$), we get $E[Y] = 20$ EUR per hour.
+
+#### Example 3: Wage Given Education {-}
+
+From @fig-cPDFedu, we saw that the conditional distribution of *wage* given *education* varies substantially:
+
+::: {#fig-cPDFedu1 layout-ncol=1}
+![Conditional PDFs of wage given education](./plots/CPDF_wage_edu.png){width=50%}
+
+:::
+These different distributions lead to different conditional expectations:
+
+- $E[Y|Z=12] = 14.3$ EUR/hour
+- $E[Y|Z=14] = 17.8$ EUR/hour
+- $E[Y|Z=18] = 27.0$ EUR/hour
+
+The CEF plot is given below:
+
+::: {#fig-CEFwageedu layout-ncol=1}
+![](./plots/CEF_wageedu.png){width=50%}
+
+CEF of wage given education
+:::
+
+The increasing conditional expectations reflect the positive relationship between education and wages. This dependency confirms that education and wages are not independent random variables.
+
+#### Example 4: Wage Given Experience {-}
+
+Now consider the relationship between *wage* ($Y$) and years of *experience* ($Z$). Labor economics theory suggests that wages typically increase with experience but at a diminishing rate. Suppose empirical analysis reveals that the conditional expectation of wage given experience level $b$ follows a quadratic form:
+
+$$m(b) = E[Y|Z=b] = 19 + 0.5b - 0.013b^2$$
+
+This functional form captures the initial increase in wages with experience (positive linear term $0.5b$) and the diminishing returns over time (negative quadratic term $-0.013b^2$).
+
+For some specific values:
+
+- $m(5) = E[Y|Z=5] = 21.2$ EUR/hour
+- $m(10) = E[Y|Z=10] = 22.7$ EUR/hour
+- $m(20) = E[Y|Z=20] = 23.8$ EUR/hour
+- $m(30) = E[Y|Z=30] = 22.3$ EUR/hour
+
+The conditional expectation function is maximized at the point where its derivative equals zero:
+
+$$\frac{d}{db}m(b) = 0.5 - 0.026b = 0 \implies b = \frac{0.5}{0.026} \approx 19.2$$
+
+This suggests that, on average, wages peak at around 19.2 years of experience in this population.
+
+As a function of the random variable $Z$, the CEF is:
+
+$$E[Y|Z] = m(Z) = 19 + 0.5Z - 0.013Z^2$$
+
+This is itself a random variable because its value depends on the random outcome of $Z$.
+
+::: {#fig-CEFwageexper}
+![](./plots/CEF_wageex.png){width=50%}
+
+CEF of wage given experience
+:::
+
+## General Case
+
+We can define the expected value of a random variable $Y$ in a unified way that applies to both discrete and continuous cases using its CDF $F_Y(u)$.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Expected Value (General Definition)**
+
+$$E[Y] = \int_{-\infty}^\infty u \, \text{d}F_Y(u)$$ {#eq-expectation-general}
+:::
+\
+
+This formula uses the **Riemann-Stieltjes integral**, which generalizes the familiar Riemann integral. To understand this, recall that the standard **Riemann integral** $\int_a^b g(x) \, dx$ is defined as:
+$$\int_a^b g(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} g(x_i^*) \Delta x_i$$
+where $[a,b]$ is partitioned into $n$ subintervals $[x_{i-1}, x_i]$ of width $\Delta x_i = x_i - x_{i-1}$, and $x_i^*$ is any point in the $i$-th subinterval. The limit is taken as the maximum width of all subintervals approaches zero.
+
+In contrast, the **Riemann-Stieltjes integral** $\int_a^b g(x) \, dh(x)$ is defined as:
+$$\int_a^b g(x) \, dh(x) = \lim_{n \to \infty} \sum_{i=1}^{n} g(x_i^*) \Delta h_i$$
+where $\Delta h_i = h(x_i) - h(x_{i-1})$ represents the increment in the function $h$ over the $i$-th subinterval.
+
+Intuitively, while the standard Riemann integral weighs the function values by increments in the x-axis, the Riemann-Stieltjes integral weighs them by increments in another function, allowing us to seamlessly handle both continuous distributions (where we integrate against a smooth CDF) and discrete distributions (where the integrator function has jumps).
+
+For infinite intervals, as in $\int_{-\infty}^{\infty} u \, dF_Y(u)$, the integral is defined as:
+$$\int_{-\infty}^{\infty} u \, dF_Y(u) = \lim_{a \to -\infty, b \to \infty} \int_a^b u \, dF_Y(u)$$
+
+
+### Special Case: Continuous Random Variables
+
+For a continuous random variable $Y$ with PDF $f_Y(u)$, the CDF $F_Y(u)$ is differentiable with
+$$\frac{dF_Y(u)}{du}=f_Y(u)$$
+
+Hence:
+$$\text{d}F_Y(u) = f_Y(u) \, \text{d}u$$
+
+Substituting this into our unified definition:
+$$E[Y] = \int_{-\infty}^\infty u \, \text{d}F_Y(u) = \int_{-\infty}^\infty u \cdot f_Y(u) \, \text{d}u$$
+
+This recovers the standard definition for continuous random variables we saw earlier.
+
+### Special Case: Discrete Random Variables
+
+For a discrete random variable, the CDF $F_Y(u)$ has jumps at each point $u \in \mathcal{Y}$ where $Y$ can take values. The size of each jump is:
+$$\Delta F_Y(u) = F_Y(u) - F_Y(u^-) = P(Y=u) = \pi_Y(u)$$
+where $F_Y(u^-) = \lim_{\varepsilon \to 0, \varepsilon > 0} F_Y(u - \varepsilon)$ is the left limit of $F_Y$ at $u$.
+
+For discrete variables, the Riemann-Stieltjes integral simplifies to a sum over these jumps:
+$$E[Y] = \int_{-\infty}^\infty u \, \text{d}F_Y(u) = \sum_{u \in \mathcal{Y}} u \cdot \Delta F_Y(u) = \sum_{u \in \mathcal{Y}} u \cdot \pi_Y(u)$$
+
+This matches our earlier definition for discrete random variables.
+
+
+### Why the General Case Matters
+
+The unified approach to expected values offers several important advantages:
+
+1. **Conceptual and practical simplicity**: Using the CDF as the foundation emphasizes that distinguishing between discrete and continuous random variables isn't critically important for defining expectations. In econometric practice, expectations are computed without needing to categorize the distribution first, as the same principles apply regardless of distribution type.
+
+2. **Handling mixed and exotic distributions**: Many real-world variables have distributions that don't fit neatly into pure categories—like wages with both continuous values and "spikes" at round numbers, or insurance claims that are zero with positive probability but continuous for positive values. The general definition also accommodates more exotic theoretical cases like the Cantor distribution.
+
+3. **Unified theoretical development**: For developing econometric theory, having a single definition simplifies proofs and ensures results apply broadly without requiring separate cases for different distribution types, allowing us to focus on understanding the properties and relationships between random variables.
+
+
+
+### General Definition of Conditional Expectation
+
+Just as we can define the expected value in a unified way, we can also define conditional expectation in a general form that applies to all types of random variables.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Conditional Expectation (General Definition)**
+
+For random variables $Y$ and $Z$, the conditional expectation of $Y$ given $Z=b$ is defined as:
+$$E[Y|Z=b] = \int_{-\infty}^{\infty} u \, \text{d}F_{Y|Z=b}(u)$$
+where $F_{Y|Z=b}(u)$ is the conditional CDF of $Y$ given $Z=b$.
+
+Similarly, for any random vector $\boldsymbol Z = (Z_1, \ldots, Z_k)'$, the conditional expectation of $Y$ given $\boldsymbol Z = \boldsymbol b$ is:
+$$E[Y|\boldsymbol Z=\boldsymbol b] = \int_{-\infty}^{\infty} u \, \text{d}F_{Y|\boldsymbol Z=\boldsymbol b}(u)$$
+:::
+\
+
+This definition uses the Riemann-Stieltjes integral with respect to the conditional CDF. For continuous random variables with conditional PDF $f_{Y|Z=b}(u)$, this becomes:
+$$E[Y|Z=b] = \int_{-\infty}^{\infty} u \cdot f_{Y|Z=b}(u) \, \text{d}u$$
+
+For discrete random variables with conditional PMF $\pi_{Y|Z=b}(u)$, it simplifies to:
+$$E[Y|Z=b] = \sum_{u \in \mathcal{Y}} u \cdot \pi_{Y|Z=b}(u)$$
+
+The **conditional expectation function** (CEF) is then defined as:
+$$E[Y|Z] = m(Z)$$
+where $m(b) = E[Y|Z=b]$ for each possible value $b$ that $Z$ can take. This makes $E[Y|Z]$ a random variable whose value depends on the random outcome of $Z$.
+
+Similarly, if $\boldsymbol Z$ is a vector, we have:
+$$E[Y|\boldsymbol Z] = m(\boldsymbol Z)$$
+where $m(\boldsymbol b) = E[Y|\boldsymbol Z = \boldsymbol b]$.
+
+This can also be extended to conditioning on a $n\times k$ matrix of random variables $\boldsymbol X$ (e.g., a regressor matrix), which gives $E[Y|\boldsymbol X]$. This extension is particularly important in econometrics for regression analysis.
+
+
+
+### Conditional Expectation and Independence
+
+When two random variables $Y$ and $Z$ are independent, the conditional distributions simplify considerably. As we saw in the first section, independence means that the conditional distribution of $Y$ given $Z=b$ is the same as the marginal distribution of $Y$.
+This fundamental property has important implications for conditional expectations.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Conditional Expectation and Independence**
+
+If random variables $Y$ and $Z$ are independent, then:
+
+$$E[Y|Z=b] = E[Y] \quad \text{for all } b$$
+
+And consequently:
+
+$$E[Y|Z] = E[Y]$$
+:::
+\
+
+In other words, when $Y$ and $Z$ are independent, knowing the value of $Z$ provides no information about the expected value of $Y$. The conditional expectation equals the unconditional expectation for every possible value of $Z$.
+
+To understand why this holds, recall that for independent random variables, the conditional CDF equals the marginal CDF. Using the general definition of conditional expectation:
+
+$$E[Y|Z=b] = \int_{-\infty}^{\infty} u \, \text{d}F_{Y|Z=b}(u) = \int_{-\infty}^{\infty} u \, \text{d}F_Y(u) = E[Y]$$
+
+The middle equality holds because $F_{Y|Z=b}(u) = F_Y(u)$ for all $u$ when $Y$ and $Z$ are independent.
+
+This means that the conditional expectation function $E[Y|Z] = m(Z)$ reduces to a constant function:
+
+$$m(b) = E[Y] \quad \text{for all } b$$
+
+For example, recall our coin flip example from Part 1, where we noted that the distribution of a coin toss remains the same regardless of whether a person is married or unmarried:
+
+$$F_{Y|Z=0}(a) = F_{Y|Z=1}(a) = F_Y(a) \quad \text{for all } a$$
+
+where $Y$ represents the coin outcome and $Z$ is the marital status. In this case, $E[Y|Z=0] = E[Y|Z=1] = E[Y] = 0.5$, reflecting that the expected outcome of a fair coin toss is 0.5 regardless of the marital status of the person tossing it. Hence, $E[Y|Z] = E[Y]$ for this example.
+
+
+### Expected Value of Functions
+
+Often, we are interested not just in the expected value of a random variable $Y$ itself, but in the expected value of some function of $Y$, such as $Y^2$ or $\log(Y)$.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Expected Value of a Function**
+
+For any function $g(\cdot)$, the expected value of $g(Y)$ is:
+$$E[g(Y)] = \int_{-\infty}^{\infty} g(u) \, \text{d}F_Y(u)$$
+
+For conditional expectations:
+$$E[g(Y)|Z=b] = \int_{-\infty}^{\infty} g(u) \, \text{d}F_{Y|Z=b}(u)$$
+:::
+\
+
+The conditional expectation function is $E[g(Y)|Z]=m(Z)$, where $m(b) = E[g(Y)|Z=b]$.
+
+As discussed above for the different cases, $\text{d}F_Y(u)$ can be replaced by the PMF or the PDF:
+$$
+  \int_{-\infty}^\infty g(u) \, \text{d}F_Y(u) = \begin{cases}
+	  \sum_{u \in \mathcal Y} g(u) \pi_Y(u) & \text{if} \ Y \ \text{is discrete,} \\
+	  \int_{-\infty}^\infty g(u) f_Y(u)\,\text{d}u & \text{if} \ Y \ \text{is continuous.} \end{cases}
+$$
+
+#### Example: Transformation of a Binary Variable {-}
+
+For instance, if we take the *coin* variable $Y$ and consider the transformed random variable $\log(Y+1)$, the expected value is:
+\begin{align*}
+  E[\log(Y+1)]
+  &= \log(1) \cdot \pi_Y(0) + \log(2) \cdot \pi_Y(1) \\
+  &= \log(1) \cdot \frac{1}{2} + \log(2) \cdot \frac{1}{2} \\
+  &= \frac{\log(2)}{2} \approx 0.347
+\end{align*}
+
+This approach allows us to compute expectations of arbitrary functions of random variables.
+
+### Moments and Related Measures
+
+We can define various moments of a random variable and functions of these moments using our general expectation framework:
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Moments and Related Measures**
+
+* **$r$-th moment** of $Y$:
+  $$E[Y^r] = \int_{-\infty}^\infty u^r \, \text{d}F_Y(u)$$
+
+* **$r$-th central moment**:
+  $$E[(Y-E[Y])^r] = \int_{-\infty}^\infty (u - E[Y])^r \, \text{d}F_Y(u)$$
+
+* **Variance** (2nd central moment):
+  $$\text{Var}(Y) = E[(Y-E[Y])^2] = \int_{-\infty}^\infty (u - E[Y])^2 \, \text{d}F_Y(u)$$
+
+* **Standard deviation**:
+  $$\text{sd}(Y) = \sqrt{\text{Var}(Y)}$$
+
+* **$r$-th standardized moment**:
+  $$E \left[ \left(\frac{Y-E[Y]}{\text{sd}(Y)}\right)^r \right] = \int_{-\infty}^\infty \left(\frac{u-E[Y]}{\text{sd}(Y)}\right)^r \, \text{d}F_Y(u)$$
+
+* **Skewness** (3rd standardized moment):
+  $$\text{ske}(Y) = E \left[ \left(\frac{Y-E[Y]}{\text{sd}(Y)}\right)^3 \right]$$
+
+* **Kurtosis** (4th standardized moment):
+  $$\text{kur}(Y) = E \left[ \left(\frac{Y-E[Y]}{\text{sd}(Y)}\right)^4 \right]$$
+:::
+\
+
+Similarly, conditional versions of these moments can be defined. For example:
+
+* The $r$-th conditional moment:
+  $$E[Y^r|Z=b] = \int_{-\infty}^\infty u^r \, \text{d}F_{Y|Z=b}(u)$$
+
+* The conditional variance:
+\begin{align*}
+\text{Var}(Y|Z=b)
+&= E[(Y-E[Y|Z=b])^2|Z=b] \\
+&= \int_{-\infty}^\infty (u - E[Y|Z=b])^2 \, \text{d}F_{Y|Z=b}(u)
+\end{align*}
+
+
+* The conditional variance function:
+  $$\text{Var}(Y|Z) = v(Z), \quad \text{where} \ v(b) = \text{Var}(Y|Z=b)$$
+
+
+
+## Properties of Expectation
+
+The general expected value operator has several important properties. Here we focus on three fundamental properties: linearity, the Law of Iterated Expectations, and the Conditioning Theorem.
+
+### Linearity
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Linearity of Expectation**
+
+For any constants $a, b \in \mathbb{R}$ and random variable $Y$:
+$$E[a+bY]=a+bE[Y]$$
+
+The same property holds for conditional expectations:
+$$E[a+bY|Z] = a + bE[Y|Z]$$
+:::
+\
+
+This property tells us that the expectation of a linear transformation of a random variable equals the same linear transformation of the expectation.
+
+To understand why this holds, consider the definition of expectation using the Riemann-Stieltjes integral:
+$$E[a+bY] = \int_{-\infty}^\infty (a+bu) \, \text{d}F_Y(u)$$
+
+We can separate this into two parts:
+$$\int_{-\infty}^\infty (a+bu) \, \text{d}F_Y(u) = \int_{-\infty}^\infty a \, \text{d}F_Y(u) + \int_{-\infty}^\infty bu \, \text{d}F_Y(u)$$
+
+The first integral equals $a$ because $\int_{-\infty}^\infty \text{d}F_Y(u) = 1$ for any probability distribution. The second integral equals $b\cdot E[Y]$. Combining these results gives us $a + bE[Y]$.
+
+
+### Law of Iterated Expectations (LIE)
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Law of Iterated Expectations**
+
+For any random variables $Y$ and $Z$:
+$$E[Y]=E[E[Y|Z]]$$
+:::
+\
+
+The LIE states that the expected value of $Y$ can be found by first taking the conditional expectation of $Y$ given $Z$, and then taking the expectation of this result over the distribution of $Z$.
+
+This result relies on the law of total probability, which connects marginal and conditional distributions. For discrete random variables, this law states:
+$$\pi_Y(u) = \sum_{b \in \mathcal{Z}} \pi_{Y|Z=b}(u) \cdot \pi_Z(b)$$
+
+For continuous random variables with densities, the law takes the form:
+$$f_Y(u) = \int_{-\infty}^\infty f_{Y|Z=b}(u) \cdot f_Z(b) \, db$$
+
+In the general case using CDFs, the law of total probability is expressed as:
+$$\text{d}F_Y(u) = \int_{-\infty}^\infty \text{d}F_{Y|Z=b}(u) \, \text{d}F_Z(b)$$
+
+When we evaluate $E[E[Y|Z]]$, we are calculating:
+$$E[E[Y|Z]] = \int_{-\infty}^\infty E[Y|Z=b] \, \text{d}F_Z(b)$$
+
+Expanding the inner conditional expectation:
+$$E[E[Y|Z]] = \int_{-\infty}^\infty \left(\int_{-\infty}^\infty u \, \text{d}F_{Y|Z=b}(u)\right) \, \text{d}F_Z(b)$$
+
+Applying the general form of the law of total probability, this double integral simplifies to:
+$$E[E[Y|Z]] = \int_{-\infty}^\infty u \, \text{d}F_Y(u) = E[Y]$$
+
+
+### Conditioning Theorem (CT)
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Conditioning Theorem**
+
+For any random variables $Y$ and $Z$, and any measurable function $g(\cdot)$:
+$$E[g(Z)Y|Z]=g(Z)E[Y|Z]$$
+:::
+\
+
+The Conditioning Theorem states that when we condition on $Z$, we can factor out any function of $Z$ from the conditional expectation.
+
+To see why this holds, consider a specific value $Z=b$. The conditional expectation becomes:
+$$E[g(Z)Y|Z=b] = E[g(b)Y|Z=b] = g(b)E[Y|Z=b]$$
+
+The first equality follows because $g(Z) = g(b)$ when $Z=b$. The second equality uses the linearity property of expectation, treating $g(b)$ as a constant.
+
+Since this relationship holds for every possible value of $Z$, we have the general result:
+$$E[g(Z)Y|Z]=g(Z)E[Y|Z]$$
