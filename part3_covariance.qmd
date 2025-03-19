@@ -25,6 +25,17 @@ E[E[h(Y,Z)|Z]] &= \int_{-\infty}^\infty E[h(Y,Z)|Z=b] \ \text{d}F_Z(b) \\
 :::
 \
 
+
+Another way to compute $E[h(Y,Z)]$ is directly from the joint distribution of $(Y,Z)$. 
+If $(Y,Z)$ are continuous with a joint PDF $f_{Y,Z}(u,b)$, then
+$$
+  E[h(Y,Z)] 
+  = \int_{-\infty}^\infty \int_{-\infty}^\infty h(u,b)\, f_{Y,Z}(u,b)\,du\,db.
+$$
+For discrete or mixed distributions, similar formulas apply using the joint PMF or joint CDF.
+
+
+
 ### Important Special Cases
 
 #### Sum of Random Variables {-}
@@ -289,6 +300,7 @@ In this matrix:
 \
 
 The positive semi-definiteness of the covariance matrix follows because $\boldsymbol{a}'\boldsymbol{\Sigma}_Z\boldsymbol{a} = \text{Var}(\boldsymbol{a}'\boldsymbol{Z})$, which is the variance of a linear combination of the components of $\boldsymbol{Z}$, and variance is always non-negative.
+For a refresher on the relevant matrix algebra concepts, see [matrix.svenotto.com](https://matrix.svenotto.com/04_furtherconcepts.html).
 
 
 The **correlation matrix** standardizes the covariance matrix by dividing each covariance by the product of the corresponding standard deviations:

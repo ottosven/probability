@@ -376,7 +376,7 @@ E[(\widehat{\theta}_n - E[\widehat{\theta}_n])^2 + 2(\widehat{\theta}_n - E[\wid
 <li>To halve the average deviation of the estimate from the true parameter value, we need to increase the sample size by a factor of 4 since <span class="math inline">\sqrt{4}=2</span>.</li>
 <li>To reduce the RMSE by a factor of 4, we already need to increase the sample size by a factor of 16.</li>
 </ul>
-<p>This has important practical implications: small improvements in precision often require substantial increases in sample size.</p>
+<p>Thus, to achieve substantially smaller error margins, researchers must gather disproportionately larger samples.</p>
 </section><section id="convergence-in-distribution" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="convergence-in-distribution">
 <span class="header-section-number">4.8</span> Convergence in Distribution</h2>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
@@ -388,7 +388,7 @@ E[(\widehat{\theta}_n - E[\widehat{\theta}_n])^2 + 2(\widehat{\theta}_n - E[\wid
 <p>Unlike convergence in probability, which relates a sequence of random variables to a fixed constant, convergence in distribution relates the sequence to another random variable with a specific distribution.</p>
 <p>If an estimator <span class="math inline">\widehat{\theta}_n</span> is consistent for <span class="math inline">\theta</span>, then: <span class="math display">\widehat{\theta}_n \overset{p}{\to} \theta</span></p>
 <p>This implies that <span class="math inline">\widehat{\theta}_n</span> also converges in distribution to the constant <span class="math inline">\theta</span>: <span class="math display">\widehat{\theta}_n \overset{d}{\to} \theta</span></p>
-<p>However, this limiting distribution is <strong>degenerate</strong> — it places all probability mass at the single point <span class="math inline">\theta</span>. While this confirms consistency, it doesn’t provide information about the shape of the sampling distribution for finite <span class="math inline">n</span>.</p>
+<p>However, this limiting distribution is <strong>degenerate</strong>, meaning it places all probability mass at the single point <span class="math inline">\theta</span>. A degenerate distribution at a point <span class="math inline">c</span> satisfies <span class="math inline">P(W=c)=1</span>. Consequently, even though we write <span class="math inline">\widehat{\theta}_n \overset{d}{\to} \theta</span>, this tells us nothing about the shape of the sampling distribution for finite <span class="math inline">n</span>; it simply confirms that <span class="math inline">\widehat{\theta}_n</span> converges to <span class="math inline">\theta</span> in the limit.</p>
 </section><section id="asymptotic-distribution-of-an-estimator" class="level2" data-number="4.9"><h2 data-number="4.9" class="anchored" data-anchor-id="asymptotic-distribution-of-an-estimator">
 <span class="header-section-number">4.9</span> Asymptotic Distribution of an Estimator</h2>
 <p>To obtain a non-degenerate limiting distribution that provides useful information about the sampling variability of a consistent estimator, we typically examine a standardized version of the estimator.</p>

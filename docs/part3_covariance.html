@@ -252,6 +252,10 @@ E[E[h(Y,Z)|Z]] &amp;= \int_{-\infty}^\infty E[h(Y,Z)|Z=b] \ \text{d}F_Z(b) \\
 </div>
 <p><br>
 </p>
+<p>Another way to compute <span class="math inline">E[h(Y,Z)]</span> is directly from the joint distribution of <span class="math inline">(Y,Z)</span>. If <span class="math inline">(Y,Z)</span> are continuous with a joint PDF <span class="math inline">f_{Y,Z}(u,b)</span>, then <span class="math display">
+  E[h(Y,Z)]
+  = \int_{-\infty}^\infty \int_{-\infty}^\infty h(u,b)\, f_{Y,Z}(u,b)\,du\,db.
+</span> For discrete or mixed distributions, similar formulas apply using the joint PMF or joint CDF.</p>
 <section id="important-special-cases" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="important-special-cases"><span class="header-section-number">3.1.1</span> Important Special Cases</h3>
 <section id="sum-of-random-variables" class="level4 unnumbered">
@@ -453,7 +457,7 @@ If <span class="math inline">Y</span> and <span class="math inline">Z</span> are
 </div>
 <p><br>
 </p>
-<p>The positive semi-definiteness of the covariance matrix follows because <span class="math inline">\boldsymbol{a}'\boldsymbol{\Sigma}_Z\boldsymbol{a} = \text{Var}(\boldsymbol{a}'\boldsymbol{Z})</span>, which is the variance of a linear combination of the components of <span class="math inline">\boldsymbol{Z}</span>, and variance is always non-negative.</p>
+<p>The positive semi-definiteness of the covariance matrix follows because <span class="math inline">\boldsymbol{a}'\boldsymbol{\Sigma}_Z\boldsymbol{a} = \text{Var}(\boldsymbol{a}'\boldsymbol{Z})</span>, which is the variance of a linear combination of the components of <span class="math inline">\boldsymbol{Z}</span>, and variance is always non-negative. For a refresher on the relevant matrix algebra concepts, see <a href="https://matrix.svenotto.com/04_furtherconcepts.html">matrix.svenotto.com</a>.</p>
 <p>The <strong>correlation matrix</strong> standardizes the covariance matrix by dividing each covariance by the product of the corresponding standard deviations:</p>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Correlation Matrix</strong></p>

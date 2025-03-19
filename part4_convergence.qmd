@@ -251,7 +251,7 @@ Consider the case of a $\sqrt{n}$ rate as in the sample mean case:
 - To halve the average deviation of the estimate from the true parameter value, we need to increase the sample size by a factor of 4 since $\sqrt{4}=2$.
 - To reduce the RMSE by a factor of 4, we already need to increase the sample size by a factor of 16.
 
-This has important practical implications: small improvements in precision often require substantial increases in sample size.
+Thus, to achieve substantially smaller error margins, researchers must gather disproportionately larger samples.
 
 ## Convergence in Distribution
 
@@ -274,7 +274,7 @@ $$\widehat{\theta}_n \overset{p}{\to} \theta$$
 This implies that $\widehat{\theta}_n$ also converges in distribution to the constant $\theta$:
 $$\widehat{\theta}_n \overset{d}{\to} \theta$$
 
-However, this limiting distribution is **degenerate** — it places all probability mass at the single point $\theta$. While this confirms consistency, it doesn't provide information about the shape of the sampling distribution for finite $n$.
+However, this limiting distribution is **degenerate**, meaning it places all probability mass at the single point $\theta$. A degenerate distribution at a point $c$ satisfies $P(W=c)=1$. Consequently, even though we write $\widehat{\theta}_n \overset{d}{\to} \theta$, this tells us nothing about the shape of the sampling distribution for finite $n$; it simply confirms that $\widehat{\theta}_n$ converges to $\theta$ in the limit.
 
 ## Asymptotic Distribution of an Estimator
 
