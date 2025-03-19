@@ -209,7 +209,8 @@ window.Quarto = {
   <li><a href="#covariance-and-independence" id="toc-covariance-and-independence" class="nav-link" data-scroll-target="#covariance-and-independence"><span class="header-section-number">3.2.2</span> Covariance and Independence</a></li>
   <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">3.2.3</span> Correlation</a></li>
   </ul></li>
-  <li><a href="#expected-value-vector-and-covariance-matrix" id="toc-expected-value-vector-and-covariance-matrix" class="nav-link" data-scroll-target="#expected-value-vector-and-covariance-matrix"><span class="header-section-number">3.3</span> Expected Value Vector and Covariance Matrix</a></li>
+  <li><a href="#properties-of-variance" id="toc-properties-of-variance" class="nav-link" data-scroll-target="#properties-of-variance"><span class="header-section-number">3.3</span> Properties of Variance</a></li>
+  <li><a href="#expected-value-vector-and-covariance-matrix" id="toc-expected-value-vector-and-covariance-matrix" class="nav-link" data-scroll-target="#expected-value-vector-and-covariance-matrix"><span class="header-section-number">3.4</span> Expected Value Vector and Covariance Matrix</a></li>
   </ul>
 </nav>
     </div>
@@ -384,8 +385,29 @@ If <span class="math inline">Y</span> and <span class="math inline">Z</span> are
 </ol>
 </section>
 </section>
-<section id="expected-value-vector-and-covariance-matrix" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="expected-value-vector-and-covariance-matrix"><span class="header-section-number">3.3</span> Expected Value Vector and Covariance Matrix</h2>
+<section id="properties-of-variance" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="properties-of-variance"><span class="header-section-number">3.3</span> Properties of Variance</h2>
+<p>Having explored covariance and correlation, we now focus on some key properties of variance that are widely used in statistical and econometric analysis.</p>
+<div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
+<p><strong>Properties of Variance</strong></p>
+<p>For random variables <span class="math inline">X</span>, <span class="math inline">Y</span>, and constants <span class="math inline">a</span>, <span class="math inline">b</span>:</p>
+<ol type="1">
+<li><p><strong>Non-negativity</strong>: <span class="math inline">Var(X) \geq 0</span>, with <span class="math inline">Var(X) = 0</span> if and only if <span class="math inline">X</span> is constant.</p></li>
+<li><p><strong>Scalar multiplication</strong>: <span class="math inline">Var(aX) = a^2 Var(X)</span></p></li>
+<li><p><strong>Variance of a sum</strong>: <span class="math inline">Var(X + Y) = Var(X) + Var(Y) + 2Cov(X,Y)</span></p></li>
+<li><p><strong>For independent random variables</strong>: If <span class="math inline">X</span> and <span class="math inline">Y</span> are independent, then <span class="math inline">Var(X + Y) = Var(X) + Var(Y)</span></p></li>
+</ol>
+</div>
+<p><br>
+</p>
+<p>The variance of a sum depends not only on the individual variances but also on how the variables covary.</p>
+<p>For the case of multiple random variables, the variance of their sum can be expressed as:</p>
+<p><span class="math display">Var\left(\sum_{i=1}^{n} X_i\right) = \sum_{i=1}^{n} Var(X_i) + 2\sum_{i=2}^n \sum_{j=1}^{i-1} Cov(X_i, X_j)</span></p>
+<p>If all variables <span class="math inline">X_1, X_2, \ldots, X_n</span> are independent, this simplifies to:</p>
+<p><span class="math display">Var\left(\sum_{i=1}^{n} X_i\right) = \sum_{i=1}^{n} Var(X_i)</span></p>
+</section>
+<section id="expected-value-vector-and-covariance-matrix" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="expected-value-vector-and-covariance-matrix"><span class="header-section-number">3.4</span> Expected Value Vector and Covariance Matrix</h2>
 <p>When working with multivariate data, we often need to analyze several random variables simultaneously. Let’s consider a <span class="math inline">k</span>-dimensional random vector <span class="math inline">\boldsymbol{Z} = (Z_1, Z_2, \ldots, Z_k)'</span>, where the prime denotes vector transposition.</p>
 <div style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;">
 <p><strong>Expected Value Vector</strong></p>

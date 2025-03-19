@@ -96,6 +96,10 @@ $$E[h(X,Y,Z)] = E[E[E[h(X,Y,Z)|X,Y]|X]]$$
 
 This formula allows us to decompose the expectation iteratively, conditioning on one variable at a time.
 
+
+
+
+
 ## Covariance and Correlation
 
 Having explored expectations involving multiple random variables, we now introduce measures that quantify the relationship between random variables: covariance and correlation.
@@ -189,6 +193,38 @@ The correlation coefficient has the following properties:
 2. $\rho_{Y,Z} = 1$ implies a perfect positive linear relationship
 3. $\rho_{Y,Z} = -1$ implies a perfect negative linear relationship
 4. $\rho_{Y,Z} = 0$ implies no linear relationship
+
+
+
+## Properties of Variance
+
+Having explored covariance and correlation, we now focus on some key properties of variance that are widely used in statistical and econometric analysis.
+
+::: {style="border: 1px solid black; background-color:#f2f2f2; padding: 10px;"}
+**Properties of Variance**
+
+For random variables $X$, $Y$, and constants $a$, $b$:
+
+1. **Non-negativity**: $Var(X) \geq 0$, with $Var(X) = 0$ if and only if $X$ is constant.
+
+2. **Scalar multiplication**: $Var(aX) = a^2 Var(X)$
+
+3. **Variance of a sum**: $Var(X + Y) = Var(X) + Var(Y) + 2Cov(X,Y)$
+
+4. **For independent random variables**: If $X$ and $Y$ are independent, then $Var(X + Y) = Var(X) + Var(Y)$
+:::
+\
+
+The variance of a sum depends not only on the individual variances but also on how the variables covary.
+
+For the case of multiple random variables, the variance of their sum can be expressed as:
+
+$$Var\left(\sum_{i=1}^{n} X_i\right) = \sum_{i=1}^{n} Var(X_i) + 2\sum_{i=2}^n \sum_{j=1}^{i-1} Cov(X_i, X_j)$$
+
+
+If all variables $X_1, X_2, \ldots, X_n$ are independent, this simplifies to:
+
+$$Var\left(\sum_{i=1}^{n} X_i\right) = \sum_{i=1}^{n} Var(X_i)$$
 
 
 
