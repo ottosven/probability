@@ -4,7 +4,17 @@
     "href": "index.html",
     "title": "Probability Theory for Econometricians",
     "section": "",
-    "text": "Welcome\nThis tutorial provides a concise introduction to the fundamental concepts of probability theory for econometricians and data scientists.\nThe tutorial keeps the measure-theoretic details of probability theory to a minimum, focusing instead on the practical aspects of probability theory that are most relevant for econometricians.\nCurrent Status: This tutorial is still under development.\nThe sections presented here originate from the Statistics for Data Analytics course taught in Winter Term 2024.\nFor a quick foundational review, I recommend sections 2 and 3 of Stock and Watson (2019): Textbook Link",
+    "text": "Welcome\nThis tutorial provides a concise introduction to the fundamental concepts of probability theory for econometricians and data scientists.\nThe tutorial keeps the measure-theoretic details of probability theory to a minimum, focusing instead on the practical aspects of probability theory that are most relevant for econometricians.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#comments",
+    "href": "index.html#comments",
+    "title": "Probability Theory for Econometricians",
+    "section": "Comments",
+    "text": "Comments\nFeedback is welcome. If you notice any typos or issues, please report them on GitHub or email me at sven.otto@uni-koeln.de.",
     "crumbs": [
       "Welcome"
     ]

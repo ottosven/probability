@@ -4,8 +4,9 @@ This tutorial provides a concise introduction to the fundamental concepts of pro
 
 The tutorial keeps the measure-theoretic details of probability theory to a minimum, focusing instead on the practical aspects of probability theory that are most relevant for econometricians.
 
-**Current Status:** This tutorial is still under development.
+<!-- For a quick foundational review, I recommend sections 2 and 3 of Stock and Watson (2019): [Textbook Link](https://elibrary.pearson.de/book/99.150005/9781292264523) -->
 
-The sections presented here originate from the *Statistics for Data Analytics* course taught in Winter Term 2024.
 
-For a quick foundational review, I recommend sections 2 and 3 of Stock and Watson (2019): [Textbook Link](https://elibrary.pearson.de/book/99.150005/9781292264523)
+## Comments
+
+Feedback is welcome. If you notice any typos or issues, please report them on [GitHub](https://github.com/ottosven/probability/issues/new) or email me at sven.otto@uni-koeln.de.

@@ -326,6 +326,7 @@ $$E[Y|Z] = m(Z) = 19 + 0.5Z - 0.013Z^2$$
 This is itself a random variable because its value depends on the random outcome of $Z$.
 
 ::: {#fig-CEFwageexper}
+
 ![](./plots/CEF_wageex.png){width=50%}
 
 CEF of wage given experience
