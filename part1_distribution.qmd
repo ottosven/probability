@@ -279,7 +279,7 @@ By the basic rules of probability, we can compute the probability of any event o
 * $P(a < Y \leq b) = F(b) - F(a)$
 * $P(a < Y < b) = F(b) - F(a) - P(Y=b)$
 * $P(a \leq Y \leq b) = F(b) - F(a) + P(Y=a)$
-* $P(a \leq Y < b) = F(b) - F(a)$
+* $P(a \leq Y < b) = F(b) - F(a) + P(Y=a) - P(Y=b)$
 :::
 \
 
