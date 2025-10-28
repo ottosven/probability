@@ -330,7 +330,6 @@ Below, you will find an interactive shiny app for the central limit theorem:
 :::
 
 
-I'll revise the section to follow more closely the approach in the paste.txt document while maintaining consistency with the previous parts.
 
 ## The Normal Distribution
 
