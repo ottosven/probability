@@ -214,7 +214,6 @@ $$E[Z Y|Z] = Z \cdot E[Y|Z] = \begin{cases}
 1 \cdot 14.28 = 14.28 & \text{if } Z = 1 \text{ (married)}
 \end{cases}$$
 
-I've evaluated your draft for the "Continuous Case" subsection, and it's a good start. Here's my suggested improved version with better organization, more detailed explanations, and enhanced examples:
 
 ## Continuous Case
 
